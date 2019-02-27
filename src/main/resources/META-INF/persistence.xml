@@ -7,8 +7,8 @@
 
         <!-- TomEE -->
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-        <jta-data-source>Default-Database-Managed</jta-data-source>
-        <non-jta-data-source>Default-Database-Unmanaged</non-jta-data-source>
+        <jta-data-source>MySQL-Database-Managed</jta-data-source>
+        <non-jta-data-source>MySQL-Database-Unmanaged</non-jta-data-source>
         <!-- TomEE -->
 
         <properties>

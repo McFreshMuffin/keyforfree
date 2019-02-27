@@ -1,18 +1,8 @@
-/*
- * Copyright © 2018 Dennis Schulmeister-Zimolong
- * 
- * E-Mail: dhbw@windows3.de
- * Webseite: https://www.wpvs.de/
- * 
- * Dieser Quellcode ist lizenziert unter einer
- * Creative Commons Namensnennung 4.0 International Lizenz.
- */
 package de.dhbw.karlsruhe.webprojekt.servlet;
 
-import de.dhbw.karlsruhe.webprojekt.bean.BenutzerBean;
-import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
+import de.dhbw.karlsruhe.webprojekt.bean.GameBean;
+import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.io.IOException;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +20,7 @@ public class IndexServlet extends HttpServlet {
     public static final String URL = "/index.html";
     
     @EJB
-    BenutzerBean benutzerBean;
+    GameBean gameBean;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,8 +30,10 @@ public class IndexServlet extends HttpServlet {
         //List<Benutzer> allBenutzer = this.benutzerBean.findAllBenutzer();
         //request.setAttribute("allBenutzer", allBenutzer);
         
+        Games game = this.gameBean.findGame(10);
+        request.getSession().setAttribute("game", game);
+        
         // Anfrage an die index.jsp weiterleiten
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
-    
 }

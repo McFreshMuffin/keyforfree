@@ -6,7 +6,7 @@
     
     <persistence-unit-metadata>
         <persistence-unit-defaults>
-            <schema>KEYFORFREE</schema>
+            <schema>keyforfree</schema>
         </persistence-unit-defaults>
     </persistence-unit-metadata>
     

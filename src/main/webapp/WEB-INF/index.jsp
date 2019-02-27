@@ -1,12 +1,3 @@
-<%-- 
-    Copyright © 2018 Dennis Schulmeister-Zimolong
-
-    E-Mail: dhbw@windows3.de
-    Webseite: https://www.wpvs.de/
-
-    Dieser Quellcode ist lizenziert unter einer
-    Creative Commons Namensnennung 4.0 International Lizenz.
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
@@ -18,5 +9,18 @@
         
     <jsp:attribute name="main">
         <h1>Key4Free</h1>
+        
+        <c:choose>
+            <c:when test="${!empty game}">
+                <div>
+                    ${game.name}
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="message">
+                    Kein Game gefunden
+                </div>
+            </c:otherwise>
+        </c:choose>
     </jsp:attribute>
 </template:base>
