@@ -1,19 +1,9 @@
-<%-- 
-    Copyright © 2018 Dennis Schulmeister-Zimolong
-
-    E-Mail: dhbw@windows3.de
-    Webseite: https://www.wpvs.de/
-
-    Dieser Quellcode ist lizenziert unter einer
-    Creative Commons Namensnennung 4.0 International Lizenz.
---%>
 <%@tag pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@attribute name="title"%>
-<%@attribute name="head" fragment="true"%>
 <%@attribute name="main" fragment="true"%>
 
 <!DOCTYPE html>
@@ -42,7 +32,6 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Login</a>
                         </li>
-                        
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -52,11 +41,10 @@
             </nav>
         </header>
         
-        <!-- Hauptinhalt der Seite -->
         <main>    
             <jsp:invoke fragment="main"/>
         </main>
-        
+
         <footer class="page-footer font-small cyan darken-3 fixed-bottom">
             <div class="container">
                 <div class="row">
