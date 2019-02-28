@@ -28,6 +28,9 @@
                             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
+                            <a class="nav-link" href="ListServlet?recordsPerPage=10&currentPage=1">Gameliste</a>
+                        </li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="#">Login</a>
                         </li>
                     </ul>
@@ -38,11 +41,107 @@
                 </div>
             </nav>
         </header>
-        
-        <main>    
-            <jsp:invoke fragment="main"/>
-        </main>
 
+        <div class="container mb-1">
+            <main>    
+                <jsp:invoke fragment="main"/>
+            </main>
+        </div>            
+
+
+        <!-- Footer -->
+        <footer class="page-footer font-small cyan darken-3 fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 pt-5 pb-2">
+                        <div class="mb-1 text-center">
+                            <!-- Facebook -->
+                            <a class="fb-ic">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Twitter -->
+                            <a class="tw-ic">
+                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Google +-->
+                            <a class="gplus-ic">
+                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Linkedin -->
+                            <a class="li-ic">
+                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Instagram-->
+                            <a class="ins-ic">
+                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Pinterest-->
+                            <a class="pin-ic">
+                                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center pb-3">
+                © 2019 Copyright: Key4Free
+            </div>
+        </footer>    
+
+        <!--<footer class="page-footer font-small teal pt-4 fixed-bottom">
+            <div class="container-fluid text-center text-md-left">
+                <div class="row">
+                    <div class="col-md-6 mt-md-0 mt-3">
+                        <a class="fb-ic">
+                            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                    </div>
+                    <hr class="clearfix w-100 d-md-none pb-3">
+                    <div class="col-md-6 mb-md-0 mb-3">
+                        <a class="tw-ic">
+                            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center py-3">
+                © 2019 Copyright: Key4Free
+            </div>
+        </footer> -->
+
+        <!--<div id="footer" class="bg-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 py-5">
+                        <div class="mb-5 flex-center">
+                            <a class="fb-ic">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="tw-ic">
+                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="gplus-ic">
+                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="li-ic">
+                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="ins-ic">
+                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="pin-ic">
+                                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center py-3">
+                © 2019 Copyright: Key4Free
+            </div>
+        </div>-->
+
+        <!-- 
         <footer class="page-footer font-small cyan darken-3 fixed-bottom">
             <div class="container">
                 <div class="row">
@@ -74,5 +173,7 @@
                 © 2019 Copyright: Key4Free
             </div>
         </footer>
+        
+        -->
     </body>
 </html>

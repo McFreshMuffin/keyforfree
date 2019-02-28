@@ -6,33 +6,19 @@
 
 <template:base>
     <jsp:attribute name="title">Übersicht</jsp:attribute>
-        
+
     <jsp:attribute name="main">
-        <h1>Key4Free</h1>
-        
-        <c:choose>
-            <c:when test="${!empty game}">
-                <div>
-                    ${game.name}
-                    ${game.headerImage}
-                    <img src="${game.headerImage}" alt="Selfhtml">
-                </div>
-                <table>
-                    <c:forEach items="${allGames}" var="game">
-                        <tr>
-                            <td>
-                                ${game.name}
-                                <img src="${game.headerImage}" alt="${game.name}">
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </c:when>
-            <c:otherwise>
-                <div class="message">
-                    Kein Game gefunden
-                </div>
-            </c:otherwise>
-        </c:choose>
+        <form action="ListServlet">
+            <input type="hidden" name="currentPage" value="1">
+            <div class="form-group col-md-4">
+                <label for="records">Select records per page:</label>
+                <select class="form-control" id="records" name="recordsPerPage"> 
+                    <option value="5">5</option> 
+                    <option value="10" selected>10</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </jsp:attribute>
 </template:base>
