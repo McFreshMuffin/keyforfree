@@ -22,6 +22,6 @@ public class GameBean {
     }
     
     public List<Games> findAllGames(){
-        return em.createQuery("SELECT g FROM games").getResultList();
+        return em.createQuery("SELECT g FROM games  g ORDER BY g.ReleaseDate ASC").setMaxResults(50).getResultList();
     }
 }

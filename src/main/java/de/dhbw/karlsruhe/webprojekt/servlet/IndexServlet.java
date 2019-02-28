@@ -3,6 +3,7 @@ package de.dhbw.karlsruhe.webprojekt.servlet;
 import de.dhbw.karlsruhe.webprojekt.bean.GameBean;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +33,9 @@ public class IndexServlet extends HttpServlet {
         
         Games game = this.gameBean.findGame(10);
         request.getSession().setAttribute("game", game);
+        
+        List<Games> gameList = this.gameBean.findAllGames();
+        request.getSession().setAttribute("allGames", gameList);
         
         // Anfrage an die index.jsp weiterleiten
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);

@@ -14,7 +14,19 @@
             <c:when test="${!empty game}">
                 <div>
                     ${game.name}
+                    ${game.headerImage}
+                    <img src="${game.headerImage}" alt="Selfhtml">
                 </div>
+                <table>
+                    <c:forEach items="${allGames}" var="game">
+                        <tr>
+                            <td>
+                                ${game.name}
+                                <img src="${game.headerImage}" alt="${game.name}">
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
             </c:when>
             <c:otherwise>
                 <div class="message">
