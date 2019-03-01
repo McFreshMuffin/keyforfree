@@ -17,12 +17,18 @@
                         <tr>
                             <th>Bild</th>
                             <th>Name</th>
+                            <th>Preis</th>
+                            <th>ReleaseDatum</th>
+                            <th>Alter</th>
                         </tr>
 
                         <c:forEach items="${games}" var="game">
                             <tr>
                                 <td><img src="${game.getHeaderImage()}" alt="${game.getName()}"></td>    
                                 <td>${game.getName()}</td>
+                                <td>${game.getPriceInitial()} €</td>
+                                <td>${game.getReleaseDate()}</td>
+                                <td>${game.getRequiredAge()}</td>
                             </tr>
                         </c:forEach>
                     </table>

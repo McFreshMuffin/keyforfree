@@ -52,7 +52,6 @@ public class ListServlet extends HttpServlet {
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("recordsPerPage", recordsPerPage);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/list.jsp");
-        dispatcher.forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/list.jsp").forward(request, response);
     }
 }
