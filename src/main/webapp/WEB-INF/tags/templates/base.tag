@@ -16,7 +16,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,7 +42,7 @@
             </nav>
         </header>
 
-        <div class="container mb-1">
+        <div style="margin-top: 60px;" class="container">
             <main>    
                 <jsp:invoke fragment="main"/>
             </main>
@@ -50,7 +50,7 @@
 
 
         <!-- Footer -->
-        <footer class="page-footer font-small cyan darken-3 fixed-bottom">
+        <footer class="footer font-small cyan darken-3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 pt-5 pb-2">
