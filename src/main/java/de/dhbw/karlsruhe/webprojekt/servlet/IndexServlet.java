@@ -31,8 +31,10 @@ public class IndexServlet extends HttpServlet {
         //List<Benutzer> allBenutzer = this.benutzerBean.findAllBenutzer();
         //request.setAttribute("allBenutzer", allBenutzer);
 
+        /*
         Games game = this.gameBean.findGame(10);
         request.getSession().setAttribute("game", game);
+        */
 
         List<Games> gameList = this.gameBean.findAllGames();
         request.getSession().setAttribute("allGames", gameList);

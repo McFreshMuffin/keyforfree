@@ -15,22 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 
-@WebServlet(name = "ListServlet", urlPatterns = {"/ListServlet"})
+@WebServlet(name = "ListServlet", urlPatterns = {"/gameliste"})
 public class ListServlet extends HttpServlet {
 
     @EJB
     ListBean listBean;
-
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

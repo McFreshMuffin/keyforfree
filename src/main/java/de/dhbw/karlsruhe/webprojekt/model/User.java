@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dhbw.karlsruhe.webprojekt.model;
 
 import javax.persistence.Entity;
@@ -11,10 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 
-/**
- *
- * @author xNoTe
- */
 @Data
 @Entity
 @Table(name="user")
@@ -24,14 +15,23 @@ public class User {
     @GeneratedValue
     private long userId;
     
+    private String email;
+    private String password;
+    
     private String vorname;
     private String nachname;
-
+    private String addresse;
+    
     public User() {
     }
 
-    public User(String vorname, String nachname) {
+    public User(String email, String password, String vorname, String nachname, String addresse) {
+        this.email = email;
+        this.password = password;
         this.vorname = vorname;
         this.nachname = nachname;
+        this.addresse = addresse;
     }
+
+   
 }

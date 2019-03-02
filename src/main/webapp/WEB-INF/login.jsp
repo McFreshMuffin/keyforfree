@@ -14,7 +14,7 @@
 
         <div class="row pt-4">
             <div class="login-form col-6">
-                <form action="/examples/actions/confirmation.php" method="post">
+                <form action="/login" method="post">
                     <h2>Log in</h2>
                 <p class="hint-text">Give us your DATA! (Username = Email)</p>
                  <div class="form-group">
@@ -36,7 +36,7 @@
                 <div class="form-group">
                         <button type="submit" class="btn btn-success btn-lg btn-block">Log In</button>
                     </div>
-                 <div class="text-center">You don't have an account? <a href="LoginServlet?type=register">Register</a></div>
+                 <div class="text-center">You don't have an account? <a href="login?type=register">Register</a></div>
                  </form>
             </div>
         </div>

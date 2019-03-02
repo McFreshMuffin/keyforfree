@@ -15,8 +15,9 @@
 
         <div class="row pt-4">
             <div class="signup-form col-6">
-                <form action="/examples/actions/confirmation.php" method="post">
+                <form action="/WebProjekt/login?type=register" method="post">
                     <h2>Register</h2>
+                    <input type="hidden" name="type" value="register">
                     <p class="hint-text">Create your account. It's free and only takes a minute.</p>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -45,8 +46,21 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
                     </div>
-                    <div class="text-center">Already have an account? <a href="LoginServlet?type=login">Sign in</a></div>
-                </form>  
+                    <div class="text-center">Already have an account? <a href="login?type=login">Sign in</a></div>
+                </form>
+
+                <c:choose>
+                    <c:when test="${!empty result}">
+                        <c:choose>
+                            <c:when test="${result}">
+                                <p>Registrierung war Erfolgreich!</p>
+                            </c:when>
+                            <c:otherwise>
+                                <p>Registrierung fehlgeschlagen!</p>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+                </c:choose>
             </div>
         </div>
     </div>
