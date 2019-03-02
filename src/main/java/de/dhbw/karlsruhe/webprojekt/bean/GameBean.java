@@ -17,9 +17,9 @@ public class GameBean {
     @PersistenceContext
     EntityManager em;
 
-    public Games findGame(long gameId){
+    /*public Games findGame(long gameId){
         return em.find(Games.class, gameId);
-    }
+    }*/
     
     public List<Games> findAllGames(){
         return em.createQuery("SELECT g FROM Games g ORDER BY g.ReleaseDate").setMaxResults(50).getResultList();

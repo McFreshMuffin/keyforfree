@@ -24,7 +24,6 @@ public class ListBean {
     EntityManager em;
 
     public List<Games> findGames(int currentPage, int recordsPerPage) {
-        
         int start = currentPage * recordsPerPage - recordsPerPage;
         return em.createQuery("SELECT g FROM Games g ORDER BY g.ReleaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
     }

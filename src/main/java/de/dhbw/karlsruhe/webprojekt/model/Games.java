@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -54,7 +55,6 @@ public class Games implements Serializable {
     private String GenreIsRacing;
     private String GenreIsMassivelyMultiplayer;
     private String PriceCurrency;
-    private double PriceInitial;
     private double PriceFinal;
     private String AboutText;
     private String DetailedDescrip;
@@ -66,4 +66,9 @@ public class Games implements Serializable {
     private String LinuxRecReqsText;
     private String MacMinReqsText;
     private String MacRecReqsText;
+    
+    //@OneToOne
+    //private Genre genre;
+    
+    
 }
