@@ -14,32 +14,53 @@
 
         <div class="row pt-4">
             <div class="login-form col-6">
-                <form action="/login" method="post">
+                <form action="/WebProjekt/login?type=login" method="post">
                     <h2>Log in</h2>
-                <p class="hint-text">Give us your DATA! (Username = Email)</p>
-                 <div class="form-group">
-                       <input type="text" class="form-control" placeholder="Username" required="required">
+                    <p class="hint-text">Bitte die E-Mail-Adresse und Passwort eingeben um weitere Funktionen nutzen zu können.</p>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="E-Mail" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" required="required">
+                        <input type="password" name="password" class="form-control" placeholder="Passwort" required>
                     </div>
-                 <div class="form-row">
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="checkbox-inline">
-                                <input type="checkbox" required="required"> Remember me
+                                <input type="checkbox"> Eingeloggt bleiben
                             </label>
                         </div>
                         <div class="form-group col-md-6 text-right">
-                            <a href="#" class="pull-right">Forgot Password?</a>
+                            <a href="#" class="pull-right">Passwort vergessen?</a>
                         </div>
                     </div> 
-                <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-lg btn-block">Log In</button>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Einloggen</button>
                     </div>
-                 <div class="text-center">You don't have an account? <a href="login?type=register">Register</a></div>
-                 </form>
+                    <div class="text-center">Noch keinen Account? <a href="login?type=register">Hier Registrieren</a></div>
+
+                    <div class="mt-4">
+                    <c:choose>
+                        <c:when test="${!empty result}">
+                            <c:choose>
+                                <c:when test="${result}">
+                                    <div class="alert alert-success" role="alert">
+                                        This is a success alert—check it out!
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="alert alert-warning" role="alert">
+                                        <h4 class="alert-heading">Login fehlgeschlagen</h4>
+                                        <p>Der eingegebene Benutzername (E-Mail) wurde nicht gefunden oder das zugehörige Passwort ist falsch.</p>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:when>
+                    </c:choose>
+                        </div>
+
+                </form>
             </div>
         </div>
-        
+
     </jsp:attribute>
 </template:base>

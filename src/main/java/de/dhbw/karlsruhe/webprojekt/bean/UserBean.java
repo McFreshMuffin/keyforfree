@@ -14,7 +14,15 @@ public class UserBean {
     private EntityManager em;
 
     public User loginUser(String email, String password) {
-        return em.find(User.class, email);
+        try {
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class);
+            query.setParameter("email", email);
+            query.setParameter("password", password);
+            return query.getSingleResult();
+        } catch (NoResultException nre) {
+            User user = null;
+            return user;
+        }
     }
 
     public boolean registerUser(String email, String password, String vorname, String nachname, String addresse) {
