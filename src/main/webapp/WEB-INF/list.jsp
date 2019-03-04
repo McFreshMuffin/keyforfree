@@ -7,7 +7,18 @@
 <template:base>
 
     <jsp:attribute name="title">Games</jsp:attribute>
-
+    
+   <jsp:attribute name="nav_log">
+        <c:choose>
+            <c:when test="${empty user}">
+                <a class="nav-link" href="login?type=login">Login</a>
+            </c:when>
+            <c:otherwise>
+                <a class="nav-link" href="login?type=logout">Logout</a>
+            </c:otherwise>
+        </c:choose>
+    </jsp:attribute>
+     
     <jsp:attribute name="main">
         <div class="row col-md-6">
             <c:choose>
@@ -20,6 +31,7 @@
                             <th>Preis</th>
                             <th>ReleaseDatum</th>
                             <th>Alter</th>
+                            <th></th>
                         </tr>
 
                         <c:forEach items="${games}" var="game">
@@ -29,6 +41,9 @@
                                 <td>${game.getPriceFinal()} €</td>
                                 <td>${game.getReleaseDate()}</td>
                                 <td>${game.getRequiredAge()}</td>
+                                <td align="center">
+					<a href="${pageContext.request.contextPath }/cart?&action=buy&id=${product.id }">Buy</a>
+				</td>
                             </tr>
                         </c:forEach>
                     </table>

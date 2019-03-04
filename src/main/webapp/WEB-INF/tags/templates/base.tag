@@ -4,6 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@attribute name="title"%>
+<%@attribute name="nav_log" fragment="true"%>
 <%@attribute name="head" fragment="true"%>
 <%@attribute name="main" fragment="true"%>
 
@@ -33,7 +34,7 @@
                             <a class="nav-link" href="gameliste?recordsPerPage=10&currentPage=1">Gameliste</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="login?type=login">Login</a>
+                             <jsp:invoke fragment="nav_log"/>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">

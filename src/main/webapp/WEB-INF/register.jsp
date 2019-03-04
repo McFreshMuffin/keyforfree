@@ -6,6 +6,17 @@
 
 <template:base>
     <jsp:attribute name="title">Login</jsp:attribute>
+    
+    <jsp:attribute name="nav_log">
+        <c:choose>
+            <c:when test="${empty user}">
+                <a class="nav-link" href="login?type=login">Login</a>
+            </c:when>
+            <c:otherwise>
+                <a class="nav-link" href="login?type=logout">Logout</a>
+            </c:otherwise>
+        </c:choose>
+    </jsp:attribute>
 
     <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="/style/register.css"/>" />
