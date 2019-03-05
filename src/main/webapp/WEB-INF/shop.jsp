@@ -7,8 +7,8 @@
 <template:base>
 
     <jsp:attribute name="title">Games</jsp:attribute>
-    
-   <jsp:attribute name="nav_log">
+
+    <jsp:attribute name="nav_log">
         <c:choose>
             <c:when test="${empty user}">
                 <a class="nav-link" href="login?type=login">Login</a>
@@ -18,7 +18,7 @@
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
-     
+
     <jsp:attribute name="main">
         <div class="row col-md-6">
             <c:choose>
@@ -42,8 +42,13 @@
                                 <td>${game.getReleaseDate()}</td>
                                 <td>${game.getRequiredAge()}</td>
                                 <td align="center">
-					<a href="${pageContext.request.contextPath }/cart?&action=buy&id=${product.id }">Buy</a>
-				</td>
+                                    <form action="/WebProjekt/cart" method="post">
+                                        <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
+                                        <input type="hidden" name="action" value="add">
+                                        <input type="hidden" name="id" value="${game.getGameId()}">
+                                        <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -60,7 +65,7 @@
             <ul class="pagination">
                 <c:if test="${currentPage != 1}">
                     <li class="page-item"><a class="page-link" 
-                                             href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                             href="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
                     </li>
                 </c:if>
 
@@ -68,12 +73,12 @@
                     <c:choose>
                         <c:when test="${currentPage-2 eq i}">
                             <li class="page-item"><a class="page-link" 
-                                                     href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                             </li>
                         </c:when>
                         <c:when test="${currentPage-1 eq i}">
                             <li class="page-item"><a class="page-link" 
-                                                     href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                             </li>
                         </c:when>
                         <c:when test="${currentPage eq i}">
@@ -83,12 +88,12 @@
                         </c:when>
                         <c:when test="${currentPage+1 eq i}">
                             <li class="page-item"><a class="page-link" 
-                                                     href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                             </li>
                         </c:when>
                         <c:when test="${currentPage+2 eq i}">
                             <li class="page-item"><a class="page-link" 
-                                                     href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                             </li>
                         </c:when>
 
@@ -97,7 +102,7 @@
 
                 <c:if test="${currentPage lt noOfPages}">
                     <li class="page-item"><a class="page-link" 
-                                             href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                             href="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
                     </li>
                 </c:if>              
             </ul>

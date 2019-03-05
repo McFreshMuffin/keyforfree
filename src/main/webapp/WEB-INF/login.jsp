@@ -10,10 +10,10 @@
     <jsp:attribute name="nav_log">
         <c:choose>
             <c:when test="${empty user}">
-                <a class="nav-link" href="login?type=login">Login</a>
+                <a class="nav-link" href="login">Login</a>
             </c:when>
             <c:otherwise>
-                <a class="nav-link" href="login?type=logout">Logout</a>
+                <a class="nav-link" href="logout">Logout</a>
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
@@ -26,7 +26,7 @@
 
         <div class="row pt-4">
             <div class="login-form col-6">
-                <form action="/WebProjekt/login?type=login" method="post">
+                <form action="/WebProjekt/login" method="post">
                     <h2>Log in</h2>
                     <p class="hint-text">Bitte die E-Mail-Adresse und Passwort eingeben um weitere Funktionen nutzen zu können.</p>
                     <div class="form-group">

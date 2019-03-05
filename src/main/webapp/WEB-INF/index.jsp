@@ -11,45 +11,87 @@
     <jsp:attribute name="nav_log">
         <c:choose>
             <c:when test="${empty user}">
-                <a class="nav-link" href="login?type=login">Login</a>
+                <a class="nav-link" href="login">Login</a>
             </c:when>
             <c:otherwise>
-                <a class="nav-link" href="login?type=logout">Logout</a>
+                <a class="nav-link" href="logout">Logout</a>
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
 
     <jsp:attribute name="main">
-        <form action="ListServlet">
-            <input type="hidden" name="currentPage" value="1">
-            <div class="form-group col-md-4">
-                <label for="records">Select records per page:</label>
-                <select class="form-control" id="records" name="recordsPerPage"> 
-                    <option value="5">5</option> 
-                    <option value="10" selected>10</option>
-                    <option value="15">15</option>
-                </select>
+        <div class="container">
+            <div class="row">
+                <h1>Willkommen ${sessionScope.username}</h1>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-        <c:choose>
-            <c:when test="${!empty user}">
-                <ul>
-                    <li>
-                        ${user.email}
-                    </li>
-                    <li>
-                        ${user.vorname};
-                    </li>
-                    <li>
-                        ${user.nachname};
-                    </li>
-                </ul>
-            </c:when>
-            <c:otherwise>
-                <p>Noch nicht eingeloggt</p>
-            </c:otherwise>
-        </c:choose>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="NewestGamesCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <c:choose>
+                                <c:when test="${!empty newestGames}">
+                                    <c:forEach items="${newestGames}" var="game">
+                                        <div class="carousel-item">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <a href="#">
+                                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                                    </a>
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5>...</h5>
+                                                        <p>...</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <a href="#">
+                                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                                    </a>
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5>...</h5>
+                                                        <p>...</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <a href="#">
+                                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                                    </a>
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5>...</h5>
+                                                        <p>...</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <a href="#">
+                                                        <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                                    </a>
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5>...</h5>
+                                                        <p>...</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                    </table>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="message">
+                                        Kein Game gefunden
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <a class="carousel-control-prev" href="#NewestGamesCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#NewestGamesCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </jsp:attribute>
 </template:base>

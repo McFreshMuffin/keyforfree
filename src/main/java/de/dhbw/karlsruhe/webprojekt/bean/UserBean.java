@@ -13,16 +13,28 @@ public class UserBean {
     @PersistenceContext
     private EntityManager em;
 
-    public User loginUser(String email, String password) {
-        try {
-            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class);
-            query.setParameter("email", email);
-            query.setParameter("password", password);
+    public User getUserDetails(int userId){
+          try {
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.userId = :userId", User.class);
+            query.setParameter("userId", userId);
             return query.getSingleResult();
         } catch (NoResultException nre) {
             User user = null;
             return user;
         }
+    }
+    
+    public User loginUser(String email, String password) {
+        User user = null;
+        try {
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class);
+            query.setParameter("email", email);
+            query.setParameter("password", password);
+            user = query.getSingleResult();
+        } catch (NoResultException nre) {
+            nre.printStackTrace();
+        }
+        return user;
     }
 
     public boolean registerUser(String email, String password, String vorname, String nachname, String addresse) {

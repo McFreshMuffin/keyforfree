@@ -10,10 +10,10 @@
     <jsp:attribute name="nav_log">
         <c:choose>
             <c:when test="${empty user}">
-                <a class="nav-link" href="login?type=login">Login</a>
+                <a class="nav-link" href="login">Login</a>
             </c:when>
             <c:otherwise>
-                <a class="nav-link" href="login?type=logout">Logout</a>
+                <a class="nav-link" href="logout">Logout</a>
             </c:otherwise>
         </c:choose>
     </jsp:attribute>

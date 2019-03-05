@@ -31,7 +31,7 @@
                             <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="gameliste?recordsPerPage=10&currentPage=1">Gameliste</a>
+                            <a class="nav-link" href="shop?recordsPerPage=10&currentPage=1">Gameliste</a>
                         </li>
                         <li class="nav-item active">
                              <jsp:invoke fragment="nav_log"/>
