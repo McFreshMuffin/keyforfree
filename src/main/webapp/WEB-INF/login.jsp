@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-lg btn-block">Einloggen</button>
                     </div>
-                    <div class="text-center">Noch keinen Account? <a href="login?type=register">Hier Registrieren</a></div>
+                    <div class="text-center">Noch keinen Account? <a href="register">Hier Registrieren</a></div>
 
                     <div class="mt-4">
                     <c:choose>

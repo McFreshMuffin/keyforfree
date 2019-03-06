@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
             ArrayList cart = new ArrayList();
             HttpSession session = request.getSession();
+            session.setAttribute("user", user);
             session.setAttribute("email", user.getEmail());
             session.setAttribute("username", user.getVorname());
             session.setAttribute("userId", user.getUserId());
