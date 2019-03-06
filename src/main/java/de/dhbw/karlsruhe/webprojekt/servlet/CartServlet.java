@@ -19,6 +19,13 @@ public class CartServlet extends HttpServlet {
     @EJB
     GameBean gameBean;
 
+    
+    
+    
+    
+    
+    
+    /*
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -48,9 +55,9 @@ public class CartServlet extends HttpServlet {
                         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
                     }
                 }
-                break;*/
+                break;
         }
-        
+        */
 
 
         /*
@@ -69,10 +76,10 @@ public class CartServlet extends HttpServlet {
         } else {
             response.sendRedirect("index.jsp");
         }
-         */ {
+          {
 
         }
-    }
+    }*/
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -86,7 +93,11 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        HttpSession session = request.getSession();
+        List<Games> shoppingCart = (ArrayList) session.getAttribute("shoppingCart");
+        request.setAttribute("cart", shoppingCart);
+        request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 
     /**
@@ -100,17 +111,36 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        //processRequest(request, response);
+        String action = request.getParameter("action");
+        int gameId = Integer.parseInt(request.getParameter("id"));
+        String currentPage = request.getParameter("currentUrl");
+        HttpSession session = request.getSession();
+        List<Games> shoppingCart = (ArrayList) session.getAttribute("shoppingCart");
+        
+        switch (action) {
+            case "add":
+                Games game = this.gameBean.findGameById(gameId);
+                shoppingCart.add(game);
+                request.setAttribute("cart", shoppingCart);
+                request.setAttribute("currentPage", currentPage);
+                session.setAttribute("shoppingCart", shoppingCart);
+                request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+                break;
+            /*case "delete":
+                cart = sessionCart;
+                for (Games curGame : cart) {
+                    if (curGame.getGameId() == gameId) {
+                        cart.remove(curGame);
+                        request.setAttribute("cart", cart);
+                        request.setAttribute("currentPage", currentPage);
+                        session.setAttribute("sessionCart", cart);
+                        request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+                    }
+                }
+                break;*/
+        }
+}
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

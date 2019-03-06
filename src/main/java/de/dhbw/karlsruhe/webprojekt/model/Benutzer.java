@@ -8,8 +8,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="user")
-public class User {
+@Table(name="benutzer")
+public class Benutzer {
     
     @Id
     @GeneratedValue
@@ -22,10 +22,10 @@ public class User {
     private String nachname;
     private String addresse;
     
-    public User() {
+    public Benutzer() {
     }
 
-    public User(String email, String password, String vorname, String nachname, String addresse) {
+    public Benutzer(String email, String password, String vorname, String nachname, String addresse) {
         this.email = email;
         this.password = password;
         this.vorname = vorname;

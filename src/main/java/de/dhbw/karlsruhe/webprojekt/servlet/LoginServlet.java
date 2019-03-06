@@ -1,7 +1,7 @@
 package de.dhbw.karlsruhe.webprojekt.servlet;
 
 import de.dhbw.karlsruhe.webprojekt.bean.UserBean;
-import de.dhbw.karlsruhe.webprojekt.model.User;
+import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
 import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, java.io.IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        User user = this.userBean.loginUser(email, password);
+        Benutzer user = this.userBean.loginUser(email, password);
 
         if (user != null) {
             ArrayList cart = new ArrayList();
