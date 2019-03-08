@@ -1,10 +1,14 @@
 package de.dhbw.karlsruhe.webprojekt.servlet;
 
 import de.dhbw.karlsruhe.webprojekt.bean.GameBean;
+import de.dhbw.karlsruhe.webprojekt.email.EmailSendingService;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +27,16 @@ public class IndexServlet extends HttpServlet {
     @EJB
     GameBean gameBean;
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            EmailSendingService ess = new EmailSendingService();
+            ess.generateAndSendEmail();
+        } catch (MessagingException ex) {
+            Logger.getLogger(IndexServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

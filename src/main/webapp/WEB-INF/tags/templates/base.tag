@@ -36,21 +36,27 @@
                             <a class="nav-link" href="login?type=login">Login</a>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="register">
+                                <i class="fas fa-user-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="login">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </header>
-
 
         <main>    
             <div style="margin-top: 60px;" class="container">
                 <jsp:invoke fragment="main"/>
             </div>
         </main>    
-
 
         <!-- Footer -->
         <footer class="footer font-small cyan darken-3">

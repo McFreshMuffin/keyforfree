@@ -26,7 +26,7 @@
                             <tr>
                                 <td><img src="${game.getHeaderImage()}" alt="${game.getName()}"></td>    
                                 <td>${game.getName()}</td>
-                                <td>${game.getPriceFinal()} €</td>
+                                <td>${game.getPrice()} €</td>
                                 <td>${game.getReleaseDate()}</td>
                                 <td>${game.getRequiredAge()}</td>
                             </tr>
