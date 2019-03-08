@@ -22,7 +22,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,28 +33,24 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="shop?recordsPerPage=10&currentPage=1">Spieleliste</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="cart">Warenkorb</a>
-                        </li>
-                        <li class="nav-item active">
-                            <jsp:invoke fragment="nav_log"/>
-                        </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    <jsp:invoke fragment="nav_log"/>
                 </div>
             </nav>
-        </header>
 
+            <div class="mb-1 text-center">
+                <form>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Suche" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </header>
 
         <main>    
             <div style="margin-top: 60px;" class="container">
                 <jsp:invoke fragment="main"/>
             </div>
         </main>    
-
 
         <!-- Footer -->
         <footer class="footer font-small cyan darken-3">

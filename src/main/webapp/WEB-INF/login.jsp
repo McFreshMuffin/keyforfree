@@ -27,7 +27,7 @@
         <div class="row pt-4">
             <div class="login-form col-6">
                 <form action="/WebProjekt/login" method="post">
-                    <h2>Log in</h2>
+                    <h2>Einloggen</h2>
                     <p class="hint-text">Bitte die E-Mail-Adresse und Passwort eingeben um weitere Funktionen nutzen zu können.</p>
                     <div class="form-group">
                         <input type="email" name="email" class="form-control" placeholder="E-Mail" required>

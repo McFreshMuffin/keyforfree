@@ -17,8 +17,10 @@ public class LoginServlet extends HttpServlet {
     @EJB
     private UserBean userBean;
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, java.io.IOException {
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Benutzer user = this.userBean.loginUser(email, password);
@@ -38,9 +40,10 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
     }
-    
-     public void doGet(HttpServletRequest request, HttpServletResponse response)
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, java.io.IOException {
-                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 }
