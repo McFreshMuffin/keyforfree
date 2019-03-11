@@ -51,7 +51,7 @@
                             <th>Bild</th>
                             <th>Name</th>
                             <th>Preis</th>
-                            <th>ReleaseDatum</th>
+                            <th>Veröffentlicht</th>
                             <th>Alter</th>
                             <th></th>
                         </tr>
@@ -61,7 +61,7 @@
                                 <td><img src="${game.getImage()}" alt="${game.getName()}"></td>    
                                 <td>${game.getName()}</td>
                                 <td>${game.getPrice()} €</td>
-                                <td>${game.getReleaseDate()}</td>
+                                <td>${game.getReleaseYear()}</td>
                                 <td>${game.getRequiredAge()}</td>
                                 <td align="center">
                                     <form action="/WebProjekt/cart" method="post">

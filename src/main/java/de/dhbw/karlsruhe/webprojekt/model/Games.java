@@ -67,8 +67,9 @@ public class Games implements Serializable {
     private String MacMinReqsText;
     private String MacRecReqsText;
     
+    public String getReleaseYear(){
+        return ReleaseDate.substring(0,4);
+    }
     //@OneToOne
-    //private Genre genre;
-    
-    
+    //private Genre genre;    
 }
