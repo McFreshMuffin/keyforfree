@@ -10,11 +10,33 @@
 
     <jsp:attribute name="nav_log">
         <c:choose>
-            <c:when test="${empty user}">
-                <a class="nav-link" href="login?type=login">Login</a>
+            <c:when test="${empty sessionScope.user}">
+                 <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a href="register" class="nav-link" style="text-decoration: none; color: white;">
+                                <i class="fas fa-user-plus"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="login" class="nav-link" style="text-decoration: none; color: white;">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
             </c:when>
             <c:otherwise>
-                <a class="nav-link" href="login?type=logout">Logout</a>
+                <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a href="cart" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="logout" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
@@ -36,9 +58,9 @@
 
                         <c:forEach items="${games}" var="game">
                             <tr>
-                                <td><img src="${game.getHeaderImage()}" alt="${game.getName()}"></td>    
+                                <td><img src="${game.getImage()}" alt="${game.getName()}"></td>    
                                 <td>${game.getName()}</td>
-                                <td>${game.getPriceFinal()} €</td>
+                                <td>${game.getPrice()} €</td>
                                 <td>${game.getReleaseDate()}</td>
                                 <td>${game.getRequiredAge()}</td>
                                 <td align="center">

@@ -38,11 +38,21 @@
                 </div>
             </nav>
 
-            <div class="mb-1 text-center">
-                <form>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Suche" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+            <div class="bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 pt-1 pb-1">
+                            <div class="text-center">
+                                <form action="/WebProjekt/search" class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-md-5 w-100" type="search" placeholder="Search">
+                                    <button class="btn btn-md" style="right: 0; position: absolute" type="submit">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 

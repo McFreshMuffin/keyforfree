@@ -22,6 +22,39 @@
         <link rel="stylesheet" href="<c:url value="/style/login.css"/>" />
     </jsp:attribute>
 
+    <jsp:attribute name="nav_log">
+        <c:choose>
+            <c:when test="${empty sessionScope.user}">
+                 <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a href="register" class="nav-link" style="text-decoration: none; color: white;">
+                                <i class="fas fa-user-plus"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="login" class="nav-link" style="text-decoration: none; color: white;">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+            </c:when>
+            <c:otherwise>
+                <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a href="cart" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="logout" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+            </c:otherwise>
+        </c:choose>
+    </jsp:attribute>
+        
     <jsp:attribute name="main">
 
         <div class="row pt-4">
