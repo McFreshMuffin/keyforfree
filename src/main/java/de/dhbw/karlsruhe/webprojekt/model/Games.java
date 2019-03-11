@@ -55,10 +55,10 @@ public class Games implements Serializable {
     private String GenreIsRacing;
     private String GenreIsMassivelyMultiplayer;
     private String PriceCurrency;
-    private double PriceFinal;
+    private double Price;
     private String AboutText;
     private String DetailedDescrip;
-    private String HeaderImage;
+    private String Image;
     private String SupportedLanguages;
     private String PCMinReqsText;
     private String PCRecReqsText;

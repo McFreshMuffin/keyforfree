@@ -8,6 +8,39 @@
 
     <jsp:attribute name="title">Games</jsp:attribute>
 
+    <jsp:attribute name="nav_log">
+        <c:choose>
+            <c:when test="${empty sessionScope.user}">
+                 <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a href="register" class="nav-link" style="text-decoration: none; color: white;">
+                                <i class="fas fa-user-plus"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="login" class="nav-link" style="text-decoration: none; color: white;">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+            </c:when>
+            <c:otherwise>
+                <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a href="cart" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="logout" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+            </c:otherwise>
+        </c:choose>
+    </jsp:attribute>
+
     <jsp:attribute name="main">
         <div class="row col-md-6">
             <c:choose>
@@ -20,15 +53,24 @@
                             <th>Preis</th>
                             <th>ReleaseDatum</th>
                             <th>Alter</th>
+                            <th></th>
                         </tr>
 
                         <c:forEach items="${games}" var="game">
                             <tr>
-                                <td><img src="${game.getHeaderImage()}" alt="${game.getName()}"></td>    
+                                <td><img src="${game.getImage()}" alt="${game.getName()}"></td>    
                                 <td>${game.getName()}</td>
-                                <td>${game.getPriceFinal()} €</td>
+                                <td>${game.getPrice()} €</td>
                                 <td>${game.getReleaseDate()}</td>
                                 <td>${game.getRequiredAge()}</td>
+                                <td align="center">
+                                    <form action="/WebProjekt/cart" method="post">
+                                        <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
+                                        <input type="hidden" name="action" value="add">
+                                        <input type="hidden" name="id" value="${game.getGameId()}">
+                                        <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -45,7 +87,7 @@
             <ul class="pagination">
                 <c:if test="${currentPage != 1}">
                     <li class="page-item"><a class="page-link" 
-                                             href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                             href="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
                     </li>
                 </c:if>
 
@@ -53,12 +95,12 @@
                     <c:choose>
                         <c:when test="${currentPage-2 eq i}">
                             <li class="page-item"><a class="page-link" 
-                                                     href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                             </li>
                         </c:when>
                         <c:when test="${currentPage-1 eq i}">
                             <li class="page-item"><a class="page-link" 
-                                                     href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                             </li>
                         </c:when>
                         <c:when test="${currentPage eq i}">
@@ -68,12 +110,12 @@
                         </c:when>
                         <c:when test="${currentPage+1 eq i}">
                             <li class="page-item"><a class="page-link" 
-                                                     href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                             </li>
                         </c:when>
                         <c:when test="${currentPage+2 eq i}">
                             <li class="page-item"><a class="page-link" 
-                                                     href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                             </li>
                         </c:when>
 
@@ -82,7 +124,7 @@
 
                 <c:if test="${currentPage lt noOfPages}">
                     <li class="page-item"><a class="page-link" 
-                                             href="ListServlet?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                             href="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
                     </li>
                 </c:if>              
             </ul>

@@ -1,26 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dhbw.karlsruhe.webprojekt.servlet;
 
-import de.dhbw.karlsruhe.webprojekt.bean.ListBean;
+import de.dhbw.karlsruhe.webprojekt.bean.GameBean;
+import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import de.dhbw.karlsruhe.webprojekt.model.Games;
-import java.util.List;
 
-@WebServlet(name = "ListServlet", urlPatterns = {"/gameliste"})
-public class ListServlet extends HttpServlet {
+@WebServlet(name = "ShopServlet", urlPatterns = {"/shop"})
+public class ShopServlet extends HttpServlet {
 
-    @EJB
-    ListBean listBean;
+     @EJB
+     GameBean gameBean;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,18 +26,18 @@ public class ListServlet extends HttpServlet {
         int currentPage = Integer.valueOf(request.getParameter("currentPage"));
         int recordsPerPage = Integer.valueOf(request.getParameter("recordsPerPage"));
 
-        List<Games> gameList = this.listBean.findGames(currentPage, recordsPerPage);
-        request.setAttribute("games", gameList);
-        long rows = this.listBean.getNumberOfRows();
+        List<Games> gameList = this.gameBean.findGames(currentPage, recordsPerPage);
+        long rows = this.gameBean.getNumberOfRows();
         long nOfPages = rows / recordsPerPage;
         if (nOfPages % recordsPerPage > 0) {
             nOfPages++;
         }
 
+        request.setAttribute("games", gameList);
         request.setAttribute("noOfPages", nOfPages);
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("recordsPerPage", recordsPerPage);
 
-        request.getRequestDispatcher("/WEB-INF/list.jsp").forward(request, response);
-    }
+        request.getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
+    }   
 }

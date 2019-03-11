@@ -6,6 +6,39 @@
 
 <template:base>
     <jsp:attribute name="title">Login</jsp:attribute>
+    
+    <jsp:attribute name="nav_log">
+        <c:choose>
+            <c:when test="${empty sessionScope.user}">
+                 <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a href="register" class="nav-link" style="text-decoration: none; color: white;">
+                                <i class="fas fa-user-plus"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="login" class="nav-link" style="text-decoration: none; color: white;">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+            </c:when>
+            <c:otherwise>
+                <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a href="cart" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="logout" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+            </c:otherwise>
+        </c:choose>
+    </jsp:attribute>
 
     <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="/style/register.css"/>" />
@@ -15,17 +48,17 @@
 
         <div class="row pt-4">
             <div class="signup-form col-6">
-                <form action="/WebProjekt/login?type=register" method="post">
-                    <h2>Register</h2>
+                <form action="/WebProjekt/register" method="post">
+                    <h2>Registrierung</h2>
                     <input type="hidden" name="type" value="register">
-                    <p class="hint-text">Create your account. It's free and only takes a minute.</p>
+                    <p class="hint-text">Hier kann ihr Account erstellt werden.</p>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="first_name" placeholder="First Name" required="required">
+                            <input type="text" class="form-control" name="first_name" placeholder="Vorname" required="required">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required">
+                            <input type="text" class="form-control" name="last_name" placeholder="Nachname" required="required">
                         </div>
                     </div> 
                     <div class="form-group">
@@ -35,18 +68,18 @@
                         <input type="email" class="form-control" name="email" placeholder="Email" required="required">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                        <input type="password" class="form-control" name="password" placeholder="Passwort" required="required">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+                        <input type="password" class="form-control" name="confirm_password" placeholder="Passwort bestätigen" required="required">
                     </div>        
                     <div class="form-group">
-                        <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+                        <label class="checkbox-inline"><input type="checkbox" required="required"> Ich akzeptiere <a href="#">Nutzungsbedingungen</a> &amp; <a href="#">Datenschutzbestimmungen</a></label>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Jetzt Registrieren</button>
                     </div>
-                    <div class="text-center">Already have an account? <a href="login?type=login">Sign in</a></div>
+                    <div class="text-center">Bereits einen Account? <a href="login">Einloggen</a></div>
                 </form>
 
                 <c:choose>
