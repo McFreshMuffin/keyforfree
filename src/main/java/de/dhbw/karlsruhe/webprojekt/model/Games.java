@@ -6,10 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
 @Data
 @Entity
+@XmlRootElement
 @Table(name = "games")
 public class Games implements Serializable {
 

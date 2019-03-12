@@ -29,12 +29,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            EmailSendingService ess = new EmailSendingService();
-            ess.generateAndSendEmail();
-        } catch (MessagingException ex) {
-            Logger.getLogger(IndexServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
     @Override
