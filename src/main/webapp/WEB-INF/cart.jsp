@@ -47,30 +47,30 @@
                 <th>Option</th>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Photo</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Sub Total</th>
+                <th>Bild</th>
+                <th>Preis</th>
+                <th>Anzahl</th>
+                <th>Preis</th>
             </tr>
             <c:set var="total" value="0"></c:set>
             <c:forEach var="item" items="${cart}">
-                <c:set var="total" value="${total + item.getPriceFinal()}"></c:set>
+                <c:set var="total" value="${total + item.getPrice()}"></c:set>
                     <tr>
                         <td align="center">
                             <a href="${pageContext.request.contextPath }/cart?action=remove&id=${item.getGameId()}"
-                           onclick="return confirm('Are you sure?')">Remove</a>
+                           onclick="return confirm('Are you sure?')">Entfernen</a>
                     </td>
                     <td>${item.getGameId() }</td>
                     <td>${item.getName()}</td>
                     <td>
-                        <img src="${item.getHeaderImage()}" width="120">
+                        <img src="${item.getImage()}" width="120">
                     </td>
-                    <td>${item.getPriceFinal()}</td>
+                    <td>${item.getPrice()}</td>
                 </tr>
             </c:forEach>
             <tr>
-                <td colspan="6" align="right">Total</td>
-                <td>${total }</td>
+                <td colspan="6" align="right">Gesamtpreis</td>
+                <td>${total}</td>
             </tr>
         </table>
         <br>
@@ -80,6 +80,10 @@
             <input type="hidden" name="id" value="${game.getGameId()}">
             <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>
         </form>
-        <a href="shop?${requestScope.currentPage}">Continue Shopping</a>
+            <c:choose>
+                <c:when test="${!empty requestScope.currentPage}">
+                    <a href="shop?${requestScope.currentPage}">Weiter Einkaufen</a>
+                </c:when>
+            </c:choose>
     </jsp:attribute>
 </template:base>
