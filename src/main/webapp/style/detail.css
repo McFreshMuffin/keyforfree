@@ -1,11 +1,45 @@
 .title{
     text-align: center;
     margin-bottom: 0.5em;
+    background-color: #F2F2F2;
+    padding: 10px;
 }
 
-main > div > div > img {
+.myImageField {
+    height: 215px;
+    width: 460px;
+}
+
+/*.myImageField:hover {
+    transform: scale(1.5,1.5);  
+}*/
+
+.img-fluid{
     margin-bottom: 0.5em;
-    width: 100%;
-    max-height: 40em;
-    max-width: 40em;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*.img-fluid:hover {
+        transform: translate(100px, 100px);
+}*/
+
+.accordion {
+    border: 1px solid grey;
+}
+
+.detailFirst {
+    border: 1px solid grey;
+    margin-bottom: 0.5em; 
+}
+
+.text {
+    padding: 0.5em;
+}
+
+.scrollview {
+    overflow: scroll;
+    padding: 1em;
+    margin:0.5em;
+    max-height: 215px;
 }

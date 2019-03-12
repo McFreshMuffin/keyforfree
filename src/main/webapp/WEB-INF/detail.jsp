@@ -48,9 +48,40 @@
 
     <jsp:attribute name="main">
         <c:set var="test1" value="True"></c:set>
-        <h1 class="title">${game.getName()}</h1>
-        <div class="text-center">
-            <img src="${game.getImage()}" class="rounded">
+            <div class="detailFirst">
+                <h1 class="title">${game.getName()}</h1>
+            <div class="text">
+                <table class="myTable">
+                    <tr>
+                        <td class="myImageField">
+                            <img src="${game.getImage()}" class="img-fluid img-thumbnail">
+                        </td>
+                        <td>
+                            <div class="scrollview">
+                                ${game.getAboutText()}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Preis</th>
+                            <th>Menge</th>
+                            <th>Kaufen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${game.getPrice()}€</td>
+                            <td>Menge</td>
+                            <td>Kaufen</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="accordion" id="accordionExample">
@@ -105,7 +136,13 @@
                         </div>
                         <div id="collapseTwo" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
-                                ${game.getReleaseYear()}
+                                Erscheinungsjahr: ${game.getReleaseYear()}
+                                <br>
+                                Sprachen: ${game.getSupportedLanguages()}
+                                <br>
+                                Genre:
+                                <br>
+                                Kategorie:
                             </div>
                         </div>
                         <!--Systemvoraussetzungen Windows-->
