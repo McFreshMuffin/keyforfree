@@ -42,47 +42,8 @@
     </jsp:attribute>
 
     <jsp:attribute name="main">
-        <table cellpadding="2" cellspacing="2" border="1">
-            <tr>
-                <th>Option</th>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Bild</th>
-                <th>Preis</th>
-                <th>Anzahl</th>
-                <th>Preis</th>
-            </tr>
-            <c:set var="total" value="0"></c:set>
-            <c:forEach var="item" items="${cart}">
-                <c:set var="total" value="${total + item.getPrice()}"></c:set>
-                    <tr>
-                        <td align="center">
-                            <a href="${pageContext.request.contextPath }/cart?action=remove&id=${item.getGameId()}"
-                           onclick="return confirm('Are you sure?')">Entfernen</a>
-                    </td>
-                    <td>${item.getGameId() }</td>
-                    <td>${item.getName()}</td>
-                    <td>
-                        <img src="${item.getImage()}" width="120">
-                    </td>
-                    <td>${item.getPrice()}</td>
-                </tr>
-            </c:forEach>
-            <tr>
-                <td colspan="6" align="right">Gesamtpreis</td>
-                <td>${total}</td>
-            </tr>
-        </table>
-        <br>
-        <form action="/WebProjekt/cart" method="post">
-            <input type="hidden" name="totalPrice" value="${total}">
-            <input type="hidden" name="action" value="buy">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>
-        </form>
-            <c:choose>
-                <c:when test="${!empty requestScope.currentPage}">
-                    <a href="shop?${requestScope.currentPage}">Weiter Einkaufen</a>
-                </c:when>
-            </c:choose>
+        <h1>Warenkorb wurde erfolgreich ausgelöst</h1>
+        <h2>Email mit ihrer Bestellung wurde versandt</h2>
+        <a href="/WebProjekt/index.html">Zurück zur Startseite</a>
     </jsp:attribute>
 </template:base>

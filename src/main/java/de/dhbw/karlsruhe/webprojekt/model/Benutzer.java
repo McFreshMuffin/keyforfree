@@ -1,27 +1,45 @@
 package de.dhbw.karlsruhe.webprojekt.model;
 
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="benutzer")
+@Table(name = "BENUTZER")
 public class Benutzer {
-    
+
     @Id
-    @GeneratedValue
-    private long userId;
-    
+    @Column(name = "BENUTZER_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long benutzerId;
+
+    @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "PASSWORT")
     private String password;
-    
+
+    @Column(name = "VORNAME")
     private String vorname;
+
+    @Column(name = "NACHNAME")
     private String nachname;
+
+    @Column(name = "ADDRESSE")
     private String addresse;
-    
+
+    @OneToMany(mappedBy = "benutzer", targetEntity = Bestellung.class,
+            fetch = FetchType.EAGER)
+    List<Bestellung> bestellungListe;
+
     public Benutzer() {
     }
 
@@ -33,5 +51,4 @@ public class Benutzer {
         this.addresse = addresse;
     }
 
-   
 }

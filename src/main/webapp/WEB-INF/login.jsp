@@ -69,11 +69,6 @@
                         <input type="password" name="password" class="form-control" placeholder="Passwort" required>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="checkbox-inline">
-                                <input type="checkbox"> Eingeloggt bleiben
-                            </label>
-                        </div>
                         <div class="form-group col-md-6 text-right">
                             <a href="#" class="pull-right">Passwort vergessen?</a>
                         </div>
