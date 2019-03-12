@@ -47,6 +47,7 @@
 
 
     <jsp:attribute name="main">
+        <c:set var="test1" value="True"></c:set>
         <h1 class="title">${game.getName()}</h1>
         <div class="text-center">
             <img src="${game.getImage()}" class="rounded">
@@ -58,20 +59,42 @@
                     <div class="card-header" id="cardHeaderOne">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="headingOne">
-                                    Produktbeschreibung
+                                <a class="nav-link beschreibungActive" data-toggle="collapse show" href="#collapseOne" role="button" aria-expanded="true" aria-controls="headingOne">
+                                    Beschreibung
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="headingTwo">
-                                    Produktinformationen
+                                    Informationen
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="headingThree">
-                                    Systemvoraussetzungen
-                                </a>
-                            </li>
+                            <c:choose>
+                                <c:when test="${game.getPlatformWindows() == test1}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="headingThree">
+                                            Systemvoraussetzungen-Windows
+                                        </a>
+                                    </li>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${game.getPlatformLinux() == test1}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="headingFour">
+                                            Systemvoraussetzungen-Linux
+                                        </a>
+                                    </li>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${game.getPlatformMac() == test1}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="collapse" href="#collapseFive" role="button" aria-expanded="false" aria-controls="headingFive">
+                                            Systemvoraussetzungen-Mac
+                                        </a>
+                                    </li>
+                                </c:when>
+                            </c:choose>
                         </ul>
                     </div>
                     <div class="card-body" id="cardBodyOne">
@@ -85,13 +108,66 @@
                                 ${game.getReleaseYear()}
                             </div>
                         </div>
+                        <!--Systemvoraussetzungen Windows-->
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div class="card-body">
-                                ${game.getPCMinReqsText()}
-                                <br>
-                                Empfohlen:
-                                <br>
-                                ${game.getPCRecReqsText()}
+                                <c:choose>
+                                    <c:when test="${game.getPCReqsHaveMin() == test1}">
+                                        Minimum:
+                                        <br>
+                                        ${game.getPCMinReqsText()}
+                                        <br>
+                                    </c:when>
+                                </c:choose>
+                                <c:choose>
+                                    <c:when test="${game.getPCReqsHaveRec() == test1}">
+                                        Empfohlen:
+                                        <br>
+                                        ${game.getPCRecReqsText()}
+                                    </c:when>
+                                </c:choose>
+                            </div>
+                        </div>
+                        <!--Systemvoraussrtzungen Linux-->
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <c:set var="test1" value="True"></c:set>
+                                <c:choose>
+                                    <c:when test="${game.getLinuxReqsHaveMin() == test1}">
+                                        Minimum:
+                                        <br>
+                                        ${game.getLinuxMinReqsText()}
+                                        <br>
+                                    </c:when>
+                                </c:choose>
+                                <c:choose>
+                                    <c:when test="${game.getLinuxReqsHaveRec() == test1}">
+                                        Empfohlen:
+                                        <br>
+                                        ${game.getLinuxRecReqsText()}
+                                    </c:when>
+                                </c:choose>
+                            </div>
+                        </div>
+                        <!--Systemvoraussetzungen Mac-->
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <c:set var="test1" value="True"></c:set>
+                                <c:choose>
+                                    <c:when test="${game.getMacReqsHaveMin() == test1}">
+                                        Minimum:
+                                        <br>
+                                        ${game.getMacMinReqsText()}
+                                        <br>
+                                    </c:when>
+                                </c:choose>
+                                <c:choose>
+                                    <c:when test="${game.getMacReqsHaveRec() == test1}">
+                                        Empfohlen:
+                                        <br>
+                                        ${game.getMacRecReqsText()}
+                                    </c:when>
+                                </c:choose>
                             </div>
                         </div>
                     </div>
