@@ -19,7 +19,7 @@ public class GameBean {
     }
     
     public List<Games> findTop10Newest(){
-       return em.createQuery("SELECT g FROM Games g ORDER BY g.ReleaseDate").setMaxResults(10).getResultList();
+       return em.createQuery("SELECT g FROM Games g ORDER BY g.ReleaseDate desc").setMaxResults(10).getResultList();
     }
     
     public List<Games> findGames(int currentPage, int recordsPerPage) {
