@@ -19,12 +19,6 @@ public class CartServlet extends HttpServlet {
     @EJB
     GameBean gameBean;
 
-    
-    
-    
-    
-    
-    
     /*
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,10 +51,8 @@ public class CartServlet extends HttpServlet {
                 }
                 break;
         }
-        */
-
-
-        /*
+     */
+ /*
         if (session.getAttribute("userId") != null) {
             ArrayList mycart = (ArrayList) session.getAttribute("itemlist");
             double value = (Double) session.getAttribute("total");
@@ -80,7 +72,6 @@ public class CartServlet extends HttpServlet {
 
         }
     }*/
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -117,7 +108,7 @@ public class CartServlet extends HttpServlet {
         String currentPage = request.getParameter("currentUrl");
         HttpSession session = request.getSession();
         List<Games> shoppingCart = (ArrayList) session.getAttribute("shoppingCart");
-        
+
         switch (action) {
             case "add":
                 Games game = this.gameBean.findGameById(gameId);
@@ -140,7 +131,6 @@ public class CartServlet extends HttpServlet {
                 }
                 break;*/
         }
-}
-
+    }
 
 }
