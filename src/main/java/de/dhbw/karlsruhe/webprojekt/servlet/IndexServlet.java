@@ -23,7 +23,7 @@ public class IndexServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Games> newestGames = this.gameBean.findTop10Newest();
+        List<Games> newestGames = gameBean.findTop10Newest();
         request.getSession().setAttribute("newestGames", newestGames);
 
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
