@@ -54,7 +54,9 @@
                 <table class="myTable">
                     <tr>
                         <td class="myImageField">
-                            <img src="${game.getImage()}" class="img-fluid img-thumbnail">
+                            <div class="myImageDiv">
+                                <img src="${game.getImage()}" class="img-fluid img-thumbnail">
+                            </div>
                         </td>
                         <td>
                             <div class="scrollview">
@@ -64,23 +66,10 @@
                     </tr>
                 </table>
             </div>
-            <div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Preis</th>
-                            <th>Menge</th>
-                            <th>Kaufen</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>${game.getPrice()}€</td>
-                            <td>Menge</td>
-                            <td>Kaufen</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row pricingDiv">
+                <div class="pricingRow">${game.getPrice()}€</div>
+                <div class="pricingRow">Menge</div>
+                <div class="pricingRow">Kaufen</div>
             </div>
         </div>
 
