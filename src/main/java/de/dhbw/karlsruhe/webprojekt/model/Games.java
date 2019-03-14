@@ -71,17 +71,6 @@ public class Games implements Serializable {
         return ReleaseDate.substring(0,4);
     }
     
-    public void setPCMinReqsText(String PCMinReqsText) {
-        this.PCMinReqsText = PCMinReqsText;
-    }
-    
-    public void setPCRecReqsText(String PCRecReqsText) {
-        this.PCRecReqsText = PCRecReqsText;
-    }
-    
-    public void setPCReqsHaveRec(String PCReqsHaveRec) {
-        this.PCReqsHaveRec = PCReqsHaveRec;
-    }
     //@OneToOne
     //private Genre genre;    
 }
