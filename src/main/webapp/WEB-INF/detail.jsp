@@ -48,6 +48,7 @@
 
     <jsp:attribute name="main">
         <c:set var="test1" value="True"></c:set>
+        <c:set var="sysrec" value="Recommended"></c:set>
             <div class="detailFirst">
                 <h1 class="title">${game.getName()}</h1>
             <div class="text">
