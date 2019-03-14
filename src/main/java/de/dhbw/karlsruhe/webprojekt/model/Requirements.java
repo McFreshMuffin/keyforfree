@@ -1,0 +1,65 @@
+package de.dhbw.karlsruhe.webprojekt.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "REQUIREMENTS")
+public class Requirements {
+    
+    @Id
+    @Column(name = "REQ_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int reqId;
+    
+    @Column(name = "PLATFORM_WINDOWS")
+    private String platformWindows;
+    
+    @Column(name = "PLATFORM_LINUX")
+    private String platformLinux;
+    
+    @Column(name = "PLATFORM_MAC")
+    private String platformMac;
+    
+    @Column(name = "MIN_REQS")
+    private String haveMinPcReqs;
+    
+    @Column(name = "REC_REQS")
+    private String haveRecPcReqs;
+   
+    @Column(name = "MIN_LINUX")
+    private String haveMinLinuxReqs;
+    
+    @Column(name = "REC_LINUX")
+    private String haveRecLinuxReqs;
+    
+    @Column(name = "MIN_MAC")
+    private String haveMinMacReqs;
+    
+    @Column(name = "REC_MAC")
+    private String haveRecMacReqs;
+    
+    @Column(name = "MIN_PC_TEXT")
+    private String PCMinReqsText;
+    
+    @Column(name = "REC_PC_TEXT")
+    private String PCRecReqsText;
+    
+    @Column(name = "MIN_LINUX_TEXT")
+    private String LinuxMinReqsText;
+    
+    @Column(name = "REC_LINUX_TEXT")
+    private String LinuxRecReqsText;
+    
+    @Column(name = "MIN_MAC_TEXT")
+    private String MacMinReqsText;
+    
+    @Column(name = "REC_MAC_TEXT")
+    private String MacRecReqsText;
+}
