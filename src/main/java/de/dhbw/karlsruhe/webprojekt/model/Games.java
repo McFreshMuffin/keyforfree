@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,16 @@ public class Games implements Serializable {
     @Id
     @Column(name = "GAME_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int gameId;
+    private long gameId;
+    
+    @Column(name = "REQ_ID")
+    private long reqId;
+    
+    @Column(name = "CATERGORY_ID")
+    private long categoryId;
+    
+    @Column(name = "GENRE_ID")
+    private long genreId;
     
     @Column(name = "NAME")
     private String name;
@@ -30,23 +40,29 @@ public class Games implements Serializable {
     @Column(name = "FSK")
     private int fsk;
     
-    @Column(name = "CONTROLLER_SUPPORT")
-    private String controllerSupport;
+    @Column(name = "PRICE")
+    private double price;
     
+    @Column(name = "ABOUT_TEXT")
+    private String aboutText;
     
-    private double Price;
-    private String AboutText;
-    private String DetailedDescrip;
-    private String Image;
-    private String SupportedLanguages;
+    @Column(name = "DESCRIPTION")
+    private String description;
     
+    @Column(name = "IMAGE")
+    private String image;
     
-    @ManyToMany(mappedBy="gameListe",fetch=FetchType.EAGER)
-       private List<Bestellung> orderList; 
+    @Column(name = "LANGUAGE")
+    private String languages; 
     
     public String getReleaseYear(){
         return releaseDate.substring(0,4);
     }
+    
     //@OneToOne
     //private Genre genre;    
+    
+    
+    @ManyToMany(mappedBy="gameListe",fetch=FetchType.EAGER)
+       private List<Bestellung> orderList;
 }
