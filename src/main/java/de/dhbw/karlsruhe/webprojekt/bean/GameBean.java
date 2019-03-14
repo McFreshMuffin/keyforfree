@@ -50,7 +50,7 @@ public class GameBean {
             game.setPCMinReqsText(test);
             game.setPCReqsHaveRec("True");
         }
-        /* Linux Spalten mega kacke befüllt kein System erkennbar
+        /*
         //Linux Requirements
         index = isSubstring(rec, game.getLinuxMinReqsText());
         if (index == -1) {
