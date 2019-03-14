@@ -29,6 +29,9 @@ public class Genre {
 
     @Column(name = "CASUAL")
     private boolean casual;
+    
+    @Column(name = "STRATEGY")
+    private boolean strategy;
 
     @Column(name = "RPG")
     private boolean rpg;

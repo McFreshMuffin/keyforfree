@@ -27,10 +27,10 @@ public class Requirements {
     @Column(name = "PLATFORM_MAC")
     private String platformMac;
     
-    @Column(name = "MIN_REQS")
+    @Column(name = "MIN_WINDOWS")
     private String haveMinPcReqs;
     
-    @Column(name = "REC_REQS")
+    @Column(name = "REC_WINDOWS")
     private String haveRecPcReqs;
    
     @Column(name = "MIN_LINUX")
@@ -45,16 +45,16 @@ public class Requirements {
     @Column(name = "REC_MAC")
     private String haveRecMacReqs;
     
-    @Column(name = "MIN_PC_TEXT")
+    @Column(name = "MIN_WIN_TEXT")
     private String PCMinReqsText;
     
-    @Column(name = "REC_PC_TEXT")
+    @Column(name = "REC_WIN_TEXT")
     private String PCRecReqsText;
     
-    @Column(name = "MIN_LINUX_TEXT")
+    @Column(name = "MIN_LIN_TEXT")
     private String LinuxMinReqsText;
     
-    @Column(name = "REC_LINUX_TEXT")
+    @Column(name = "REC_LIN_TEXT")
     private String LinuxRecReqsText;
     
     @Column(name = "MIN_MAC_TEXT")
