@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", user);
             session.setAttribute("email", user.getEmail());
             session.setAttribute("username", user.getVorname());
-            session.setAttribute("userId", user.getUserId());
+            session.setAttribute("userId", user.getBenutzerId());
             session.setAttribute("shoppingCart", cart);
             response.sendRedirect("index.html");
         } else {
