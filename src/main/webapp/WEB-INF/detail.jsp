@@ -50,25 +50,25 @@
         <c:set var="test1" value="True"></c:set>
         <c:set var="sysrec" value="Recommended"></c:set>
             <div class="detailFirst">
-                <h1 class="title">${game.getName()}</h1>
+                <h1 class="title">${game.getname()}</h1>
             <div class="text">
                 <table class="myTable">
                     <tr>
                         <td class="myImageField">
                             <div class="myImageDiv">
-                                <img src="${game.getImage()}" class="img-fluid img-thumbnail">
+                                <img src="${game.getimage()}" class="img-fluid img-thumbnail">
                             </div>
                         </td>
                         <td>
                             <div class="scrollview">
-                                ${game.getAboutText()}
+                                ${game.getaboutText()}
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="row pricingDiv">
-                <div class="pricingRow">${game.getPrice()}€</div>
+                <div class="pricingRow">${game.getprice()}€</div>
                 <div class="pricingRow">Menge</div>
                 <div class="pricingRow">Kaufen</div>
             </div>
@@ -128,14 +128,14 @@
                             <div class="card-body">
                                 Erscheinungsjahr: ${game.getReleaseYear()}
                                 <br>
-                                Sprachen: ${game.getSupportedLanguages()}
+                                Sprachen: ${game.getlanguages()}
                                 <br>
                                 Genre:
                                 <br>
                                 Kategorie:
                             </div>
                         </div>
-                        <!--Systemvoraussetzungen Windows-->
+                        <!--Systemvoraussetzungen Windows
                         <div id="collapseThree" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:choose>
@@ -155,7 +155,7 @@
                                 </c:choose>
                             </div>
                         </div>
-                        <!--Systemvoraussrtzungen Linux-->
+                        Systemvoraussrtzungen Linux
                         <div id="collapseFour" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:set var="test1" value="True"></c:set>
@@ -176,7 +176,7 @@
                                 </c:choose>
                             </div>
                         </div>
-                        <!--Systemvoraussetzungen Mac-->
+                        Systemvoraussetzungen Mac
                         <div id="collapseFive" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:set var="test1" value="True"></c:set>
