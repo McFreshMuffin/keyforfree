@@ -14,37 +14,33 @@ import lombok.Data;
 public class Benutzer {
     
     @Id
-    @Column(name = "BENUTZER_ID", nullable = false)
+    @Column(name = "USER_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long benutzerId;
+    private long userId;
     
     @Column(name = "EMAIL")
     private String email;
     
-    @Column(name = "PASSWORT")
+    @Column(name = "PASSWORD")
     private String password;
     
-    @Column(name = "VORNAME")
+    @Column(name = "FIRST_NAME")
     private String vorname;
     
-    @Column(name = "NACHNAME")
+    @Column(name = "LAST_NAME")
     private String nachname;
     
     @Column(name = "ADDRESS")
-    private String address;
+    private String addresse;
     
     public Benutzer() {
     }
 
-    public Benutzer(String email, String password, String vorname, String nachname, String address) {
+    public Benutzer(String email, String password, String vorname, String nachname, String addresse) {
         this.email = email;
         this.password = password;
         this.vorname = vorname;
         this.nachname = nachname;
-        this.address = address;
+        this.addresse = addresse;
     }
-
-    
-
-    
 }

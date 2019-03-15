@@ -43,7 +43,7 @@ public class Bestellung {
             joinColumns
             = @JoinColumn(name = "BESTELL_ID", referencedColumnName = "BESTELL_ID"),
             inverseJoinColumns
-            = @JoinColumn(name = "GAME_ID", referencedColumnName = "GAME_ID")
+            = @JoinColumn(name = "GameId", referencedColumnName = "GameId")
     )
     private List<Games> gameListe;
 
