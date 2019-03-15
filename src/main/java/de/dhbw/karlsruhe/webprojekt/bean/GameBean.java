@@ -17,14 +17,20 @@ public class GameBean {
     public Games findGameById(int gameId) {
         return em.find(Games.class, gameId);
     }
+<<<<<<< HEAD
 
     public List<Games> findTop10Newest() {
         return em.createQuery("SELECT g FROM Games g ORDER BY g.ReleaseDate desc").setMaxResults(10).getResultList();
+=======
+    
+    public List<Games> findTop10Newest(){
+       return em.createQuery("SELECT g FROM Games g ORDER BY g.releaseDate desc").setMaxResults(10).getResultList();
+>>>>>>> database
     }
 
     public List<Games> findGames(int currentPage, int recordsPerPage) {
         int start = currentPage * recordsPerPage - recordsPerPage;
-        return em.createQuery("SELECT g FROM Games g ORDER BY g.ReleaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
+        return em.createQuery("SELECT g FROM Games g ORDER BY g.releaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
     }
 
     public long getNumberOfRows() {
@@ -32,6 +38,7 @@ public class GameBean {
         CriteriaQuery<Long> cq = qb.createQuery(Long.class);
         cq.select(qb.count(cq.from(Games.class)));
         return em.createQuery(cq).getSingleResult();
+<<<<<<< HEAD
 
         //return em.createQuery("SELECT COUNT(Id) FROM Countries");
     }
@@ -94,4 +101,7 @@ public class GameBean {
         }
         return -1;
     }
+=======
+    } 
+>>>>>>> database
 }
