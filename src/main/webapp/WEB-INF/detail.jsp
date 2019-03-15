@@ -6,7 +6,7 @@
 
 <template:base>
 
-    <jsp:attribute name="title">${game.getName()}</jsp:attribute>
+    <jsp:attribute name="title">${game.getname()}</jsp:attribute>
 
     <jsp:attribute name="nav_log">
         <c:choose>
@@ -50,25 +50,25 @@
         <c:set var="test1" value="True"></c:set>
         <c:set var="sysrec" value="Recommended"></c:set>
             <div class="detailFirst">
-                <h1 class="title">${game.getName()}</h1>
+                <h1 class="title">${game.getname()}</h1>
             <div class="text">
                 <table class="myTable">
                     <tr>
                         <td class="myImageField">
                             <div class="myImageDiv">
-                                <img src="${game.getImage()}" class="img-fluid img-thumbnail">
+                                <img src="${game.getimage()}" class="img-fluid img-thumbnail">
                             </div>
                         </td>
                         <td>
                             <div class="scrollview">
-                                ${game.getAboutText()}
+                                ${game.getaboutText()}
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="row pricingDiv">
-                <div class="pricingRow">${game.getPrice()}€</div>
+                <div class="pricingRow">${game.getprice()}€</div>
                 <div class="pricingRow">Menge</div>
                 <div class="pricingRow">Kaufen</div>
             </div>
@@ -90,7 +90,7 @@
                                 </a>
                             </li>
                             <c:choose>
-                                <c:when test="${game.getPlatformWindows() == test1}">
+                                <c:when test="${game.getrequirements().getplatformWindows() == test1}">
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#collapseThree" role="button" aria-expanded="false" aria-controls="headingThree">
                                             Systemvoraussetzungen-Windows
@@ -99,7 +99,7 @@
                                 </c:when>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${game.getPlatformLinux() == test1}">
+                                <c:when test="${game.getrequirements().getplatformLinux() == test1}">
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#collapseFour" role="button" aria-expanded="false" aria-controls="headingFour">
                                             Systemvoraussetzungen-Linux
@@ -108,7 +108,7 @@
                                 </c:when>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${game.getPlatformMac() == test1}">
+                                <c:when test="${game.getrequirements().getplatformMac() == test1}">
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#collapseFive" role="button" aria-expanded="false" aria-controls="headingFive">
                                             Systemvoraussetzungen-Mac
@@ -121,21 +121,21 @@
                     <div class="card-body tab-content" id="cardBodyOne">
                         <div id="collapseOne" class="tab-pane fade-in active" data-parent="#accordionExample">
                             <div class="card-body">
-                                ${game.getDetailedDescrip()}
+                                ${game.getdescription()}
                             </div>
                         </div>
                         <div id="collapseTwo" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 Erscheinungsjahr: ${game.getReleaseYear()}
                                 <br>
-                                Sprachen: ${game.getSupportedLanguages()}
+                                Sprachen: ${game.getlanguages()}
                                 <br>
                                 Genre:
                                 <br>
                                 Kategorie:
                             </div>
                         </div>
-                        <!--Systemvoraussetzungen Windows-->
+                        <!--Systemvoraussetzungen Windows
                         <div id="collapseThree" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:choose>
@@ -155,7 +155,7 @@
                                 </c:choose>
                             </div>
                         </div>
-                        <!--Systemvoraussrtzungen Linux-->
+                        Systemvoraussrtzungen Linux
                         <div id="collapseFour" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:set var="test1" value="True"></c:set>
@@ -176,7 +176,7 @@
                                 </c:choose>
                             </div>
                         </div>
-                        <!--Systemvoraussetzungen Mac-->
+                        Systemvoraussetzungen Mac
                         <div id="collapseFive" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:set var="test1" value="True"></c:set>
@@ -200,6 +200,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </jsp:attribute>
 </template:base>
