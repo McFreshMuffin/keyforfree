@@ -48,30 +48,9 @@
 
     <jsp:attribute name="main">
         <c:set var="test1" value="True"></c:set>
-        <c:set var="sysrec" value="Recommended"></c:set>
-            <div class="detailFirst">
-                <h1 class="title">${game.getName()}</h1>
-            <div class="text">
-                <table class="myTable">
-                    <tr>
-                        <td class="myImageField">
-                            <div class="myImageDiv">
-                                <img src="${game.getImage()}" class="img-fluid img-thumbnail">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="scrollview">
-                                ${game.getAboutText()}
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="row pricingDiv">
-                <div class="pricingRow">${game.getPrice()}€</div>
-                <div class="pricingRow">Menge</div>
-                <div class="pricingRow">Kaufen</div>
-            </div>
+        <h1 class="title">${game.getName()}</h1>
+        <div class="text-center">
+            <img src="${game.getImage()}" class="rounded">
         </div>
 
         <div class="accordion" id="accordionExample">
@@ -80,19 +59,19 @@
                     <div class="card-header" id="cardHeaderOne">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#collapseOne">
+                                <a class="nav-link beschreibungActive" data-toggle="collapse show" href="#collapseOne" role="button" aria-expanded="true" aria-controls="headingOne">
                                     Beschreibung
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="headingTwo">
+                                <a class="nav-link" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="headingTwo">
                                     Informationen
                                 </a>
                             </li>
                             <c:choose>
                                 <c:when test="${game.getPlatformWindows() == test1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#collapseThree" role="button" aria-expanded="false" aria-controls="headingThree">
+                                        <a class="nav-link" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="headingThree">
                                             Systemvoraussetzungen-Windows
                                         </a>
                                     </li>
@@ -101,7 +80,7 @@
                             <c:choose>
                                 <c:when test="${game.getPlatformLinux() == test1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#collapseFour" role="button" aria-expanded="false" aria-controls="headingFour">
+                                        <a class="nav-link" data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="headingFour">
                                             Systemvoraussetzungen-Linux
                                         </a>
                                     </li>
@@ -110,7 +89,7 @@
                             <c:choose>
                                 <c:when test="${game.getPlatformMac() == test1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#collapseFive" role="button" aria-expanded="false" aria-controls="headingFive">
+                                        <a class="nav-link" data-toggle="collapse" href="#collapseFive" role="button" aria-expanded="false" aria-controls="headingFive">
                                             Systemvoraussetzungen-Mac
                                         </a>
                                     </li>
@@ -118,25 +97,19 @@
                             </c:choose>
                         </ul>
                     </div>
-                    <div class="card-body tab-content" id="cardBodyOne">
-                        <div id="collapseOne" class="tab-pane fade-in active" data-parent="#accordionExample">
+                    <div class="card-body" id="cardBodyOne">
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 ${game.getDetailedDescrip()}
                             </div>
                         </div>
-                        <div id="collapseTwo" class="tab-pane fade" data-parent="#accordionExample">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
-                                Erscheinungsjahr: ${game.getReleaseYear()}
-                                <br>
-                                Sprachen: ${game.getSupportedLanguages()}
-                                <br>
-                                Genre:
-                                <br>
-                                Kategorie:
+                                ${game.getReleaseYear()}
                             </div>
                         </div>
                         <!--Systemvoraussetzungen Windows-->
-                        <div id="collapseThree" class="tab-pane fade" data-parent="#accordionExample">
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:choose>
                                     <c:when test="${game.getPCReqsHaveMin() == test1}">
@@ -156,7 +129,7 @@
                             </div>
                         </div>
                         <!--Systemvoraussrtzungen Linux-->
-                        <div id="collapseFour" class="tab-pane fade" data-parent="#accordionExample">
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:set var="test1" value="True"></c:set>
                                 <c:choose>
@@ -177,7 +150,7 @@
                             </div>
                         </div>
                         <!--Systemvoraussetzungen Mac-->
-                        <div id="collapseFive" class="tab-pane fade" data-parent="#accordionExample">
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:set var="test1" value="True"></c:set>
                                 <c:choose>
