@@ -49,9 +49,10 @@
                 <h1>Willkommen ${sessionScope.username}</h1>
             </div>
             <br>
+            <h2>Unsere neusten Spiele:</h2>
             <br>
             <div class="row">
-                <div class="col-md-12">
+                <div class="karussel" style="width: 1000px; height: 450px;">
                     <div id="NewestGamesCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <c:choose>
@@ -61,15 +62,17 @@
                                             <c:when test="${status.first }" >
                                                 <div class="carousel-item active">
                                                     <a href="detail?gameid=${game.getGameId()}">
-                                                    <img class="imageitem" src="${game.getImage()}" alt="${game.getName()}" style="max-width:100%;">
+                                                    <img class="imageitem" src="${game.getImage()}" alt="${game.getName()}" style="width: 100%; height: 100%;">
                                                     </a>
+                                                   
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
                                                 <div class="carousel-item">
                                                     <a href="detail?gameid=${game.getGameId()}">
-                                                    <img class="imageitem" src="${game.getImage()}" alt="${game.getName()}" style="max-width:100%;">
+                                                    <img class="imageitem" src="${game.getImage()}" alt="${game.getName()}" style="width: 100%; height: 100%;">                                                    
                                                     </a>
+                                                   
                                                 </div>
                                             </c:otherwise>
                                         </c:choose>

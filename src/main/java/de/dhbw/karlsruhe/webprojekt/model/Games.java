@@ -56,7 +56,7 @@ public class Games implements Serializable {
     private String languages; 
     
     public String getReleaseYear(){
-        return releaseDate.substring(0,4);
+        return releaseDate.substring(3,7);
     }
     
     //@OneToOne

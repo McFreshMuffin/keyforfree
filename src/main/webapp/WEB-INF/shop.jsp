@@ -7,7 +7,9 @@
 <template:base>
 
     <jsp:attribute name="title">Games</jsp:attribute>
-
+   <jsp:attribute name="head">
+        <link rel="stylesheet" href="<c:url value="style/shop.css"/>">
+    </jsp:attribute>
     <jsp:attribute name="nav_log">
         <c:choose>
             <c:when test="${empty sessionScope.user}">
@@ -46,19 +48,22 @@
             <c:choose>
                 <c:when test="${!empty games}">
 
-                    <table class="table table-striped table-bordered table-sm">
+                    <table class="table table-striped table-bordered table-sm" style="table-layout:fixed;">
                         <tr>
-                            <th>Bild</th>
-                            <th>Name</th>
-                            <th>Preis</th>
-                            <th>Veröffentlicht</th>
-                            <th>Alter</th>
-                            <th></th>
+                            <th style="width:309px;">Bild</th>
+                            <th style="width:400px;">Name</th>
+                            <th style="width:70px;">Preis</th>
+                            <th style="width:120px;">Veröffentlicht</th>
+                            <th style="width:50px;">Alter</th>
+                            <th style="width:100px;"></th>
                         </tr>
 
                         <c:forEach items="${games}" var="game">
                             <tr>
-                                <td><img src="${game.getImage()}" alt="${game.getName()}"></td>    
+                                <td> <a href="detail?gameid=${game.getGameId()}">
+                                        <img src="${game.getImage()}" alt="${game.getName()}">
+                                    </a>
+                                </td>    
                                 <td>${game.getName()}</td>
                                 <td>${game.getPrice()} €</td>
                                 <td>${game.getReleaseYear()}</td>
