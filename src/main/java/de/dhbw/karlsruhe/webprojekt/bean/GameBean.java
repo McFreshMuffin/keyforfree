@@ -32,5 +32,13 @@ public class GameBean {
         CriteriaQuery<Long> cq = qb.createQuery(Long.class);
         cq.select(qb.count(cq.from(Games.class)));
         return em.createQuery(cq).getSingleResult();
-    } 
+    }
+    
+    public List<Games> searchGames(String suchbegriff) {
+        return em.createQuery("SELECT g FROM Games g WHERE lower(g.name) like '%"+suchbegriff+"%'").getResultList();
+    }
+    
+    public long anzTreffer(String suchbegriff){
+        return (long) em.createQuery("SELECT COUNT(g) FROM Games g WHERE lower(g.name) like '%"+suchbegriff+"%'").getSingleResult();
+    }
 }

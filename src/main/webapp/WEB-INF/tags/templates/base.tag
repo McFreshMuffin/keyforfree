@@ -43,8 +43,8 @@
                     <div class="row">
                         <div class="col-md-12 pt-1 pb-1">
                             <div class="text-center">
-                                <form action="/WebProjekt/search" class="form-inline my-2 my-lg-0">
-                                    <input class="form-control mr-md-5 w-100" type="search" placeholder="Search">
+                                <form action="/WebProjekt/search" class="form-inline my-2 my-lg-0" method="GET">
+                                    <input class="form-control mr-md-5 w-100" type="text" name="suche" placeholder="Search">
                                     <button class="btn btn-md" style="right: 0; position: absolute" type="submit">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </button>
@@ -57,7 +57,7 @@
         </header>
 
         <main>    
-            <div style="margin-top: 60px;" class="container">
+            <div style="margin-top: 20px;" class="container">
                 <jsp:invoke fragment="main"/>
             </div>
         </main>    
