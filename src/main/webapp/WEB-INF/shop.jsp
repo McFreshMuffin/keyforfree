@@ -62,7 +62,7 @@
                                 <td>${game.getName()}</td>
                                 <td>${game.getPrice()} €</td>
                                 <td>${game.getReleaseYear()}</td>
-                                <td>${game.getRequiredAge()}</td>
+                                <td>${game.getFsk()}</td>
                                 <td align="center">
                                     <form action="/WebProjekt/cart" method="post">
                                         <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
