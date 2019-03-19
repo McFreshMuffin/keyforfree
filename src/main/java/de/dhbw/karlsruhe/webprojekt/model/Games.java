@@ -15,6 +15,16 @@ import lombok.Data;
 @Table(name = "games")
 public class Games implements Serializable {
 
+    public Games() {
+    }
+
+    public Games(int GameId, String Name) {
+        this.GameId = GameId;
+        this.Name = Name;
+    }
+
+    
+    
     @Id
     @GeneratedValue
     private int GameId;

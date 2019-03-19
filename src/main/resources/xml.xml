@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<games>
+    <gameId>1</gameId>
+    <name>Test</name>
+    <price>0.0</price>
+    <requiredAge>0</requiredAge>
+</games>
