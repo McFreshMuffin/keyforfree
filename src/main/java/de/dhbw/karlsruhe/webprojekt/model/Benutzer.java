@@ -1,5 +1,6 @@
 package de.dhbw.karlsruhe.webprojekt.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="BENUTZER")
-public class Benutzer {
+public class Benutzer implements Serializable {
     
     @Id
     @Column(name = "BENUTZER_ID", nullable = false)
@@ -43,8 +44,4 @@ public class Benutzer {
         this.nachname = nachname;
         this.address = address;
     }
-
-    
-
-    
 }

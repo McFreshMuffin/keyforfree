@@ -1,5 +1,6 @@
 package de.dhbw.karlsruhe.webprojekt.model;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "REQUIREMENTS")
-public class Requirements {
+public class Requirements implements Serializable {
     
     @Id
     @Column(name = "REQ_ID", nullable = false)

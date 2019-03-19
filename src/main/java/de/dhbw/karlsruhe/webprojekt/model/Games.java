@@ -46,8 +46,8 @@ public class Games implements Serializable {
     @Column(name = "IMAGE")
     private String image;
     
-    @Column(name = "LANGUAGE")
-    private String languages;
+    @Column(name = "SPRACHE")
+    private String sprache;
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
@@ -65,6 +65,7 @@ public class Games implements Serializable {
        private List<Bestellung> orderList;
 
     public String getReleaseYear(){
+        //return releaseDate.substring(0,4);
         return "2000";
     }
 }
