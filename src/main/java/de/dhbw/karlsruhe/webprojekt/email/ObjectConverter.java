@@ -1,6 +1,7 @@
 package de.dhbw.karlsruhe.webprojekt.email;
 
 import de.dhbw.karlsruhe.webprojekt.model.Games;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 
 import java.io.File;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -32,29 +35,34 @@ import org.apache.xalan.processor.TransformerFactoryImpl;
 
 public class ObjectConverter {
 
+    /*
     private final String template = "src//main//resources//template.xsl";
-
+    private final String output = "src//main//resources//output//result.pdf";
+    private StringBuilder xml = new StringBuilder();
+    
+    
+    public void convertToXml(Games game){
+        StringWriter sw = new StringWriter();
+        
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Games.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            jaxbMarshaller.marshal(game, sw);
+            xml.append(sw.toString());
+            System.out.println("XML --->\n" + xml.toString());
+        } catch (JAXBException ex) {
+            Logger.getLogger(ObjectConverter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
     public void convert(Games game) throws JAXBException, FileNotFoundException, IOException, TransformerException, FOPException {
         File xsltfile = new File(template);
-        StringBuilder xml = new StringBuilder();
-
-        xml.append("<header-section>");
-        xml.append("<data-type id=\"019\">User Bill Data</data-type>");
-        xml.append("<process-date>Thursday December 9 2016 00:04:29</process-date>");
-        xml.append("</header-section>");
-
-        JAXBContext jaxbContext = JAXBContext.newInstance(Games.class);
-        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-        //jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        StringWriter sw = new StringWriter();
-        jaxbMarshaller.marshal(game, sw);
-        xml.append(xml.toString());
-
         StreamSource source = new StreamSource(new StringReader(xml.toString()));
-        System.out.println("XML --->" + xml.toString());
-
-        
         StreamSource transformSource = new StreamSource(xsltfile);
+        
         FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
         
         FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
@@ -70,9 +78,9 @@ public class ObjectConverter {
 
                 try {
                     xslfoTransformer.transform(source, res);
-                    File pdffile = new File("Result.pdf");
+                    File pdffile = new File(output);
                     OutputStream out = new FileOutputStream(pdffile);  // Error is throwing on this line
-                    out = new java.io.BufferedOutputStream(out);
+                    out = new BufferedOutputStream(out);
                     FileOutputStream str = new FileOutputStream(pdffile);
                     str.write(outStream.toByteArray());
                     str.close();
@@ -103,7 +111,7 @@ public class ObjectConverter {
         }
         return null;
     }
-
+*/
     
     
     
@@ -133,7 +141,7 @@ public class ObjectConverter {
     
     
     
-    /*
+    
     
     private final String RESOURCES_DIR = "src//main//resources//";
     private final String OUTPUT_DIR = "src//main//resources//output//";
@@ -170,5 +178,4 @@ public class ObjectConverter {
             out.close();
         }
     }
-}*/
 }

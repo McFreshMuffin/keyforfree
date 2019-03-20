@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" version="1.0">
     <xsl:output encoding="UTF-8" indent="yes" method="xml" standalone="no" omit-xml-declaration="no"/>
-    <xsl:template match="users-data">
+    <xsl:template match="games">
         <fo:root language="EN">
             <fo:layout-master-set>
                 <fo:simple-page-master master-name="A4-portrail" page-height="297mm" page-width="210mm" margin-top="5mm" margin-bottom="5mm" margin-left="5mm" margin-right="5mm">
@@ -17,12 +17,14 @@
                         <fo:table-column column-width="proportional-column-width(20)"/>
                         <fo:table-body>
                             <fo:table-row>
+                                <!--
                                 <fo:table-cell text-align="left" display-align="center" padding-left="2mm">
                                     <fo:block>
                                         Bill Id:<xsl:value-of select="header-section/data-type/@id"/>
                                         , Date: <xsl:value-of select="header-section/process-date"/>
                                     </fo:block>
                                 </fo:table-cell>
+                                -->
                                 <fo:table-cell text-align="center" display-align="center">
                                     <fo:block font-size="150%">
                                         <fo:basic-link external-destination="http://www.example.com">XXX COMPANY</fo:basic-link>

@@ -18,19 +18,18 @@ import org.apache.fop.apps.FOPException;
  * @author Uwe-Laptop
  */
 public class ConverterTest {
-    
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
+        ObjectConverter converter = new ObjectConverter();
+        Games game = new Games(1, "Test");
+        converter.convertToXml(game);
         try {
-            ObjectConverter converter = new ObjectConverter();
-            Games game = new Games(1,"Test");
-            converter.convert(game);
-        } catch (JAXBException ex) {
-            Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+            converter.convertXmlToPdf();
+        } catch (FOPException ex) {
             Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerException ex) {
             Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FOPException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
