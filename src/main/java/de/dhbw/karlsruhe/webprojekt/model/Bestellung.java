@@ -15,10 +15,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
+@XmlRootElement
 @Table(name = "BESTELLUNGEN")
 public class Bestellung implements Serializable {
 
@@ -30,7 +33,7 @@ public class Bestellung implements Serializable {
     @Column(name = "BENUTZER_ID")
     private long benutzerId;
 
-    @Column(name = "GESAMT_PREIS", scale = 2)
+    @Column(name = "GESAMT_PREIS", precision = 6, scale = 2)
     private double gesamtPreis;
 
     @Column(name = "BESTELL_DATUM")
@@ -39,6 +42,7 @@ public class Bestellung implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "BENUTZER_ID", referencedColumnName = "BENUTZER_ID")
+    @ToString.Exclude
     private Benutzer benutzer;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" version="1.0">
     <xsl:output encoding="UTF-8" indent="yes" method="xml" standalone="no" omit-xml-declaration="no"/>
-    <xsl:template match="games">
+    <xsl:template match="bestellung">
         <fo:root language="EN">
             <fo:layout-master-set>
                 <fo:simple-page-master master-name="A4-portrail" page-height="297mm" page-width="210mm" margin-top="5mm" margin-bottom="5mm" margin-left="5mm" margin-right="5mm">
@@ -43,7 +43,7 @@
                     </fo:table>
                 </fo:static-content>
                 <fo:flow flow-name="xsl-region-body" border-collapse="collapse" reference-orientation="0">
-                    <fo:block>MONTHLY BILL REPORT</fo:block>
+                    <fo:block>Meine Bestellungen</fo:block>
                     <fo:table table-layout="fixed" width="100%" font-size="10pt" border-color="black" border-width="0.35mm" border-style="solid" text-align="center" display-align="center" space-after="5mm">
                         <fo:table-column column-width="proportional-column-width(20)"/>
                         <fo:table-column column-width="proportional-column-width(30)"/>
@@ -64,11 +64,11 @@
                                     <fo:block>Payment</fo:block>
                                 </fo:table-cell>
                             </fo:table-row>
-                            <xsl:for-each select="games">
+                            <xsl:for-each select="gameListe">
                                 <fo:table-row>
                                     <fo:table-cell>
                                         <fo:block>
-                                            <xsl:value-of select="gameId"/>
+                                            <xsl:value-of select="fsk"/>
                                         </fo:block>
                                     </fo:table-cell>
                                     <fo:table-cell>
@@ -83,7 +83,7 @@
                                     </fo:table-cell>
                                     <fo:table-cell>
                                         <fo:block>
-                                            <xsl:value-of select="requiredAge"/>
+                                            <xsl:value-of select="releaseDate"/>
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>

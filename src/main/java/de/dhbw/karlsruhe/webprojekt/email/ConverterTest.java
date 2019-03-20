@@ -5,8 +5,15 @@
  */
 package de.dhbw.karlsruhe.webprojekt.email;
 
+import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
+import de.dhbw.karlsruhe.webprojekt.model.Bestellung;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
@@ -21,16 +28,12 @@ public class ConverterTest {
 
     public static void main(String[] args) {
         ObjectConverter converter = new ObjectConverter();
-        Games game = new Games(1, "Test");
-        converter.convertToXml(game);
-        try {
-            converter.convertXmlToPdf();
-        } catch (FOPException ex) {
-            Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (TransformerException ex) {
-            Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Games> gameListe = new ArrayList<>();
+        gameListe.add(new Games("Spiel1"));
+        gameListe.add(new Games("Spiel2"));
+        Date date = new Date();
+        Bestellung bestellung = new Bestellung(0, 0, date, new Benutzer("Test@","", "Test", "TestN", "Eine Addresse"), gameListe);
+        converter.convertToXml(bestellung);
+        converter.convertXmlToPdf(123);
     }
 }

@@ -2,16 +2,19 @@ package de.dhbw.karlsruhe.webprojekt.servlet;
 
 import de.dhbw.karlsruhe.webprojekt.bean.BestellungBean;
 import de.dhbw.karlsruhe.webprojekt.bean.GameBean;
+import de.dhbw.karlsruhe.webprojekt.email.EmailSendingService;
+import de.dhbw.karlsruhe.webprojekt.email.ObjectConverter;
 import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
 import de.dhbw.karlsruhe.webprojekt.model.Bestellung;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,17 +49,18 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         currentPage = request.getParameter("currentUrl");
-        gameId = Integer.parseInt(request.getParameter("id"));
         initSession(request);
 
         switch (action) {
             case "add":
+                gameId = Integer.parseInt(request.getParameter("id"));
                 addGame(request, response);
                 break;
             case "buy":
                 buyCart(request, response);
                 break;
             case "delete":
+                gameId = Integer.parseInt(request.getParameter("id"));
                 deleteGame(request, response);
                 break;
         }
@@ -93,9 +97,20 @@ public class CartServlet extends HttpServlet {
         long userId = (long) session.getAttribute("userId");
         Benutzer benutzer = (Benutzer) session.getAttribute("user");
         double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         Bestellung b = new Bestellung(userId, totalPrice, date, benutzer, shoppingCart);
+
+        ObjectConverter converter = new ObjectConverter();
+        converter.convertToXml(b);
+        converter.convertXmlToPdf(userId);
+        
+        EmailSendingService ess = new EmailSendingService();
+        try {
+            ess.generateEmail(benutzer.getEmail());
+            ess.sendEmail();
+        } catch (MessagingException ex) {
+            Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.bestellungBean.saveBestellung(b);
         session.setAttribute("shoppingCart", new ArrayList<Games>());
         request.getRequestDispatcher("/WEB-INF/success.jsp").forward(request, response);
