@@ -1,5 +1,6 @@
 package de.dhbw.karlsruhe.webprojekt.email;
 
+import de.dhbw.karlsruhe.webprojekt.model.Bestellung;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -143,30 +144,31 @@ public class ObjectConverter {
     
     
     
-    private final String RESOURCES_DIR = "src//main//resources//";
+    private final String RESOURCES_DIR = "src//main//resources//template";
     private final String OUTPUT_DIR = "src//main//resources//output//";
+    
+    private StringBuilder xmlBuilder = new StringBuilder();
 
-    public void convertToXml(Games game) {
+    public void convertToXml(Bestellung bestellung) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Games.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             StringWriter sw = new StringWriter();
-            jaxbMarshaller.marshal(game, sw);
-            String xmlContent = sw.toString();
-            System.out.println(xmlContent);
+            jaxbMarshaller.marshal(bestellung, sw);
+            xmlBuilder.append(sw.toString());
 
         } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
-    public void convertXmlToPdf() throws FileNotFoundException, FOPException, TransformerConfigurationException, TransformerException, IOException {
+    public void convertXmlToPdf(long userId) throws FileNotFoundException, FOPException, TransformerConfigurationException, TransformerException, IOException {
         File xsltFile = new File(RESOURCES_DIR + "//template.xsl");
-        StreamSource xmlSource = new StreamSource(new File(RESOURCES_DIR + "//xml.xml"));
+        StreamSource xmlSource = new StreamSource(new StringReader(xmlBuilder.toString()));
         FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
         FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
-        OutputStream out = new FileOutputStream(OUTPUT_DIR + "//output.pdf");
+        OutputStream out = new FileOutputStream(OUTPUT_DIR + "//output"+userId+".pdf");
 
         try {
             Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, foUserAgent, out);

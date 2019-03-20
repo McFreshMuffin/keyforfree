@@ -34,6 +34,14 @@ public class ConverterTest {
         Date date = new Date();
         Bestellung bestellung = new Bestellung(0, 0, date, new Benutzer("Test@","", "Test", "TestN", "Eine Addresse"), gameListe);
         converter.convertToXml(bestellung);
-        converter.convertXmlToPdf(123);
+        try {
+            converter.convertXmlToPdf(123);
+        } catch (FOPException ex) {
+            Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ConverterTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

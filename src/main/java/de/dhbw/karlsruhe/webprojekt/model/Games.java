@@ -25,12 +25,9 @@ public class Games implements Serializable {
     public Games() {
     }
 
-    public Games(int GameId, String Name) {
-        this.GameId = GameId;
-        this.Name = Name;
+    public Games(String name) {
+        this.name = name;
     }
-
-    
     
     @Id
     @Column(name = "GAME_ID", nullable = false)
