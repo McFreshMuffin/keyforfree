@@ -44,11 +44,11 @@ public class Benutzer implements Serializable {
     public Benutzer() {
     }
 
-    public Benutzer(String email, String password, String vorname, String nachname, String address) {
+    public Benutzer(String email, String password, String vorname, String nachname, String addresse) {
         this.email = email;
         this.password = password;
         this.vorname = vorname;
         this.nachname = nachname;
-        this.address = address;
+        this.addresse = addresse;
     }
 }
