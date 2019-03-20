@@ -1,22 +1,29 @@
 package de.dhbw.karlsruhe.webprojekt.model;
 
+import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "REQUIREMENTS")
-public class Requirements {
+public class Requirements implements Serializable {
     
     @Id
     @Column(name = "REQ_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int reqId;
+    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "requirements", fetch = FetchType.LAZY)
+    Games games;
     
     @Column(name = "PLATFORM_WINDOWS")
     private String platformWindows;
