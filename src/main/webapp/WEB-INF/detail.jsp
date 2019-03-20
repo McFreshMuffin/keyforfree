@@ -90,7 +90,7 @@
                                 </a>
                             </li>
                             <c:choose>
-                                <c:when test="${game.getPlatformWindows() == test1}">
+                                <c:when test="${game.getRequirements().getPlatformWindows() == test1}">
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#collapseThree" role="button" aria-expanded="false" aria-controls="headingThree">
                                             Systemvoraussetzungen-Windows
@@ -99,7 +99,7 @@
                                 </c:when>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${game.getPlatformLinux() == test1}">
+                                <c:when test="${game.getRequirements().getPlatformLinux() == test1}">
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#collapseFour" role="button" aria-expanded="false" aria-controls="headingFour">
                                             Systemvoraussetzungen-Linux
@@ -108,7 +108,7 @@
                                 </c:when>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${game.getPlatformMac() == test1}">
+                                <c:when test="${game.getRequirements().getPlatformMac() == test1}">
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#collapseFive" role="button" aria-expanded="false" aria-controls="headingFive">
                                             Systemvoraussetzungen-Mac
@@ -121,14 +121,14 @@
                     <div class="card-body tab-content" id="cardBodyOne">
                         <div id="collapseOne" class="tab-pane fade-in active" data-parent="#accordionExample">
                             <div class="card-body">
-                                ${game.getDetailedDescrip()}
+                                ${game.getDescription()}
                             </div>
                         </div>
                         <div id="collapseTwo" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 Erscheinungsjahr: ${game.getReleaseYear()}
                                 <br>
-                                Sprachen: ${game.getSupportedLanguages()}
+                                Sprachen: ${game.getLanguages()}
                                 <br>
                                 Genre:
                                 <br>
@@ -139,18 +139,18 @@
                         <div id="collapseThree" class="tab-pane fade" data-parent="#accordionExample">
                             <div class="card-body">
                                 <c:choose>
-                                    <c:when test="${game.getPCReqsHaveMin() == test1}">
+                                    <c:when test="${game.getHaveMinPCReqs() == test1}">
                                         Minimum:
                                         <br>
-                                        ${game.getPCMinReqsText()}
+                                        ${game.getRequirements().getPCMinReqsText()}
                                         <br>
                                     </c:when>
                                 </c:choose>
                                 <c:choose>
-                                    <c:when test="${game.getPCReqsHaveRec() == test1}">
+                                    <c:when test="${game.getHaveRecPCReqs() == test1}">
                                         Empfohlen:
                                         <br>
-                                        ${game.getPCRecReqsText()}
+                                        ${game.getRequirements().getPCRecReqsText()}
                                     </c:when>
                                 </c:choose>
                             </div>
@@ -160,18 +160,18 @@
                             <div class="card-body">
                                 <c:set var="test1" value="True"></c:set>
                                 <c:choose>
-                                    <c:when test="${game.getLinuxReqsHaveMin() == test1}">
+                                    <c:when test="${game.getHaveMinLinuxReqs() == test1}">
                                         Minimum:
                                         <br>
-                                        ${game.getLinuxMinReqsText()}
+                                        ${game.getRequirements().getLinuxMinReqsText()}
                                         <br>
                                     </c:when>
                                 </c:choose>
                                 <c:choose>
-                                    <c:when test="${game.getLinuxReqsHaveRec() == test1}">
+                                    <c:when test="${game.getHaveRecLinuxReqs() == test1}">
                                         Empfohlen:
                                         <br>
-                                        ${game.getLinuxRecReqsText()}
+                                        ${game.getRequirements().getLinuxRecReqsText()}
                                     </c:when>
                                 </c:choose>
                             </div>
@@ -181,18 +181,18 @@
                             <div class="card-body">
                                 <c:set var="test1" value="True"></c:set>
                                 <c:choose>
-                                    <c:when test="${game.getMacReqsHaveMin() == test1}">
+                                    <c:when test="${game.getHaveMinMacReqs() == test1}">
                                         Minimum:
                                         <br>
-                                        ${game.getMacMinReqsText()}
+                                        ${game.getRequirements().getMacMinReqsText()}
                                         <br>
                                     </c:when>
                                 </c:choose>
                                 <c:choose>
-                                    <c:when test="${game.getMacReqsHaveRec() == test1}">
+                                    <c:when test="${game.getHaveRecMacReqs() == test1}">
                                         Empfohlen:
                                         <br>
-                                        ${game.getMacRecReqsText()}
+                                        ${game.getRequirements().getMacRecReqsText()}
                                     </c:when>
                                 </c:choose>
                             </div>
