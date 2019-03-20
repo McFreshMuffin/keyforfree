@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dhbw.karlsruhe.webprojekt.model;
 
 import java.util.Date;
@@ -17,14 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.Data;
 
-/**
- *
- * @author Uwe-Laptop
- */
 @Data
-@Entity(name = "BESTELLUNGEN")
+@Entity
+@Table(name = "BESTELLUNGEN")
 public class Bestellung {
 
     @Id
@@ -35,7 +28,7 @@ public class Bestellung {
     @Column(name = "BENUTZER_ID")
     private long benutzerId;
 
-    @Column(name = "GESAMT_PREIS", precision = 2)
+    @Column(name = "GESAMT_PREIS", scale = 2)
     private double gesamtPreis;
 
     @Column(name = "BESTELL_DATUM")
@@ -61,7 +54,4 @@ public class Bestellung {
         this.benutzer = benutzer;
         this.gameListe = gameListe;
     }
-    
-    
-
 }
