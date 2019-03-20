@@ -18,8 +18,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "GAMES")
 @XmlRootElement
+@Table(name = "GAMES")
 public class Games implements Serializable {
 
     public Games() {

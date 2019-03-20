@@ -11,12 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
-@Table(name="BENUTZER")
+@Table(name = "BENUTZER")
 public class Benutzer implements Serializable {
-    
+
     @Id
     @Column(name = "BENUTZER_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +40,7 @@ public class Benutzer implements Serializable {
 
     @OneToMany(mappedBy = "benutzer", targetEntity = Bestellung.class,
             fetch = FetchType.EAGER)
+    @ToString.Exclude
     List<Bestellung> bestellungListe;
 
     public Benutzer() {

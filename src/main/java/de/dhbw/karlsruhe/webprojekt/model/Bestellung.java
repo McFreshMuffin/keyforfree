@@ -19,8 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.ToString;
 
-@Data
 @Entity
+@Data
 @XmlRootElement
 @Table(name = "BESTELLUNGEN")
 public class Bestellung implements Serializable {
@@ -41,8 +41,8 @@ public class Bestellung implements Serializable {
     private Date bestellDatum;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "BENUTZER_ID", referencedColumnName = "BENUTZER_ID")
     @ToString.Exclude
+    @JoinColumn(name = "BENUTZER_ID", referencedColumnName = "BENUTZER_ID")
     private Benutzer benutzer;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -52,6 +52,7 @@ public class Bestellung implements Serializable {
             inverseJoinColumns
             = @JoinColumn(name = "GAME_ID", referencedColumnName = "GAME_ID")
     )
+    @ToString.Exclude
     private List<Games> gameListe;
 
     public Bestellung() {

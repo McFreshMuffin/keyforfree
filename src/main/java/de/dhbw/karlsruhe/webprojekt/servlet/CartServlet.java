@@ -7,6 +7,7 @@ import de.dhbw.karlsruhe.webprojekt.email.ObjectConverter;
 import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
 import de.dhbw.karlsruhe.webprojekt.model.Bestellung;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.transform.TransformerException;
+import org.apache.fop.apps.FOPException;
 
 @WebServlet(name = "CartServlet", urlPatterns = {"/cart"})
 public class CartServlet extends HttpServlet {
@@ -102,7 +105,11 @@ public class CartServlet extends HttpServlet {
 
         ObjectConverter converter = new ObjectConverter();
         converter.convertToXml(b);
-        converter.convertXmlToPdf(userId);
+        try {
+            converter.convertXmlToPdf(userId);
+        } catch (FileNotFoundException | FOPException | TransformerException ex) {
+            Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         EmailSendingService ess = new EmailSendingService();
         try {

@@ -144,19 +144,20 @@ public class ObjectConverter {
     
     
     
-    private final String RESOURCES_DIR = "src//main//resources//template";
-    private final String OUTPUT_DIR = "src//main//resources//output//";
+    private final String RESOURCES_DIR = "D:\\Studium\\4. Semester\\Tools\\TomEE und Derby\\pdfs\\template";
+    private final String OUTPUT_DIR = "D:\\Studium\\4. Semester\\Tools\\TomEE und Derby\\pdfs";
     
     private StringBuilder xmlBuilder = new StringBuilder();
 
     public void convertToXml(Bestellung bestellung) {
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Games.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Bestellung.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             StringWriter sw = new StringWriter();
             jaxbMarshaller.marshal(bestellung, sw);
             xmlBuilder.append(sw.toString());
+            System.out.println(xmlBuilder.toString());
 
         } catch (JAXBException e) {
             e.printStackTrace();
