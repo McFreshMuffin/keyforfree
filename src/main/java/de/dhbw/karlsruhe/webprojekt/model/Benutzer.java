@@ -1,7 +1,8 @@
 package de.dhbw.karlsruhe.webprojekt.model;
 
-import java.util.List;
+import java.io.Serializable;
 import javax.persistence.Column;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,9 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "BENUTZER")
-public class Benutzer {
-
+@Table(name="BENUTZER")
+public class Benutzer implements Serializable {
+    
     @Id
     @Column(name = "BENUTZER_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,12 +44,11 @@ public class Benutzer {
     public Benutzer() {
     }
 
-    public Benutzer(String email, String password, String vorname, String nachname, String addresse) {
+    public Benutzer(String email, String password, String vorname, String nachname, String address) {
         this.email = email;
         this.password = password;
         this.vorname = vorname;
         this.nachname = nachname;
-        this.addresse = addresse;
+        this.address = address;
     }
-
 }

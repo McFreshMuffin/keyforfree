@@ -11,6 +11,8 @@
         <non-jta-data-source>MySQL-Database-Unmanaged</non-jta-data-source>
         <!-- TomEE -->
 
+        <class>de.dhbw.karlsruhe.webprojekt.model.Games</class>
+
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
 
