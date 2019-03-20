@@ -13,13 +13,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "GAMES")
+@XmlRootElement
 public class Games implements Serializable {
 
+    public Games() {
+    }
+
+    public Games(int GameId, String Name) {
+        this.GameId = GameId;
+        this.Name = Name;
+    }
+
+    
+    
     @Id
     @Column(name = "GAME_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
