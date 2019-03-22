@@ -105,19 +105,11 @@ public class CartServlet extends HttpServlet {
 
         ObjectConverter converter = new ObjectConverter();
         converter.convertToXml(b);
-        try {
-            converter.convertXmlToPdf(userId);
-        } catch (FileNotFoundException | FOPException | TransformerException ex) {
-            Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        converter.convertXmlToPdf(b.getBestellId());
         EmailSendingService ess = new EmailSendingService();
-        try {
-            ess.generateEmail(benutzer.getEmail());
-            ess.sendEmail();
-        } catch (MessagingException ex) {
-            Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ess.createEmail("service.key4free@gmail.com", benutzer.getNachname(), b.getBenutzerId());
+        ess.sendEmail();
+
         this.bestellungBean.saveBestellung(b);
         session.setAttribute("shoppingCart", new ArrayList<Games>());
         request.getRequestDispatcher("/WEB-INF/success.jsp").forward(request, response);
