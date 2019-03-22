@@ -1,9 +1,6 @@
 package de.dhbw.karlsruhe.webprojekt.email;
 
 import de.dhbw.karlsruhe.webprojekt.model.Bestellung;
-import de.dhbw.karlsruhe.webprojekt.model.Games;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,8 +9,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -23,7 +18,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
 
@@ -32,7 +26,6 @@ import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
-import org.apache.xalan.processor.TransformerFactoryImpl;
 
 public class ObjectConverter {
 
@@ -115,37 +108,8 @@ public class ObjectConverter {
 */
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    private final String RESOURCES_DIR = "D:\\Studium\\4. Semester\\Tools\\TomEE und Derby\\pdfs\\template";
-    private final String OUTPUT_DIR = "D:\\Studium\\4. Semester\\Tools\\TomEE und Derby\\pdfs";
+    private final String RESOURCES_DIR = "C:\\keyforfree\\res\\template";
+    private final String OUTPUT_DIR = "C:\\keyforfree\\res\\output";
     
     private StringBuilder xmlBuilder = new StringBuilder();
 

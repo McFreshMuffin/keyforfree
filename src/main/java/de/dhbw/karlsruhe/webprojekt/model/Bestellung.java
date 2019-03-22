@@ -16,8 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import lombok.Data;
-import lombok.ToString;
 
 @Entity
 @Data
@@ -41,7 +41,6 @@ public class Bestellung implements Serializable {
     private Date bestellDatum;
 
     @ManyToOne(optional = false)
-    @ToString.Exclude
     @JoinColumn(name = "BENUTZER_ID", referencedColumnName = "BENUTZER_ID")
     private Benutzer benutzer;
 
@@ -52,7 +51,7 @@ public class Bestellung implements Serializable {
             inverseJoinColumns
             = @JoinColumn(name = "GAME_ID", referencedColumnName = "GAME_ID")
     )
-    @ToString.Exclude
+    @XmlTransient
     private List<Games> gameListe;
 
     public Bestellung() {

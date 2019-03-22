@@ -1,6 +1,5 @@
 package de.dhbw.karlsruhe.webprojekt.email;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 import javax.mail.Message;

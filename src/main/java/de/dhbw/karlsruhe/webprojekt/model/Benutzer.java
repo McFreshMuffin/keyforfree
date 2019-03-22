@@ -10,11 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 @Entity
+@XmlRootElement
+@XmlAccessorType(value = XmlAccessType.FIELD)
 @Table(name = "BENUTZER")
 public class Benutzer implements Serializable {
 
@@ -40,7 +45,7 @@ public class Benutzer implements Serializable {
 
     @OneToMany(mappedBy = "benutzer", targetEntity = Bestellung.class,
             fetch = FetchType.EAGER)
-    @ToString.Exclude
+    @XmlTransient
     List<Bestellung> bestellungListe;
 
     public Benutzer() {
