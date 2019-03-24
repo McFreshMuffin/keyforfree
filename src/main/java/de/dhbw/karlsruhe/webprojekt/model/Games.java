@@ -28,8 +28,8 @@ public class Games implements Serializable {
     @Column(name = "NAME")
     private String name;
     
-    @Column(name = "RELEASE_DATE")
-    private int releaseDate;
+    @Column(name = "RELEASE_DATE2")
+    private String releaseDate;
     
     @Column(name = "FSK")
     private int fsk;
@@ -62,7 +62,8 @@ public class Games implements Serializable {
        private List<Bestellung> orderList;
 
     public String getReleaseYear(){
-        //return releaseDate.substring(0,4);
-        return "2000";
+       
+        return releaseDate.substring(0,4);
+        
     }
 }
