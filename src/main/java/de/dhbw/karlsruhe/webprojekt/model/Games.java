@@ -46,18 +46,6 @@ public class Games implements Serializable {
     @Column(name = "IMAGE")
     private String image;
     
-<<<<<<< HEAD
-    @Column(name = "LANGUAGE")
-    private String languages; 
-    
-    public String getReleaseYear(){
-        return releaseDate.substring(3,7);
-    }
-=======
-    @Column(name = "SPRACHE")
-    private String sprache;
->>>>>>> database
-    
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
     private Category category;
