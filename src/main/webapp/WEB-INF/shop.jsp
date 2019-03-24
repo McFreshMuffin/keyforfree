@@ -7,38 +7,38 @@
 <template:base>
 
     <jsp:attribute name="title">Games</jsp:attribute>
-   <jsp:attribute name="head">
+    <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="style/shop.css"/>">
     </jsp:attribute>
     <jsp:attribute name="nav_log">
         <c:choose>
             <c:when test="${empty sessionScope.user}">
-                 <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a href="register" class="nav-link" style="text-decoration: none; color: white;">
-                                <i class="fas fa-user-plus"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="login" class="nav-link" style="text-decoration: none; color: white;">
-                                <i class="fas fa-sign-in-alt"></i>
-                            </a>
-                        </li>
-                    </ul>
+                <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a href="register" class="nav-link" style="text-decoration: none; color: white;">
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="login" class="nav-link" style="text-decoration: none; color: white;">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                    </li>
+                </ul>
             </c:when>
             <c:otherwise>
                 <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a href="cart" class="nav-link">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="logout" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
-                        </li>
-                    </ul>
+                    <li class="nav-item active">
+                        <a href="cart" class="nav-link">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="logout" class="nav-link">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </li>
+                </ul>
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
@@ -48,14 +48,45 @@
             <c:choose>
                 <c:when test="${!empty games}">
 
+                    <form action="#">
+                        <label>Genre:
+                            <select name="genre" onchange="location = this.value;">
+                                <option value="#">Auswählen..</option>
+                                <option value="#1">test</option>
+                                <option value="?recordsPerPage=10&currentPage=1&genre=indie">Indie</option>
+                                <option value="?recordsPerPage=10&currentPage=1&genre=aktion">Action</option>
+                                <option value="?recordsPerPage=10&currentPage=1&genre=adventure">Adventure</option>
+                                <option value="?recordsPerPage=10&currentPage=1&genre=strategy">Strategy</option>
+                                <option value="?recordsPerPage=10&currentPage=1&genre=rpg">RPG</option>
+                                <option value="?recordsPerPage=10&currentPage=1&genre=simulation">Simulation</option>
+                                <option value="?recordsPerPage=10&currentPage=1&genre=sport">Sport</option>
+                                <option value="?recordsPerPage=10&currentPage=1&genre=racing">Racing</option>
+                            </select>
+                        </label>
+                    </form>
+
                     <table class="table table-striped table-bordered table-sm" style="table-layout:fixed;">
                         <tr>
                             <th style="width:309px;">Bild</th>
                             <th style="width:400px;">Name</th>
                             <th style="width:70px;">Preis</th>
                             <th style="width:120px;">Veröffentlicht</th>
-                            <th style="width:50px;">Alter</th>
                             <th style="width:100px;"></th>
+                            <th style="width:150px;">
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Sortieren nach...
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">A--Z</a>
+                                        <a class="dropdown-item" href="#">Z--A</a>
+                                        <a class="dropdown-item" href="#">Preis absteigend</a>
+                                        <a class="dropdown-item" href="#">Preis aufsteigend</a>
+                                    </div>
+                                </div>
+
+                            </th>
+
                         </tr>
 
                         <c:forEach items="${games}" var="game">
@@ -66,8 +97,7 @@
                                 </td>    
                                 <td>${game.getName()}</td>
                                 <td>${game.getPrice()} €</td>
-                                <td>${game.getReleaseYear()}</td>
-                                <td>${game.getFsk()}</td>
+                                <td>${game.getReleaseYear()}</td>                                
                                 <td align="center">
                                     <form action="/WebProjekt/cart" method="post">
                                         <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
@@ -76,6 +106,7 @@
                                         <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>
                                     </form>
                                 </td>
+
                             </tr>
                         </c:forEach>
                     </table>

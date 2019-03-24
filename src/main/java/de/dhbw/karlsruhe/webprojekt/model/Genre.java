@@ -26,38 +26,38 @@ public class Genre implements Serializable {
     Games games;
 
     @Column(name = "INDIE")
-    private boolean indie;
+    private long indie;
 
     @Column(name = "AKTION")
-    private boolean aktion;
+    private long aktion;
 
     @Column(name = "ADVENTURE")
-    private boolean adventure;
+    private long adventure;
 
     @Column(name = "CASUAL")
-    private boolean casual;
+    private long casual;
     
     @Column(name = "STRATEGY")
-    private boolean strategy;
+    private long strategy;
 
     @Column(name = "RPG")
-    private boolean rpg;
+    private long rpg;
 
     @Column(name = "SIMULATION")
-    private boolean simulation;
+    private long simulation;
 
     @Column(name = "EARLY_ACCESS")
-    private boolean earlyAccess;
+    private long earlyAccess;
 
     @Column(name = "FREE_TO_PLAY")
-    private boolean freeToPlay;
+    private long freeToPlay;
 
     @Column(name = "SPORT")
-    private boolean sport;
+    private long sport;
 
     @Column(name = "RACING")
-    private boolean racing;
+    private long racing;
 
     @Column(name = "MASSIVE_MULTIPLAYER")
-    private boolean massivelyMultiplayer;
+    private long massivelyMultiplayer;
 }

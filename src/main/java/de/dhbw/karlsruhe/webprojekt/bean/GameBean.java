@@ -27,6 +27,11 @@ public class GameBean {
         return em.createQuery("SELECT g FROM Games g ORDER BY g.releaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
     }
     
+     public List<Games> findGamesByGenre(int currentPage, int recordsPerPage, String genre) {
+        int start = currentPage * recordsPerPage - recordsPerPage;
+        return em.createQuery("SELECT g FROM Games g, Genre r WHERE g.genreId = r.genreId AND r."+genre+" = 1 ORDER BY g.releaseDate ").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
+    }
+    
     public long getNumberOfRows(){
         CriteriaBuilder qb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = qb.createQuery(Long.class);

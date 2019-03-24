@@ -111,13 +111,13 @@
         <div class="text" style="font-weight: bold; margin-top: 40px;">
             Beliebte Kategorien:
         </div>
-        <div class="buttonliste" style="margin-top: 20px;">
-            <button type="button" class="btn btn-dark">MOBA</button>
-            <button type="button" class="btn btn-dark">Simulationen</button>
-            <button type="button" class="btn btn-dark">Shooter</button>
-            <button type="button" class="btn btn-dark">Geschicklichkeit</button>
-            <button type="button" class="btn btn-dark">Jump'n'Run</button>
-            <button type="button" class="btn btn-dark">Rollenspiele</button>
+        <div class="buttonliste" style="margin-top: 20px;">          
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=aktion"><button class="btn btn-dark" >Action</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=adventure"><button class="btn btn-dark" >Adventure</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=strategy"><button class="btn btn-dark" >Strategy</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=rpg"><button class="btn btn-dark" >RPG</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=simulation"><button class="btn btn-dark" >Simulation</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=racing"><button class="btn btn-dark" >Racing</button></a>
         </div>
 
     </jsp:attribute>
