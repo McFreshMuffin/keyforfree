@@ -26,31 +26,31 @@ public class Requirements implements Serializable {
     Games games;
     
     @Column(name = "PLATFORM_WINDOWS")
-    private String platformWindows;
+    private int platformWindows;
     
     @Column(name = "PLATFORM_LINUX")
-    private String platformLinux;
+    private int platformLinux;
     
     @Column(name = "PLATFORM_MAC")
-    private String platformMac;
+    private int platformMac;
     
     @Column(name = "MIN_WINDOWS")
-    private String haveMinPcReqs;
+    private int haveMinPcReqs;
     
     @Column(name = "REC_WINDOWS")
-    private String haveRecPcReqs;
+    private int haveRecPcReqs;
    
     @Column(name = "MIN_LINUX")
-    private String haveMinLinuxReqs;
+    private int haveMinLinuxReqs;
     
     @Column(name = "REC_LINUX")
-    private String haveRecLinuxReqs;
+    private int haveRecLinuxReqs;
     
     @Column(name = "MIN_MAC")
-    private String haveMinMacReqs;
+    private int haveMinMacReqs;
     
     @Column(name = "REC_MAC")
-    private String haveRecMacReqs;
+    private int haveRecMacReqs;
     
     @Column(name = "MIN_WIN_TEXT")
     private String PCMinReqsText;

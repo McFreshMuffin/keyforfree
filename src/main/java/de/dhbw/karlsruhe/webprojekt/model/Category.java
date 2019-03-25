@@ -20,32 +20,32 @@ public class Category implements Serializable{
     @Id
     @Column(name = "CATEGORY_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long categoryId;
+    private int categoryId;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
     Games games;
 
     @Column(name = "SINGLEPLAYER")
-    private String singleplayer;
+    private int singleplayer;
     
     @Column(name = "MULTIPLAYER")
-    private String multiplayer;
+    private int multiplayer;
     
     @Column(name = "COOP")
-    private String coop;
+    private int coop;
     
     @Column(name = "MMO")
-    private String mmo;
+    private int mmo;
     
     @Column(name = "IN_APP_PURCHASE")
-    private String inAppPurchase;
+    private int inAppPurchase;
     
     @Column(name = "SRC_SDK")
-    private String srcSdk;
+    private int srcSdk;
     
     @Column(name = "LEVEL_EDITOR")
-    private String levelEditor;
+    private int levelEditor;
     
     @Column(name = "VR_SUPPORT")
-    private String vrSupport;
+    private int vrSupport;
 }
