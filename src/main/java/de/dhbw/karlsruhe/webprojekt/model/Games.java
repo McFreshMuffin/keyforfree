@@ -61,16 +61,16 @@ public class Games implements Serializable {
 
     @Column(name = "SPRACHE")
     private String sprache;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
     private Category category;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "GENRE_ID", referencedColumnName = "GENRE_ID")
     private Genre genre;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "REQ_ID", referencedColumnName = "REQ_ID")
     private Requirements requirements;
 

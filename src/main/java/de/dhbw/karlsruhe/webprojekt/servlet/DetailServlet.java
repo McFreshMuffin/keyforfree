@@ -15,32 +15,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "DetailServlet", urlPatterns = {"/detail"})
 public class DetailServlet extends HttpServlet {
 
     @EJB
     GameBean gamebean;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         int gameid = Integer.valueOf(request.getParameter("gameid"));
-        Games game = gamebean.findGameById(gameid);
         
+        Games game = gamebean.findGameById(gameid);
+        game = gamebean.checkRequirements(game);
+
         request.setAttribute("game", game);
         request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
     }
 
-    
-    
-    
 }
