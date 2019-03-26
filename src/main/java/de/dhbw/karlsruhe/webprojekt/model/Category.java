@@ -20,7 +20,7 @@ public class Category implements Serializable{
     @Id
     @Column(name = "CATEGORY_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long categoryId;
+    private int categoryId;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
     Games games;

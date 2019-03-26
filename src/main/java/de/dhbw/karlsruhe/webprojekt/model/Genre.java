@@ -20,7 +20,7 @@ public class Genre implements Serializable {
     @Id
     @Column(name = "GENRE_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long genreId;
+    private int genreId;
     
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "genre", fetch = FetchType.LAZY)
     Games games;
