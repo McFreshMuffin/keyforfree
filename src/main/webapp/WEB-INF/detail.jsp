@@ -70,20 +70,26 @@
                         <td class="pricingRow">Menge:</td>
                         <td class="pricingRow">Preis:</td>
                         <td class="pricingRow">Gesamt:</td>
-                        <td class="pricingRow">Kaufen</td>
+                        <td class="pricingRow" rowspan="2">
+                            <form action="/WebProjekt/cart" method="post">
+                                <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
+                                <input type="hidden" name="action" value="add">
+                                <input type="hidden" name="id" value="${game.getGameId()}">
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"> In den Warenkorb legen</i></button>
+                            </form>
+                        </td>
                     </tr>
                     <tr>
                         <td class="pricingRow">
-                            <select class="custom-select custom-select-sm" id="selection">
-                                <option selected>1</option>
+                            <select class="custom-select custom-select-sm" id="selection" onchange="changePrice(this.value, ${game.getPrice()})">
+                                <option label="1" value="1" selected>1</option>
                                 <c:forEach begin="2" end="10" var="option">
-                                    <option value="${option}">${option}</option>
+                                    <option label="${option}" value="${option}">${option}</option>
                                 </c:forEach>
                             </select>
                         </td>
                         <td class="pricingRow">${game.getPrice()}€</td>
-                        <td class="pricingRow">€</td>
-                        <td class="pricingRow"></td>
+                        <td class="pricingRow" id="PriceTotal">${game.getPrice()}€</td>
                     </tr>
                 </table>
             </div>
@@ -138,9 +144,9 @@
                         <br>
                         Sprachen: ${game.getSprache()}
                         <br>
-                        Genre:
+                        Genre: ${genres}
                         <br>
-                        Kategorien:
+                        Kategorien: ${categories}
                     </div>
                 </div>
                 <div id="collapseWindowsReqs" class="tab-pane fade" aria-labelledby="headingWindowsReqs" data-patrent="#accordion">

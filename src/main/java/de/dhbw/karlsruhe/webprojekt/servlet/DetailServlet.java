@@ -29,8 +29,13 @@ public class DetailServlet extends HttpServlet {
         
         Games game = gamebean.findGameById(gameid);
         game = gamebean.checkRequirements(game);
-
+        
+        String genres = gamebean.getGenres(game);
+        String categories = gamebean.getCategories(game);
+        
         request.setAttribute("game", game);
+        request.setAttribute("genres", genres);
+        request.setAttribute("categories", categories);
         request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
     }
 
