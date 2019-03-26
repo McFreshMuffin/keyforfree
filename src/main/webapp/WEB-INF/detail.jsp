@@ -81,15 +81,15 @@
                     </tr>
                     <tr>
                         <td class="pricingRow">
-                            <select class="custom-select custom-select-sm" id="selection" onchange="changePrice()">
-                                <option selected>1</option>
+                            <select class="custom-select custom-select-sm" id="selection" onchange="changePrice(this.value, ${game.getPrice()})">
+                                <option label="1" value="1" selected>1</option>
                                 <c:forEach begin="2" end="10" var="option">
                                     <option label="${option}" value="${option}">${option}</option>
                                 </c:forEach>
                             </select>
                         </td>
-                        <td class="pricingRow" id="PriceOnly">${game.getPrice()}€</td>
-                        <td class="pricingRow" id="PriceTotal"></td>
+                        <td class="pricingRow">${game.getPrice()}€</td>
+                        <td class="pricingRow" id="PriceTotal">${game.getPrice()}€</td>
                     </tr>
                 </table>
             </div>
