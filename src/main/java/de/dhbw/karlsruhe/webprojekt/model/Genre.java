@@ -20,44 +20,44 @@ public class Genre implements Serializable {
     @Id
     @Column(name = "GENRE_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long genreId;
+    private int genreId;
     
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "genre", fetch = FetchType.LAZY)
     Games games;
 
     @Column(name = "INDIE")
-    private long indie;
+    private int indie;
 
     @Column(name = "AKTION")
-    private long aktion;
+    private int aktion;
 
     @Column(name = "ADVENTURE")
-    private long adventure;
+    private int adventure;
 
     @Column(name = "CASUAL")
-    private long casual;
+    private int casual;
     
     @Column(name = "STRATEGY")
-    private long strategy;
+    private int strategy;
 
     @Column(name = "RPG")
-    private long rpg;
+    private int rpg;
 
     @Column(name = "SIMULATION")
-    private long simulation;
+    private int simulation;
 
     @Column(name = "EARLY_ACCESS")
-    private long earlyAccess;
+    private int earlyAccess;
 
     @Column(name = "FREE_TO_PLAY")
-    private long freeToPlay;
+    private int freeToPlay;
 
     @Column(name = "SPORT")
-    private long sport;
+    private int sport;
 
     @Column(name = "RACING")
-    private long racing;
+    private int racing;
 
     @Column(name = "MASSIVE_MULTIPLAYER")
-    private long massivelyMultiplayer;
+    private int massivelyMultiplayer;
 }

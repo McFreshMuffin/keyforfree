@@ -47,129 +47,163 @@
 
 
     <jsp:attribute name="main">
-        <c:set var="test1" value="True"></c:set>
-        <h1 class="title">${game.getName()}</h1>
-        <div class="text-center">
-            <img src="${game.getImage()}" class="rounded">
+        <c:set var="test1" value="WAHR"></c:set>
+
+            <div class="detailFirst">
+                <h1 class="title">${game.getName()}</h1>
+            <div class="text">
+                <table class="myTable">
+                    <tr>
+                        <td class="myImageField" colspan="2">
+                            <div class="myImageDiv">
+                                <img src="${game.getImage()}" class="img-fluid img-thumbnail">
+                            </div>
+                        </td>
+                        <td colspan="2">
+                            <div class="scrollview">
+                                ${game.getAboutText()}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="pricingRow">Menge:</td>
+                        <td class="pricingRow">Preis:</td>
+                        <td class="pricingRow">Gesamt:</td>
+                        <td class="pricingRow" rowspan="2">
+                            <form action="/WebProjekt/cart" method="post">
+                                <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
+                                <input type="hidden" name="action" value="add">
+                                <input type="hidden" name="id" value="${game.getGameId()}">
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"> In den Warenkorb legen</i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pricingRow">
+                            <select class="custom-select custom-select-sm" id="selection" onchange="changePrice(this.value, ${game.getPrice()})">
+                                <option label="1" value="1" selected>1</option>
+                                <c:forEach begin="2" end="10" var="option">
+                                    <option label="${option}" value="${option}">${option}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td class="pricingRow">${game.getPrice()}€</td>
+                        <td class="pricingRow" id="PriceTotal">${game.getPrice()}€</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
-        <div class="accordion" id="accordionExample">
-            <div class="card">
+        <div class="card">
+            <div class="accordion" id="accordionDetail">   
                 <div class="card text-center">
                     <div class="card-header" id="cardHeaderOne">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link beschreibungActive" data-toggle="collapse show" href="#collapseOne" role="button" aria-expanded="true" aria-controls="headingOne">
-                                    Beschreibung
-                                </a>
+                                <a class="nav-link active" data-toggle="tab" href="#collapseBeschreibung" role="button" aria-expanded="false" aria-controls="headingBeschreibung">Beschreibung</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="headingTwo">
-                                    Informationen
-                                </a>
+                                <a class="nav-link" data-toggle="tab" href="#collapseInformationen" role="button" aria-expanded="false" aria-controls="headingInformation">Informationen</a>
                             </li>
                             <c:choose>
-                                <c:when test="${game.getPlatformWindows() == test1}">
+                                <c:when test="${game.getRequirements().getPlatformWindows() eq 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="headingThree">
-                                            Systemvoraussetzungen-Windows
-                                        </a>
+                                        <a class="nav-link" data-toggle="tab" href="#collapseWindowsReqs" role="button" aria-expanded="false" aria-controls="headingWindowsReqs">Systemvorraussetzungen-Windows</a>
                                     </li>
                                 </c:when>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${game.getPlatformLinux() == test1}">
+                                <c:when test="${game.getRequirements().getPlatformLinux() eq 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="headingFour">
-                                            Systemvoraussetzungen-Linux
-                                        </a>
+                                        <a class="nav-link" data-toggle="tab" href="#collapseLinuxReqs" role="button" aria-expanded="false" aria-controls="headingLinuxReqs">Systemvorraussetzungen-Linux</a>
                                     </li>
                                 </c:when>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${game.getPlatformMac() == test1}">
+                                <c:when test="${game.getRequirements().getPlatformMac() eq 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="collapse" href="#collapseFive" role="button" aria-expanded="false" aria-controls="headingFive">
-                                            Systemvoraussetzungen-Mac
-                                        </a>
+                                        <a class="nav-link" data-toggle="tab" href="#collapseMacReqs" role="button" aria-expanded="false" aria-controls="headingMacReqs">Systemvorraussetzungen-Mac</a>
                                     </li>
                                 </c:when>
                             </c:choose>
                         </ul>
                     </div>
-                    <div class="card-body" id="cardBodyOne">
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                ${game.getDetailedDescrip()}
-                            </div>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
-                                ${game.getReleaseYear()}
-                            </div>
-                        </div>
-                        <!--Systemvoraussetzungen Windows-->
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <c:choose>
-                                    <c:when test="${game.getPCReqsHaveMin() == test1}">
-                                        Minimum:
-                                        <br>
-                                        ${game.getPCMinReqsText()}
-                                        <br>
-                                    </c:when>
-                                </c:choose>
-                                <c:choose>
-                                    <c:when test="${game.getPCReqsHaveRec() == test1}">
-                                        Empfohlen:
-                                        <br>
-                                        ${game.getPCRecReqsText()}
-                                    </c:when>
-                                </c:choose>
-                            </div>
-                        </div>
-                        <!--Systemvoraussrtzungen Linux-->
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <c:set var="test1" value="True"></c:set>
-                                <c:choose>
-                                    <c:when test="${game.getLinuxReqsHaveMin() == test1}">
-                                        Minimum:
-                                        <br>
-                                        ${game.getLinuxMinReqsText()}
-                                        <br>
-                                    </c:when>
-                                </c:choose>
-                                <c:choose>
-                                    <c:when test="${game.getLinuxReqsHaveRec() == test1}">
-                                        Empfohlen:
-                                        <br>
-                                        ${game.getLinuxRecReqsText()}
-                                    </c:when>
-                                </c:choose>
-                            </div>
-                        </div>
-                        <!--Systemvoraussetzungen Mac-->
-                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <c:set var="test1" value="True"></c:set>
-                                <c:choose>
-                                    <c:when test="${game.getMacReqsHaveMin() == test1}">
-                                        Minimum:
-                                        <br>
-                                        ${game.getMacMinReqsText()}
-                                        <br>
-                                    </c:when>
-                                </c:choose>
-                                <c:choose>
-                                    <c:when test="${game.getMacReqsHaveRec() == test1}">
-                                        Empfohlen:
-                                        <br>
-                                        ${game.getMacRecReqsText()}
-                                    </c:when>
-                                </c:choose>
-                            </div>
-                        </div>
+                </div>
+            </div>
+
+            <div class="card-body tab-content" id="cardBodyOne">
+                <div id="collapseBeschreibung" class="tab-pane fade-in active" aria-labelledby="headingBeschreibung" data-patrent="#accordion">
+                    <div class="card-body">
+                        ${game.getDescription()}
+                    </div>
+                </div>
+                <div id="collapseInformationen" class="tab-pane fade" aria-labelledby="headingInformationen" data-parent="#accordion">
+                    <div class="card-body">
+                        Erscheinungsjahr: ${game.getReleaseYear()}
+                        <br>
+                        Sprachen: ${game.getSprache()}
+                        <br>
+                        Genre: ${genres}
+                        <br>
+                        Kategorien: ${categories}
+                    </div>
+                </div>
+                <div id="collapseWindowsReqs" class="tab-pane fade" aria-labelledby="headingWindowsReqs" data-patrent="#accordion">
+                    <div class="card-body">
+                        <c:choose>
+                            <c:when test="${game.getRequirements().getHaveMinPcReqs() eq 1}">
+                                Minimum:
+                                <br>
+                                ${game.getRequirements().getPCMinReqsText()}
+                                <br>
+                            </c:when>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${game.getRequirements().getHaveRecPcReqs() eq 1}">
+                                Empfohlen:
+                                <br>
+                                ${game.getRequirements().getPCRecReqsText()}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </div>
+                <div id="collapseLinuxReqs" class="tab-pane fade" aria-labelledby="headingLinuxReqs" data-patrent="#accordion">
+                    <div class="card-body">
+                        <c:choose>
+                            <c:when test="${game.getRequirements().getHaveMinLinuxReqs() eq 1}">
+                                Minimum:
+                                <br>
+                                ${game.getRequirements().getLinuxMinReqsText()}
+                                <br>
+                            </c:when>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${game.getRequirements().getHaveRecLinuxReqs() eq 1}">
+                                Empfohlen:
+                                <br>
+                                ${game.getRequirements().getLinuxRecReqsText()}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </div>
+                <div id="collapseMacReqs" class="tab-pane fade" aria-labelledby="headingMacReqs" data-patrent="#accordion">
+                    <div class="card-body">
+                        <c:choose>
+                            <c:when test="${game.getRequirements().getHaveMinMacReqs() eq 1}">
+                                Minimum:
+                                <br>
+                                ${game.getRequirements().getMacMinReqsText()}
+                                <br>
+                            </c:when>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${game.getRequirements().getHaveRecMacReqs() eq 1}">
+                                Empfohlen:
+                                <br>
+                                ${game.getRequirements().getMacRecReqsText()}
+                            </c:when>
+                        </c:choose>
                     </div>
                 </div>
             </div>
