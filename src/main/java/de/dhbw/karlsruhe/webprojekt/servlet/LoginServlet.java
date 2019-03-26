@@ -2,7 +2,7 @@ package de.dhbw.karlsruhe.webprojekt.servlet;
 
 import de.dhbw.karlsruhe.webprojekt.bean.UserBean;
 import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
-import java.util.ArrayList;
+import de.dhbw.karlsruhe.webprojekt.util.GamesHashMap;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,13 +26,13 @@ public class LoginServlet extends HttpServlet {
         Benutzer user = this.userBean.loginUser(email, password);
 
         if (user != null) {
-            ArrayList cart = new ArrayList();
+            GamesHashMap shoppingCart = new GamesHashMap();
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("email", user.getEmail());
             session.setAttribute("username", user.getVorname());
             session.setAttribute("userId", user.getBenutzerId());
-            session.setAttribute("shoppingCart", cart);
+            session.setAttribute("shoppingCart", shoppingCart);
             response.sendRedirect("index.html");
         } else {
             boolean result = false;

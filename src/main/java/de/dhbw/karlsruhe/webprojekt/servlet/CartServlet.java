@@ -7,11 +7,15 @@ import de.dhbw.karlsruhe.webprojekt.email.ObjectConverter;
 import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
 import de.dhbw.karlsruhe.webprojekt.model.Bestellung;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
+import de.dhbw.karlsruhe.webprojekt.util.GamesHashMap;
+import de.dhbw.karlsruhe.webprojekt.util.TwoDimensionalArrayList;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +34,7 @@ public class CartServlet extends HttpServlet {
     BestellungBean bestellungBean;
 
     private HttpSession session = null;
-    private List<Games> shoppingCart = null;
+    private GamesHashMap shoppingCart = null;
     private String currentPage = null;
     private int gameId;
 
@@ -40,7 +44,7 @@ public class CartServlet extends HttpServlet {
         initSession(request);
         String reqRecordsPerPage = request.getParameter("recordsPerPage");
         String reqCurrentPage = request.getParameter("currentPage");
-        request.setAttribute("cart", shoppingCart);
+        request.setAttribute("shoppingCart", shoppingCart);
         request.setAttribute("recordsPerPage", reqRecordsPerPage);
         request.setAttribute("currentPage", reqCurrentPage);
         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
@@ -55,11 +59,12 @@ public class CartServlet extends HttpServlet {
 
         switch (action) {
             case "add":
+                //int amount = Integer.parseInt(request.getParameter("amount"));
                 gameId = Integer.parseInt(request.getParameter("id"));
                 addGame(request, response);
                 break;
             case "buy":
-                buyCart(request, response);
+                //buyCart(request, response);
                 break;
             case "delete":
                 gameId = Integer.parseInt(request.getParameter("id"));
@@ -70,34 +75,27 @@ public class CartServlet extends HttpServlet {
 
     private void initSession(HttpServletRequest request) {
         session = request.getSession();
-        shoppingCart = (ArrayList) session.getAttribute("shoppingCart");
+        shoppingCart = (GamesHashMap) session.getAttribute("shoppingCart");
+
     }
 
     private void addGame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Games game = this.gameBean.findGameById(gameId);
-        shoppingCart.add(game);
-        request.setAttribute("cart", shoppingCart);
+        shoppingCart.addGame(game);
         request.setAttribute("currentPage", currentPage);
         session.setAttribute("shoppingCart", shoppingCart);
-        //request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
-
         response.sendRedirect("cart?" + currentPage);
     }
 
     private void deleteGame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Games game = new Games();
-        for (Games curGame : shoppingCart) {
-            if (curGame.getGameId() == gameId) {
-                game = curGame;
-            }
-        }
-        shoppingCart.remove(game);
-        request.setAttribute("cart", shoppingCart);
+        Games game = shoppingCart.getGameById(gameId);
+        shoppingCart.removeGame(game);
         request.setAttribute("currentPage", currentPage);
-        session.setAttribute("sessionCart", shoppingCart);
+        session.setAttribute("shoppingCart", shoppingCart);
         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 
+    /*
     private void buyCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long userId = (long) session.getAttribute("userId");
         Benutzer benutzer = (Benutzer) session.getAttribute("user");
@@ -113,5 +111,5 @@ public class CartServlet extends HttpServlet {
         ess.sendEmail();
         session.setAttribute("shoppingCart", new ArrayList<Games>());
         request.getRequestDispatcher("/WEB-INF/success.jsp").forward(request, response);
-    }
+    }*/
 }
