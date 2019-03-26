@@ -50,9 +50,10 @@
 
                     <form action="#">
                         <label>Genre:
-                            <select name="genre" onchange="location = this.value;">
-                                <option value="#">Auswählen..</option>
-                                <option value="#1">test</option>
+                            <select name="genre" onchange="generateLink(this.value);">
+                                <input type="hidden" name="genrefilter">
+                                <option value="test">Auswählen..</option>
+                                
                                 <option value="?recordsPerPage=10&currentPage=1&genre=indie">Indie</option>
                                 <option value="?recordsPerPage=10&currentPage=1&genre=aktion">Action</option>
                                 <option value="?recordsPerPage=10&currentPage=1&genre=adventure">Adventure</option>
@@ -61,6 +62,16 @@
                                 <option value="?recordsPerPage=10&currentPage=1&genre=simulation">Simulation</option>
                                 <option value="?recordsPerPage=10&currentPage=1&genre=sport">Sport</option>
                                 <option value="?recordsPerPage=10&currentPage=1&genre=racing">Racing</option>
+                            </select>
+                        </label>
+                    </form>
+                    
+                    <form action="#">
+                        <label>Kategorie:
+                            <select name="genre" onchange="location = this.value;">
+                                <option value="">Auswählen..</option>
+                                <option value="#">Singleplayer</option>
+                                <option value="#">Multiplayer</option>
                             </select>
                         </label>
                     </form>
@@ -100,7 +111,8 @@
                                 <td>${game.getReleaseYear()}</td>                                
                                 <td align="center">
                                     <form action="/WebProjekt/cart" method="post">
-                                        <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
+                                        <input type="hidden" name="currentUrl" value="${requestScope
+                                         ['javax.servlet.forward.query_string']}">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="id" value="${game.getGameId()}">
                                         <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>
