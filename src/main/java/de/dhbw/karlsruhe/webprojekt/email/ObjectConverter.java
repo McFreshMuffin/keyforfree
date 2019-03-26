@@ -3,7 +3,6 @@ package de.dhbw.karlsruhe.webprojekt.email;
 import de.dhbw.karlsruhe.webprojekt.model.Bestellung;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,7 +16,6 @@ import javax.xml.bind.Marshaller;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
@@ -31,83 +29,6 @@ import org.apache.fop.apps.MimeConstants;
 
 public class ObjectConverter {
 
-    /*
-    private final String template = "src//main//resources//template.xsl";
-    private final String output = "src//main//resources//output//result.pdf";
-    private StringBuilder xml = new StringBuilder();
-    
-    
-    public void convertToXml(Games game){
-        StringWriter sw = new StringWriter();
-        
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Games.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            jaxbMarshaller.marshal(game, sw);
-            xml.append(sw.toString());
-            System.out.println("XML --->\n" + xml.toString());
-        } catch (JAXBException ex) {
-            Logger.getLogger(ObjectConverter.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-    
-    public void convert(Games game) throws JAXBException, FileNotFoundException, IOException, TransformerException, FOPException {
-        File xsltfile = new File(template);
-        StreamSource source = new StreamSource(new StringReader(xml.toString()));
-        StreamSource transformSource = new StreamSource(xsltfile);
-        
-        FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
-        
-        FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
-        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-        Transformer xslfoTransformer;
-        try {
-            xslfoTransformer = getTransformer(transformSource);
-            Fop fop;
-            try {
-                fop = fopFactory.newFop(MimeConstants.MIME_PDF, outStream);
-
-                Result res = new SAXResult(fop.getDefaultHandler());
-
-                try {
-                    xslfoTransformer.transform(source, res);
-                    File pdffile = new File(output);
-                    OutputStream out = new FileOutputStream(pdffile);  // Error is throwing on this line
-                    out = new BufferedOutputStream(out);
-                    FileOutputStream str = new FileOutputStream(pdffile);
-                    str.write(outStream.toByteArray());
-                    str.close();
-                    out.close();
-
-                } catch (TransformerException e) {
-                    throw e;
-                }
-            } catch (FOPException e) {
-                throw e;
-            }
-        } catch (TransformerConfigurationException e) {
-            throw e;
-        } catch (TransformerFactoryConfigurationError e) {
-            throw e;
-        }
-    }
-
-    private static Transformer getTransformer(StreamSource streamSource) {
-        TransformerFactoryImpl impl
-                = new TransformerFactoryImpl();
-
-        try {
-            return impl.newTransformer(streamSource);
-
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-     */
     private final String RESOURCES_DIR = "C:\\keyforfree\\res\\template";
     private final String OUTPUT_DIR = "C:\\keyforfree\\res\\output";
 

@@ -1,6 +1,5 @@
 package de.dhbw.karlsruhe.webprojekt.email;
 
-import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -8,14 +7,11 @@ import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
-import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
