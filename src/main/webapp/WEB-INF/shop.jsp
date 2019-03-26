@@ -44,48 +44,62 @@
     </jsp:attribute>
 
     <jsp:attribute name="main">
-        <div class="row col-md-6">
-            <c:choose>
-                <c:when test="${!empty games}">
 
-                    <form action="#">
-                        <label>Genre:
-                            <select name="genre" onchange="generateLink(this.value);">
-                                <input type="hidden" name="genrefilter">
-                                <option value="test">Auswählen..</option>
-                                
-                                <option value="?recordsPerPage=10&currentPage=1&genre=indie">Indie</option>
-                                <option value="?recordsPerPage=10&currentPage=1&genre=aktion">Action</option>
-                                <option value="?recordsPerPage=10&currentPage=1&genre=adventure">Adventure</option>
-                                <option value="?recordsPerPage=10&currentPage=1&genre=strategy">Strategy</option>
-                                <option value="?recordsPerPage=10&currentPage=1&genre=rpg">RPG</option>
-                                <option value="?recordsPerPage=10&currentPage=1&genre=simulation">Simulation</option>
-                                <option value="?recordsPerPage=10&currentPage=1&genre=sport">Sport</option>
-                                <option value="?recordsPerPage=10&currentPage=1&genre=racing">Racing</option>
-                            </select>
-                        </label>
-                    </form>
-                    
-                    <form action="#">
-                        <label>Kategorie:
-                            <select name="genre" onchange="location = this.value;">
-                                <option value="">Auswählen..</option>
-                                <option value="#">Singleplayer</option>
-                                <option value="#">Multiplayer</option>
-                            </select>
-                        </label>
-                    </form>
+        <c:choose>
+            <c:when test="${!empty games}">
+            <div class="row">   
+                <form action="#"  style="margin: 10px;">
+                    <label>Genre:
+                        <select name="genre" onchange="generateLinkGenre(this.value);">                               
+                            <option value="test">Auswählen..</option>
+                            <option value="indie">Indie</option>
+                            <option value="aktion">Action</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="strategy">Strategy</option>
+                            <option value="rpg">RPG</option>
+                            <option value="simulation">Simulation</option>
+                            <option value="sport">Sport</option>
+                            <option value="racing">Racing</option>
+                        </select>
+                    </label>
+                </form>
 
+                <form action="#" style="margin: 10px;">
+                    <label>Kategorie:
+                        <select name="category" onchange="generateLinkCat(this.value);">
+                            <option value="#">Auswählen..</option>
+                            <option value="singleplayer">Singleplayer</option>
+                            <option value="multiplayer">Multiplayer</option>
+                        </select>
+                    </label>
+                </form>
+
+                <form action="#" style="margin: 10px;">
+                    <label>Preis
+                        <select name="price" onchange="generateLinkCat(this.value);">
+                            <option value="#">Auswählen..</option>
+                            <option value="0">0 €</option>
+                            <option value="5">bis 5€</option>
+                            <option value="5">bis 10€</option>
+                            <option value="5">bis 20€</option>
+                            <option value="5">bis 30€</option>
+                            <option value="5">bis 40€</option>
+                            <option value="5">bis 50€</option>
+                        </select>
+                    </label>
+                </form>
+                </div>
+                <div class="row col-md-6">
                     <table class="table table-striped table-bordered table-sm" style="table-layout:fixed;">
                         <tr>
-                            <th style="width:309px;">Bild</th>
-                            <th style="width:400px;">Name</th>
+                            <th style="width:309px;">Cover</th>
+                            <th style="width:400px;">Titel</th>
                             <th style="width:70px;">Preis</th>
                             <th style="width:120px;">Veröffentlicht</th>
                             <th style="width:100px;"></th>
                             <th style="width:150px;">
                                 <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle" method="POST" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Sortieren nach...
                                     </button>
                                     <div class="dropdown-menu">
@@ -112,7 +126,7 @@
                                 <td align="center">
                                     <form action="/WebProjekt/cart" method="post">
                                         <input type="hidden" name="currentUrl" value="${requestScope
-                                         ['javax.servlet.forward.query_string']}">
+                                                                                        ['javax.servlet.forward.query_string']}">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="id" value="${game.getGameId()}">
                                         <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>

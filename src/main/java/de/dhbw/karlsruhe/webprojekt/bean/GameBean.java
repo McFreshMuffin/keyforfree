@@ -45,7 +45,7 @@ public class GameBean {
     
     public long anzTreffer(String suchbegriff){
         return (long) em.createQuery("SELECT COUNT(g) FROM Games g WHERE lower(g.name) like '%"+suchbegriff+"%'").getSingleResult();
-
+    }
     //Index des Substrings finden
     public int isSubstring(String s1, String s2) {
         int M = s1.length();
@@ -194,6 +194,26 @@ public class GameBean {
         }
 
         return categories;
+    }
+    
+    public Games checkRequirements(Games game) {
+        String rec ="Recommended";
+        String changeReq;
+        
+        //PC Requirements ueberprüfenn
+        int index = isSubstring(rec, game.getRequirements().getPCMinReqsText());
+        if (index == -1) {
+            
+        }
+        else{
+            changeReq = game.getRequirements().getPCMinReqsText().substring(index);
+            game.getRequirements().setPCRecReqsText(changeReq);
+            changeReq = game.getRequirements().getPCMinReqsText().substring(0,index);
+            game.getRequirements().setPCMinReqsText(changeReq);
+            game.getRequirements().setHaveRecPcReqs(1);
+                       
+        }
+         return em.merge(game);      
     }
 
 }
