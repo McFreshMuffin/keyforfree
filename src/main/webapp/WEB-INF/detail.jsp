@@ -75,7 +75,7 @@
                                 <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="${game.getGameId()}">
-                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"> In den Warenkorb legen</i></button>
+                                <button type="submit" class="btn btn-primary btn-sm btnKaufenId"><i class="fas fa-cart-plus"> In den Warenkorb legen</i></button>
                             </form>
                         </td>
                     </tr>
@@ -88,8 +88,8 @@
                                 </c:forEach>
                             </select>
                         </td>
-                        <td class="pricingRow">${game.getPrice()}€</td>
-                        <td class="pricingRow" id="PriceTotal">${game.getPrice()}€</td>
+                        <td class="pricingRow roundPriceId">${game.getPrice()}</td>
+                        <td class="pricingRow" id="PriceTotal"><div class="roundPriceId">${game.getPrice()}</div></td>
                     </tr>
                 </table>
             </div>

@@ -60,7 +60,7 @@
                             <tr>
                                 <td><img src="${game.getImage()}" alt="${game.getName()}"></td>    
                                 <td>${game.getName()}</td>
-                                <td>${game.getPrice()} €</td>
+                                <td class="roundPriceId">${game.getPrice()}</td>
                                 <td>${game.getReleaseYear()}</td>
                                 <td>${game.getFsk()}</td>
                                 <td align="center">
@@ -68,7 +68,7 @@
                                         <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="id" value="${game.getGameId()}">
-                                        <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>
+                                        <button type="submit" class="btn btn-success btn-lg btn-block btnKaufenId">Kaufen</button>
                                     </form>
                                 </td>
                             </tr>

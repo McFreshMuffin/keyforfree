@@ -21,7 +21,7 @@
         <script type="text/javascript" language="javascript" src="/WebProjekt/Scripts/detail.js"></script>
         <jsp:invoke fragment="head"/>
     </head>
-    <body>
+    <body onload="roundPrice(); btnKaufen(${sessionScope.user});">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
