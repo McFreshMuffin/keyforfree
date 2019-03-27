@@ -52,4 +52,15 @@ public class GamesHashMap extends HashMap<Integer, ArrayList<Games>> {
         }
         return game;
     }
+    
+    public ArrayList<Games> convertToArrayList(){
+        ArrayList<Games> gameListe = new ArrayList<>();
+        for(int i : this.keySet()){
+            ArrayList<Games> curList = this.get(i);
+            for(Games game : curList){
+                gameListe.add(game);
+            }
+        }
+        return gameListe;
+    }
 }

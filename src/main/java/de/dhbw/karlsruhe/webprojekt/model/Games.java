@@ -37,8 +37,9 @@ public class Games implements Serializable {
         this.gameId = gameId;
     }
 
-    public Games(String name) {
+    public Games(String name, String image) {
         this.name = name;
+        this.image = image;
     }
 
     @Id

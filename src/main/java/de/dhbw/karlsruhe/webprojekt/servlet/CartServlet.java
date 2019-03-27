@@ -8,14 +8,9 @@ import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
 import de.dhbw.karlsruhe.webprojekt.model.Bestellung;
 import de.dhbw.karlsruhe.webprojekt.model.Games;
 import de.dhbw.karlsruhe.webprojekt.util.GamesHashMap;
-import de.dhbw.karlsruhe.webprojekt.util.TwoDimensionalArrayList;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,7 +59,7 @@ public class CartServlet extends HttpServlet {
                 addGame(request, response);
                 break;
             case "buy":
-                //buyCart(request, response);
+                buyCart(request, response);
                 break;
             case "delete":
                 gameId = Integer.parseInt(request.getParameter("id"));
@@ -95,13 +90,14 @@ public class CartServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 
-    /*
+    
     private void buyCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long userId = (long) session.getAttribute("userId");
         Benutzer benutzer = (Benutzer) session.getAttribute("user");
         double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
         Date date = new Date();
-        Bestellung b = new Bestellung(userId, totalPrice, date, benutzer, shoppingCart);
+        ArrayList<Games> convertedShoppingCart = shoppingCart.convertToArrayList();
+        Bestellung b = new Bestellung(userId, totalPrice, date, benutzer, convertedShoppingCart);
         this.bestellungBean.saveBestellung(b);
         ObjectConverter converter = new ObjectConverter();
         converter.convertToXml(b);
@@ -111,5 +107,5 @@ public class CartServlet extends HttpServlet {
         ess.sendEmail();
         session.setAttribute("shoppingCart", new ArrayList<Games>());
         request.getRequestDispatcher("/WEB-INF/success.jsp").forward(request, response);
-    }*/
+    }
 }
