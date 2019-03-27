@@ -17,17 +17,15 @@
                         <fo:table-column column-width="proportional-column-width(20)"/>
                         <fo:table-body>
                             <fo:table-row>
-                                <!--
                                 <fo:table-cell text-align="left" display-align="center" padding-left="2mm">
                                     <fo:block>
-                                        Bill Id:<xsl:value-of select="header-section/data-type/@id"/>
-                                        , Date: <xsl:value-of select="header-section/process-date"/>
+                                        Bestell ID:<xsl:value-of select="bestellId"/>
+                                        , Datum: <xsl:value-of select="bestellDatum"/>
                                     </fo:block>
                                 </fo:table-cell>
-                                -->
                                 <fo:table-cell text-align="center" display-align="center">
                                     <fo:block font-size="150%">
-                                        <fo:basic-link external-destination="http://www.example.com">XXX COMPANY</fo:basic-link>
+                                        <fo:basic-link external-destination="http://localhost:8080/WebProjekt/index.html">KeyForFree</fo:basic-link>
                                     </fo:block>
                                     <fo:block space-before="3mm"/>
                                 </fo:table-cell>
@@ -52,28 +50,29 @@
                         <fo:table-body font-size="95%">
                             <fo:table-row height="8mm">
                                 <fo:table-cell>
-                                    <fo:block>Full Name</fo:block>
+                                    <fo:block>Spielename</fo:block>
+                                </fo:table-cell>
+								<fo:table-cell>
+                                    <fo:block>Bild</fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell>
-                                    <fo:block>Postal Code</fo:block>
+                                    <fo:block>Preis</fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell>
-                                    <fo:block>National ID</fo:block>
-                                </fo:table-cell>
-                                <fo:table-cell>
-                                    <fo:block>Payment</fo:block>
+                                    <fo:block>FSK</fo:block>
                                 </fo:table-cell>
                             </fo:table-row>
                             <xsl:for-each select="gameListe">
                                 <fo:table-row>
                                     <fo:table-cell>
                                         <fo:block>
-                                            <xsl:value-of select="fsk"/>
+                                            <xsl:value-of select="name"/>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell>
+									<fo:table-cell>
                                         <fo:block>
-                                            <xsl:value-of select="name"/>
+										<xsl:variable name="bild" select="image"/>
+											<fo:external-graphic src="{$bild}" content-height="scale-to-fit" height="4.00in"  content-width="4.00in" scaling="non-uniform"/>
                                         </fo:block>
                                     </fo:table-cell>
                                     <fo:table-cell>
@@ -83,7 +82,7 @@
                                     </fo:table-cell>
                                     <fo:table-cell>
                                         <fo:block>
-                                            <xsl:value-of select="releaseDate"/>
+                                            <xsl:value-of select="fsk"/>
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
@@ -91,23 +90,7 @@
                         </fo:table-body>
                     </fo:table>
                     <fo:block id="end-of-document">
-                        <fo:instream-foreign-object>
-                            <svg width="200mm" height="150mm" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M153 334
-C153 334 151 334 151 334
-C151 339 153 344 156 344
-C164 344 171 339 171 334
-C171 322 164 314 156 314
-C142 314 131 322 131 334
-C131 350 142 364 156 364
-C175 364 191 350 191 334
-C191 311 175 294 156 294
-C131 294 111 311 111 334
-C111 361 131 384 156 384
-C186 384 211 361 211 334
-C211 300 186 274 156 274" style="fill:yellow;stroke:red;stroke-width:2"/>
-                            </svg>
-                        </fo:instream-foreign-object>
+                        
                     </fo:block>
                 </fo:flow>
             </fo:page-sequence>
