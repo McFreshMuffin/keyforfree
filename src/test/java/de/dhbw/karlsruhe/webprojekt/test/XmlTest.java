@@ -37,6 +37,7 @@ public class XmlTest {
             + "        <releaseDate>0</releaseDate>\n"
             + "        <fsk>0</fsk>\n"
             + "        <price>0.0</price>\n"
+            + "        <image>http://cdn.akamai.steamstatic.com/steam/apps/327680/header.jpg?t=1469216185</image>\n"
             + "    </gameListe>\n"
             + "    <gameListe>\n"
             + "        <gameId>0</gameId>\n"
@@ -44,17 +45,17 @@ public class XmlTest {
             + "        <releaseDate>0</releaseDate>\n"
             + "        <fsk>0</fsk>\n"
             + "        <price>0.0</price>\n"
+            + "        <image>http://cdn.akamai.steamstatic.com/steam/apps/327680/header.jpg?t=1469216185</image>\n"
             + "    </gameListe>\n"
             + "    <gesamtPreis>0.0</gesamtPreis>\n"
             + "</bestellung>";
 
     @Before
-
     public void start() {
         converter = new ObjectConverter();
         gameListe = new ArrayList<>();
-        gameListe.add(new Games("Spiel1"));
-        gameListe.add(new Games("Spiel2"));
+        gameListe.add(new Games("Spiel1", "http://cdn.akamai.steamstatic.com/steam/apps/327680/header.jpg?t=1469216185"));
+        gameListe.add(new Games("Spiel2", "http://cdn.akamai.steamstatic.com/steam/apps/327680/header.jpg?t=1469216185"));
         Date date = new Date();
         bestellung = new Bestellung(0, 0, date, new Benutzer("Test@", "", "Test", "TestN", "Eine Addresse"), gameListe);
     }
@@ -62,6 +63,7 @@ public class XmlTest {
     @Test
     public void testGeneratedXml() {
         String generatedXml = converter.convertToXml(bestellung);
+        System.out.println(generatedXml);
         assertNotNull("Ist XML null", generatedXml);
     }
 
@@ -72,6 +74,6 @@ public class XmlTest {
     }
 
     public void testPdfCreation() {
-        //converter.convertXmlToPdf(123);
+        converter.convertXmlToPdf(123);
     }
 }
