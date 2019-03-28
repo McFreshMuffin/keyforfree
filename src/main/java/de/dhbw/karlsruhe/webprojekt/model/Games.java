@@ -28,9 +28,18 @@ public class Games implements Serializable {
 
     public Games() {
     }
+    
+    /**
+     * Konstruktor für GamesHashMapTest
+     * @param gameId 
+     */
+    public Games(long gameId){
+        this.gameId = gameId;
+    }
 
-    public Games(String name) {
+    public Games(String name, String image) {
         this.name = name;
+        this.image = image;
     }
 
     @Id
