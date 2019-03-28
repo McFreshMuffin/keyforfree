@@ -19,6 +19,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script type="text/javascript" language="javascript" src="/WebProjekt/Scripts/detail.js"></script>
+        <script type="text/javascript" language="javascript" src="/WebProjekt/Scripts/shop.js"></script>
         <jsp:invoke fragment="head"/>
     </head>
     <body>
@@ -44,8 +45,8 @@
                     <div class="row">
                         <div class="col-md-12 pt-1 pb-1">
                             <div class="text-center">
-                                <form action="/WebProjekt/search" class="form-inline my-2 my-lg-0">
-                                    <input class="form-control mr-md-5 w-100" type="search" placeholder="Search">
+                                <form action="/WebProjekt/search" class="form-inline my-2 my-lg-0" method="GET">
+                                    <input class="form-control mr-md-5 w-100" type="text" name="suche" placeholder="Search">
                                     <button class="btn btn-md" style="right: 0; position: absolute" type="submit">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </button>
@@ -58,7 +59,7 @@
         </header>
 
         <main>    
-            <div style="margin-top: 60px;" class="container">
+            <div style="margin-top: 20px;" class="container">
                 <jsp:invoke fragment="main"/>
             </div>
         </main>    

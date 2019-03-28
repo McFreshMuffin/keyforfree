@@ -49,10 +49,10 @@ public class Games implements Serializable {
 
     @Column(name = "NAME")
     private String name;
-
-    @Column(name = "RELEASE_DATE")
-    private int releaseDate;
-
+    
+    @Column(name = "RELEASE_DATE2")
+    private String releaseDate;
+    
     @Column(name = "FSK")
     private int fsk;
 
@@ -71,6 +71,12 @@ public class Games implements Serializable {
     @Column(name = "SPRACHE")
     private String sprache;
     
+    @Column(name = "GENRE_ID")
+    private long genreId;
+    
+    @Column(name = "CATEGORY_ID")
+    private long categoryId;
+    
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
     private Category category;
@@ -87,8 +93,9 @@ public class Games implements Serializable {
     @XmlTransient
     private List<Bestellung> orderList;
 
-    public String getReleaseYear() {
-        //return releaseDate.substring(0,4);
-        return "2000";
+    public String getReleaseYear(){
+       
+        return releaseDate.substring(0,4);
+        
     }
 }

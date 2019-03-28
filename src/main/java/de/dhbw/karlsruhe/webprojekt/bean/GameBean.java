@@ -36,6 +36,52 @@ public class GameBean {
         return em.createQuery("SELECT g FROM Games g ORDER BY g.releaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
     }
 
+    public List<Games> findGamesByFilter(int currentPage, int recordsPerPage, String genre, String cat, double price) {
+        int start = currentPage * recordsPerPage - recordsPerPage;
+        boolean g = false;
+        boolean c = false;
+        boolean p = false;
+        boolean sign=false;
+        String tables = "";
+        String conditions = "";
+        String compares ="";
+
+        if (!genre.equals("null")) {
+            g = true;
+        }
+        if (!cat.equals("null")) {
+            c = true;
+        }
+        if (price != 1000.0) {
+            p = true;
+        }
+ 
+        if (g) {
+            tables = tables + ", Genre r";
+            conditions=conditions+" g.genreId = r.genreId";
+            sign = true;
+            compares = compares +" AND r."+genre+"= 1";
+        }
+        if (c) {
+            
+            tables = tables + ", Category c";
+            if(sign){
+                conditions=conditions+" AND";
+            }
+            conditions=conditions+" g.categoryId  = c.categoryId";
+            sign=true;
+            compares = compares +" AND c."+cat+"= 1";
+        }
+        if (p) {
+            if(sign){
+                conditions=conditions+" AND";
+            } 
+            conditions=conditions+" g.price < " +price;
+        }
+        return em.createQuery("SELECT g FROM Games g" + tables + " WHERE" + conditions +
+        compares+" ORDER BY g.releaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
+    }
+
     public long getNumberOfRows() {
         CriteriaBuilder qb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = qb.createQuery(Long.class);
@@ -43,25 +89,12 @@ public class GameBean {
         return em.createQuery(cq).getSingleResult();
     }
 
-    public Games checkRequirements(Games game) {
-        String rec = "Recommended";
-        String changeReq;
+    public List<Games> searchGames(String suchbegriff) {
+        return em.createQuery("SELECT g FROM Games g WHERE lower(g.name) like '%" + suchbegriff + "%'").getResultList();
+    }
 
-        //PC Requirements ueberpuefen
-        int index = isSubstring(rec, game.getRequirements().getPCMinReqsText());
-        if (index == -1) {
-            //Bei isSubstring = -1 Substring nicht vorhanden
-        } else {
-            changeReq = game.getRequirements().getPCMinReqsText().substring(index);
-            game.getRequirements().setPCRecReqsText(changeReq);
-            changeReq = game.getRequirements().getPCMinReqsText().substring(0, index);
-            game.getRequirements().setPCMinReqsText(changeReq);
-            game.getRequirements().setHaveRecPcReqs(1);
-        }
-
-        //Linux Requirements ueberpruefen
-        //Mac Requirements
-        return em.merge(game);
+    public long anzTreffer(String suchbegriff) {
+        return (long) em.createQuery("SELECT COUNT(g) FROM Games g WHERE lower(g.name) like '%" + suchbegriff + "%'").getSingleResult();
     }
 
     //Index des Substrings finden
@@ -212,6 +245,25 @@ public class GameBean {
         }
 
         return categories;
+    }
+
+    public Games checkRequirements(Games game) {
+        String rec = "Recommended";
+        String changeReq;
+
+        //PC Requirements ueberprüfenn
+        int index = isSubstring(rec, game.getRequirements().getPCMinReqsText());
+        if (index == -1) {
+
+        } else {
+            changeReq = game.getRequirements().getPCMinReqsText().substring(index);
+            game.getRequirements().setPCRecReqsText(changeReq);
+            changeReq = game.getRequirements().getPCMinReqsText().substring(0, index);
+            game.getRequirements().setPCMinReqsText(changeReq);
+            game.getRequirements().setHaveRecPcReqs(1);
+
+        }
+        return em.merge(game);
     }
 
 }

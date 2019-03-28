@@ -48,10 +48,11 @@
             <div class="row">
                 <h1>Willkommen ${sessionScope.username}</h1>
             </div>
-            <br>
-            <br>
+
+            <h2>Unsere neusten Spiele:</h2>
+
             <div class="row">
-                <div class="col-md-12">
+                <div class="karussel" style="width: 1000px; height: 450px;">
                     <div id="NewestGamesCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <c:choose>
@@ -61,15 +62,17 @@
                                             <c:when test="${status.first }" >
                                                 <div class="carousel-item active">
                                                     <a href="detail?gameid=${game.getGameId()}">
-                                                    <img class="imageitem" src="${game.getImage()}" alt="${game.getName()}" style="max-width:100%;">
+                                                        <img class="imageitem" src="${game.getImage()}" alt="${game.getName()}" style="width: 100%; height: 100%;">
                                                     </a>
+
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
                                                 <div class="carousel-item">
                                                     <a href="detail?gameid=${game.getGameId()}">
-                                                    <img class="imageitem" src="${game.getImage()}" alt="${game.getName()}" style="max-width:100%;">
+                                                        <img class="imageitem" src="${game.getImage()}" alt="${game.getName()}" style="width: 100%; height: 100%;">                                                    
                                                     </a>
+
                                                 </div>
                                             </c:otherwise>
                                         </c:choose>
@@ -90,6 +93,7 @@
                                     </div>
                                 </c:otherwise>
                             </c:choose>
+
                         </div>
                         <a class="carousel-control-prev" href="#NewestGamesCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -103,5 +107,18 @@
                 </div>
             </div>
         </div>
+
+        <div class="text" style="font-weight: bold; margin-top: 40px;">
+            Beliebte Kategorien:
+        </div>
+        <div class="buttonliste" style="margin-top: 20px;">          
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=aktion"><button class="btn btn-dark" >Action</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=adventure"><button class="btn btn-dark" >Adventure</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=strategy"><button class="btn btn-dark" >Strategy</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=rpg"><button class="btn btn-dark" >RPG</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=simulation"><button class="btn btn-dark" >Simulation</button></a>
+            <a href="shop?recordsPerPage=10&currentPage=1&genre=racing"><button class="btn btn-dark" >Racing</button></a>
+        </div>
+
     </jsp:attribute>
 </template:base>
