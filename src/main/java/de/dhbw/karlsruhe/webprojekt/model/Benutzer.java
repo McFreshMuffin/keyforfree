@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -46,6 +47,7 @@ public class Benutzer implements Serializable {
     @OneToMany(mappedBy = "benutzer", targetEntity = Bestellung.class,
             fetch = FetchType.EAGER)
     @XmlTransient
+    @ToString.Exclude
     List<Bestellung> bestellungListe;
 
     public Benutzer() {

@@ -34,7 +34,6 @@ public class IndexServlet extends HttpServlet {
 
         List<Games> newestGames = gameBean.findTop10Newest();
         request.getSession().setAttribute("newestGames", newestGames);
-
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
 }

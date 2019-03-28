@@ -42,6 +42,7 @@ public class Bestellung implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "BENUTZER_ID", referencedColumnName = "BENUTZER_ID")
+    @XmlTransient
     private Benutzer benutzer;
 
     @ManyToMany(fetch = FetchType.EAGER)

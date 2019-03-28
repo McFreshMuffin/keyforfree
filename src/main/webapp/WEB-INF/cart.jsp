@@ -66,8 +66,8 @@
                                 <td><img src="${list.value.get(0).getImage()}" width="120" class="img-responsive"/></td>
                             <td><h4 class="nomargin">${list.value.get(0).getName()}</h4></td>
                             <td data-th="Menge" class="text-center">${length}</td>
-                            <td data-th="Preis" class="text-center">${list.value.get(0).getPrice()} €</td>
-                            <td data-th="Gesamtpreis" class="text-center">${gesamtpreis} €</td>
+                            <td data-th="Preis" class="text-center roundPriceId">${list.value.get(0).getPrice()}</td>
+                            <td data-th="Gesamtpreis" class="text-center roundPriceId">${gesamtpreis}</td>
                             <td class="actions" data-th="">
                                 <form action="/WebProjekt/cart" method="post">
                                     <input type="hidden" name="id" value="${list.value.get(0).getGameId()}"/>

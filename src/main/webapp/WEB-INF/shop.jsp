@@ -47,47 +47,47 @@
 
         <c:choose>
             <c:when test="${!empty games}">
-            <div class="row">   
-                <form action="#"  style="margin: 10px;">
-                    <label>Genre:
-                        <select name="genre" onchange="generateLinkGenre(this.value);">                               
-                            <option value="test">Auswählen..</option>
-                            <option value="indie">Indie</option>
-                            <option value="aktion">Action</option>
-                            <option value="adventure">Adventure</option>
-                            <option value="strategy">Strategy</option>
-                            <option value="rpg">RPG</option>
-                            <option value="simulation">Simulation</option>
-                            <option value="sport">Sport</option>
-                            <option value="racing">Racing</option>
-                        </select>
-                    </label>
-                </form>
+                <div class="row">   
+                    <form action="#"  style="margin: 10px;">
+                        <label>Genre:
+                            <select name="genre" onchange="generateLinkGenre(this.value);">                               
+                                <option value="test">Auswählen..</option>
+                                <option value="indie">Indie</option>
+                                <option value="aktion">Action</option>
+                                <option value="adventure">Adventure</option>
+                                <option value="strategy">Strategy</option>
+                                <option value="rpg">RPG</option>
+                                <option value="simulation">Simulation</option>
+                                <option value="sport">Sport</option>
+                                <option value="racing">Racing</option>
+                            </select>
+                        </label>
+                    </form>
 
-                <form action="#" style="margin: 10px;">
-                    <label>Kategorie:
-                        <select name="category" onchange="generateLinkCategory(this.value);">
-                            <option value="#">Auswählen..</option>
-                            <option value="singleplayer">Singleplayer</option>
-                            <option value="multiplayer">Multiplayer</option>
-                        </select>
-                    </label>
-                </form>
+                    <form action="#" style="margin: 10px;">
+                        <label>Kategorie:
+                            <select name="category" onchange="generateLinkCategory(this.value);">
+                                <option value="#">Auswählen..</option>
+                                <option value="singleplayer">Singleplayer</option>
+                                <option value="multiplayer">Multiplayer</option>
+                            </select>
+                        </label>
+                    </form>
 
-                <form action="#" style="margin: 10px;">
-                    <label>Preis:
-                        <select name="price" onchange="generateLinkPrice(this.value);">
-                            <option value="#">Auswählen..</option>
-                            <option value="0">0 €</option>
-                            <option value="5">bis 5€</option>
-                            <option value="10">bis 10€</option>
-                            <option value="20">bis 20€</option>
-                            <option value="30">bis 30€</option>
-                            <option value="40">bis 40€</option>
-                            <option value="50">bis 50€</option>
-                        </select>
-                    </label>
-                </form>
+                    <form action="#" style="margin: 10px;">
+                        <label>Preis:
+                            <select name="price" onchange="generateLinkPrice(this.value);">
+                                <option value="#">Auswählen..</option>
+                                <option value="0">0 €</option>
+                                <option value="5">bis 5€</option>
+                                <option value="10">bis 10€</option>
+                                <option value="20">bis 20€</option>
+                                <option value="30">bis 30€</option>
+                                <option value="40">bis 40€</option>
+                                <option value="50">bis 50€</option>
+                            </select>
+                        </label>
+                    </form>
                 </div>
                 <div class="row col-md-6">
                     <table class="table table-striped table-bordered table-sm" style="table-layout:fixed;">
@@ -145,52 +145,57 @@
                 </c:otherwise>
             </c:choose>
         </div>
+        
+        <c:set var="paginationUrl" value="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}"></c:set>
+        <c:set var=""></c:set>
+        
+        <div class="d-flex justify-content-center">
+            <nav aria-label="Navigation for Games">
+                <ul class="pagination">
+                    <c:if test="${currentPage != 1}">
+                        <li class="page-item"><a class="page-link" 
+                                                 href="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                        </li>
+                    </c:if>
 
-        <nav aria-label="Navigation for Games">
-            <ul class="pagination">
-                <c:if test="${currentPage != 1}">
-                    <li class="page-item"><a class="page-link" 
-                                             href="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
-                    </li>
-                </c:if>
+                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                        <c:choose>
+                            <c:when test="${currentPage-2 eq i}">
+                                <li class="page-item"><a class="page-link" 
+                                                         href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                </li>
+                            </c:when>
+                            <c:when test="${currentPage-1 eq i}">
+                                <li class="page-item"><a class="page-link" 
+                                                         href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                </li>
+                            </c:when>
+                            <c:when test="${currentPage eq i}">
+                                <li class="page-item active"><a class="page-link">
+                                        ${i} <span class="sr-only">(current)</span></a>
+                                </li>
+                            </c:when>
+                            <c:when test="${currentPage+1 eq i}">
+                                <li class="page-item"><a class="page-link" 
+                                                         href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                </li>
+                            </c:when>
+                            <c:when test="${currentPage+2 eq i}">
+                                <li class="page-item"><a class="page-link" 
+                                                         href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                </li>
+                            </c:when>
 
-                <c:forEach begin="1" end="${noOfPages}" var="i">
-                    <c:choose>
-                        <c:when test="${currentPage-2 eq i}">
-                            <li class="page-item"><a class="page-link" 
-                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
-                            </li>
-                        </c:when>
-                        <c:when test="${currentPage-1 eq i}">
-                            <li class="page-item"><a class="page-link" 
-                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
-                            </li>
-                        </c:when>
-                        <c:when test="${currentPage eq i}">
-                            <li class="page-item active"><a class="page-link">
-                                    ${i} <span class="sr-only">(current)</span></a>
-                            </li>
-                        </c:when>
-                        <c:when test="${currentPage+1 eq i}">
-                            <li class="page-item"><a class="page-link" 
-                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
-                            </li>
-                        </c:when>
-                        <c:when test="${currentPage+2 eq i}">
-                            <li class="page-item"><a class="page-link" 
-                                                     href="shop?recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
-                            </li>
-                        </c:when>
+                        </c:choose>
+                    </c:forEach>
 
-                    </c:choose>
-                </c:forEach>
-
-                <c:if test="${currentPage lt noOfPages}">
-                    <li class="page-item"><a class="page-link" 
-                                             href="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
-                    </li>
-                </c:if>              
-            </ul>
-        </nav>
+                    <c:if test="${currentPage lt noOfPages}">
+                        <li class="page-item"><a class="page-link" 
+                                                 href="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                        </li>
+                    </c:if>              
+                </ul>
+            </nav>
+        </div>
     </jsp:attribute>
 </template:base>
