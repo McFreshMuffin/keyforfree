@@ -66,7 +66,7 @@
 
                 <form action="#" style="margin: 10px;">
                     <label>Kategorie:
-                        <select name="category" onchange="generateLinkCat(this.value);">
+                        <select name="category" onchange="generateLinkCategory(this.value);">
                             <option value="#">Auswählen..</option>
                             <option value="singleplayer">Singleplayer</option>
                             <option value="multiplayer">Multiplayer</option>
@@ -75,16 +75,16 @@
                 </form>
 
                 <form action="#" style="margin: 10px;">
-                    <label>Preis
-                        <select name="price" onchange="generateLinkCat(this.value);">
+                    <label>Preis:
+                        <select name="price" onchange="generateLinkPrice(this.value);">
                             <option value="#">Auswählen..</option>
                             <option value="0">0 €</option>
                             <option value="5">bis 5€</option>
-                            <option value="5">bis 10€</option>
-                            <option value="5">bis 20€</option>
-                            <option value="5">bis 30€</option>
-                            <option value="5">bis 40€</option>
-                            <option value="5">bis 50€</option>
+                            <option value="10">bis 10€</option>
+                            <option value="20">bis 20€</option>
+                            <option value="30">bis 30€</option>
+                            <option value="40">bis 40€</option>
+                            <option value="50">bis 50€</option>
                         </select>
                     </label>
                 </form>

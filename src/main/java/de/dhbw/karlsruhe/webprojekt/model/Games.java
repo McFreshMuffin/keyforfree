@@ -65,6 +65,9 @@ public class Games implements Serializable {
     @Column(name = "GENRE_ID")
     private long genreId;
     
+    @Column(name = "CATEGORY_ID")
+    private long categoryId;
+    
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
     private Category category;

@@ -9,6 +9,7 @@ import de.dhbw.karlsruhe.webprojekt.email.EmailSendingService;
 import de.dhbw.karlsruhe.webprojekt.model.Benutzer;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class EmailTest {
@@ -23,6 +24,7 @@ public class EmailTest {
     }
 
     @Test
+    @Ignore
     public void testEmailSending() {
         ess.createEmail(benutzer.getEmail(), benutzer.getNachname(), 0);
         boolean result = ess.sendEmail();

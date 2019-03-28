@@ -22,15 +22,17 @@ public class ShopServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        String genre;
+        String genre, cat, price;
+
         int currentPage = Integer.valueOf(request.getParameter("currentPage"));
         int recordsPerPage = Integer.valueOf(request.getParameter("recordsPerPage"));
         genre = String.valueOf(request.getParameter("genre"));
-        
+        cat = String.valueOf(request.getParameter("category"));
+        price = String.valueOf(request.getParameter("price"));
         List<Games> gameList;
         long nOfPages;
-        
-        if (genre.equals("null")) {
+
+        if (genre.equals("null") && cat.equals("null") && price.equals("null")) {
             gameList = this.gameBean.findGames(currentPage, recordsPerPage);
             long rows = this.gameBean.getNumberOfRows();
             nOfPages = rows / recordsPerPage;
@@ -38,15 +40,17 @@ public class ShopServlet extends HttpServlet {
                 nOfPages++;
             }
         } else {
-            gameList = this.gameBean.findGamesByGenre(currentPage, recordsPerPage, genre);
+            double p = 1000.0;
+            if (!price.equals("null")) {
+                p = Double.parseDouble(price);
+            }
+            gameList = this.gameBean.findGamesByFilter(currentPage, recordsPerPage, genre, cat, p);
             long rows = this.gameBean.getNumberOfRows();
-
             nOfPages = rows / recordsPerPage;
             if (nOfPages % recordsPerPage > 0) {
                 nOfPages++;
             }
         }
-
         request.setAttribute("games", gameList);
         request.setAttribute("noOfPages", nOfPages);
         request.setAttribute("currentPage", currentPage);
@@ -54,4 +58,5 @@ public class ShopServlet extends HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
     }
+
 }
