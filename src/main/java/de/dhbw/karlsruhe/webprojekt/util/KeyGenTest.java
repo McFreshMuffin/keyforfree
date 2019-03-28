@@ -9,6 +9,6 @@ public class KeyGenTest {
         ArrayList<Games> gameListe = new ArrayList<>();
         gameListe.add(new Games("Spiel1", "http://cdn.akamai.steamstatic.com/steam/apps/327680/header.jpg?t=1469216185"));
         gameListe.add(new Games("Spiel2", "http://cdn.akamai.steamstatic.com/steam/apps/327680/header.jpg?t=1469216185"));
-        generator.generateKey(gameListe);
+        generator.generateKeys(gameListe);
     }
 }

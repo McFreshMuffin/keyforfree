@@ -8,11 +8,25 @@ public class KeyGenerator {
 
     private final char[] CHARS = "abcdefghijklmnopqrstuvwxyz1234567890".toCharArray();
 
-    public String generateKey(ArrayList<Games> gameList) {
+    public String generateKey(Games game) {
+        Random random = new Random();
+        String tempKey = "";
+        String key = "";
+        for (int i = 1; i < 16; i++) {
+            tempKey += CHARS[random.nextInt(CHARS.length)];
+            if (i == 5 || i == 10) {
+                tempKey += "-";
+            }
+        }
+        key = "<p>" + game.getName() + ": " + tempKey.toUpperCase() + "</p>";
+        return key;
+    }
+
+    public String generateKeys(ArrayList<Games> gameList) {
         Random random = new Random();
         String key = "";
         String gameKeys = "";
-        
+
         for (Games game : gameList) {
             for (int i = 1; i < 16; i++) {
                 key += CHARS[random.nextInt(CHARS.length)];
@@ -20,8 +34,8 @@ public class KeyGenerator {
                     key += "-";
                 }
             }
-            gameKeys += "<p>" + game.getName() + ": " +key.toUpperCase()+ "</p>";
-            System.out.println(game.getName() +": "+key.toUpperCase());
+            gameKeys += "<p>" + game.getName() + ": " + key.toUpperCase() + "</p>";
+            System.out.println(game.getName() + ": " + key.toUpperCase());
             key = "";
         }
         return gameKeys;

@@ -2,6 +2,7 @@ package de.dhbw.karlsruhe.webprojekt.bean;
 
 import de.dhbw.karlsruhe.webprojekt.model.Games;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +14,14 @@ public class GameBean {
 
     @PersistenceContext
     EntityManager em;
+
+    public Games findFreeGame() {
+        List<Games> gameListe = em.createQuery("SELECT g FROM Games g WHERE g.price = 0").getResultList();
+        int size = gameListe.size();
+        Random random = new Random();
+        int number = random.nextInt(size);
+        return gameListe.get(number);
+    }
 
     public Games findGameById(int gameId) {
         return em.find(Games.class, gameId);

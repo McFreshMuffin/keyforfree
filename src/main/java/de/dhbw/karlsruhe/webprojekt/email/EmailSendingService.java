@@ -48,17 +48,19 @@ public class EmailSendingService {
         mailMessage.setSubject("Rechnung vom " +dateFormat.format(date));
     }
 
-    public void setBody(String benutzerNachname, ArrayList<Games> gameListe) throws MessagingException {
+    public void setBody(String benutzerNachname, ArrayList<Games> gameListe, Games freeGame) throws MessagingException {
         messageBodyPart = new MimeBodyPart();
         multipart = new MimeMultipart();
         KeyGenerator kg = new KeyGenerator();
-        String text = kg.generateKey(gameListe);
+        String keys = kg.generateKeys(gameListe);
+        String freeGameKey = kg.generateKey(freeGame);
         messageBodyPart.setContent(
                 "<h1>Sehr geehrter Herr/Frau " + benutzerNachname + "</h1>"
                 + "<p>Im folgenden finden Sie Ihre bestellten Spiele mit den zugehörigen Keys aufgelistet:</p>"
-                +text
+                +keys
                 + "<p>Des weiteren befindet sich ihre Bestellung als PDF im Anhang der E-Mail.</p>"
-                + "<p>Wir bedanken uns für Ihren Einkauf bei Key4Free.</p>"
+                + "<p>Wir bedanken uns für Ihren Einkauf bei Key4Free. Als dank möchten wir Ihnen folgendes Produkt schenken:</p>"
+                +freeGameKey
                 + "<p>Mit freundlichen Grüßen,</p>"
                 + "<p>Ihr Key4Free-Team</p>", "text/html");
         multipart.addBodyPart(messageBodyPart);
@@ -73,10 +75,10 @@ public class EmailSendingService {
         multipart.addBodyPart(messageBodyPart);
     }
 
-    public void createEmail(String empfaenger, String benutzerNachname, long bestellId, ArrayList<Games> gameListe) {
+    public void createEmail(String empfaenger, String benutzerNachname, long bestellId, ArrayList<Games> gameListe, Games freeGame) {
         try {
             setHead(empfaenger);
-            setBody(benutzerNachname, gameListe);
+            setBody(benutzerNachname, gameListe, freeGame);
             setAttachment(bestellId);
             mailMessage.setContent(multipart);
         } catch (MessagingException ex) {

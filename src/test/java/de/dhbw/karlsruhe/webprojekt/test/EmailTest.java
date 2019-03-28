@@ -25,7 +25,7 @@ public class EmailTest {
     @Test
     @Ignore
     public void testEmailSending() {
-        ess.createEmail(benutzer.getEmail(), benutzer.getNachname(), 0, gameListe);
+        ess.createEmail(benutzer.getEmail(), benutzer.getNachname(), 0, gameListe, new Games());
         boolean result = ess.sendEmail();
         assertTrue(result);
     }
