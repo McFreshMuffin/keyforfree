@@ -41,10 +41,10 @@ public class GameBean {
         boolean g = false;
         boolean c = false;
         boolean p = false;
-        boolean sign=false;
+        boolean sign = false;
         String tables = "";
         String conditions = "";
-        String compares ="";
+        String compares = "";
 
         if (!genre.equals("null")) {
             g = true;
@@ -55,31 +55,31 @@ public class GameBean {
         if (price != 1000.0) {
             p = true;
         }
- 
+
         if (g) {
             tables = tables + ", Genre r";
-            conditions=conditions+" g.genreId = r.genreId";
+            conditions = conditions + " g.genreId = r.genreId";
             sign = true;
-            compares = compares +" AND r."+genre+"= 1";
+            compares = compares + " AND r." + genre + "= 1";
         }
         if (c) {
-            
+
             tables = tables + ", Category c";
-            if(sign){
-                conditions=conditions+" AND";
+            if (sign) {
+                conditions = conditions + " AND";
             }
-            conditions=conditions+" g.categoryId  = c.categoryId";
-            sign=true;
-            compares = compares +" AND c."+cat+"= 1";
+            conditions = conditions + " g.categoryId  = c.categoryId";
+            sign = true;
+            compares = compares + " AND c." + cat + "= 1";
         }
         if (p) {
-            if(sign){
-                conditions=conditions+" AND";
-            } 
-            conditions=conditions+" g.price < " +price;
+            if (sign) {
+                conditions = conditions + " AND";
+            }
+            conditions = conditions + " g.price < " + price;
         }
-        return em.createQuery("SELECT g FROM Games g" + tables + " WHERE" + conditions +
-        compares+" ORDER BY g.releaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
+        return em.createQuery("SELECT g FROM Games g" + tables + " WHERE" + conditions
+                + compares + " ORDER BY g.releaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
     }
 
     public long getNumberOfRows() {
@@ -93,31 +93,31 @@ public class GameBean {
         String rec = "Recommended";
         String min = "Minimum";
         String changeReq;
-        
+
         //Requirements im Array speichern fuer Schleife 
-        String[][] reqs = new String [3][3];
+        String[][] reqs = new String[3][3];
         //PC Requirements
-        reqs[0] [0] = new String();
-        reqs[0] [0] = Integer.toString(game.getRequirements().getHaveRecPcReqs());
-        reqs[0] [1] = new String();
-        reqs[0] [1] = game.getRequirements().getPCMinReqsText();
-        reqs[0] [2] = new String();
-        reqs[0] [2] = game.getRequirements().getPCRecReqsText();
+        reqs[0][0] = new String();
+        reqs[0][0] = Integer.toString(game.getRequirements().getHaveRecPcReqs());
+        reqs[0][1] = new String();
+        reqs[0][1] = game.getRequirements().getPCMinReqsText();
+        reqs[0][2] = new String();
+        reqs[0][2] = game.getRequirements().getPCRecReqsText();
         //Linux Requirements
-        reqs[1] [0] = new String();
-        reqs[1] [0] = Integer.toString(game.getRequirements().getHaveRecLinuxReqs());
-        reqs[1] [1] = new String();
-        reqs[1] [1] = game.getRequirements().getLinuxMinReqsText();
-        reqs[1] [2] = new String();
-        reqs[1] [2] = game.getRequirements().getLinuxRecReqsText();
+        reqs[1][0] = new String();
+        reqs[1][0] = Integer.toString(game.getRequirements().getHaveRecLinuxReqs());
+        reqs[1][1] = new String();
+        reqs[1][1] = game.getRequirements().getLinuxMinReqsText();
+        reqs[1][2] = new String();
+        reqs[1][2] = game.getRequirements().getLinuxRecReqsText();
         //Mac Requirements
-        reqs[2] [0] = new String();
-        reqs[2] [0] = Integer.toString(game.getRequirements().getHaveRecMacReqs());
-        reqs[2] [1] = new String();
-        reqs[2] [1] = game.getRequirements().getMacMinReqsText();
-        reqs[2] [2] = new String();
-        reqs[2] [2] = game.getRequirements().getMacRecReqsText();
-        
+        reqs[2][0] = new String();
+        reqs[2][0] = Integer.toString(game.getRequirements().getHaveRecMacReqs());
+        reqs[2][1] = new String();
+        reqs[2][1] = game.getRequirements().getMacMinReqsText();
+        reqs[2][2] = new String();
+        reqs[2][2] = game.getRequirements().getMacRecReqsText();
+
         //Mit Schleife durch alle Requirements gehen und Recommended und Minimum kuerzen
         for (int r = 0; r < 3; r++) {
             int index = isSubstring(rec, reqs[r][1]);
@@ -153,8 +153,11 @@ public class GameBean {
         game.getRequirements().setHaveRecMacReqs(Integer.parseInt(reqs[2][0]));
         game.getRequirements().setMacMinReqsText(reqs[2][1]);
         game.getRequirements().setMacRecReqsText(reqs[2][2]);
-        
+
         return em.merge(game);
+    }
+    
+
     public List<Games> searchGames(String suchbegriff) {
         return em.createQuery("SELECT g FROM Games g WHERE lower(g.name) like '%" + suchbegriff + "%'").getResultList();
     }
@@ -312,24 +315,4 @@ public class GameBean {
 
         return categories;
     }
-
-    public Games checkRequirements(Games game) {
-        String rec = "Recommended";
-        String changeReq;
-
-        //PC Requirements ueberprüfenn
-        int index = isSubstring(rec, game.getRequirements().getPCMinReqsText());
-        if (index == -1) {
-
-        } else {
-            changeReq = game.getRequirements().getPCMinReqsText().substring(index);
-            game.getRequirements().setPCRecReqsText(changeReq);
-            changeReq = game.getRequirements().getPCMinReqsText().substring(0, index);
-            game.getRequirements().setPCMinReqsText(changeReq);
-            game.getRequirements().setHaveRecPcReqs(1);
-
-        }
-        return em.merge(game);
-    }
-
 }
