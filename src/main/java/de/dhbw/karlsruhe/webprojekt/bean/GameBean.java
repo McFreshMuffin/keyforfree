@@ -89,6 +89,72 @@ public class GameBean {
         return em.createQuery(cq).getSingleResult();
     }
 
+    public Games checkRequirements(Games game) {
+        String rec = "Recommended";
+        String min = "Minimum";
+        String changeReq;
+        
+        //Requirements im Array speichern fuer Schleife 
+        String[][] reqs = new String [3][3];
+        //PC Requirements
+        reqs[0] [0] = new String();
+        reqs[0] [0] = Integer.toString(game.getRequirements().getHaveRecPcReqs());
+        reqs[0] [1] = new String();
+        reqs[0] [1] = game.getRequirements().getPCMinReqsText();
+        reqs[0] [2] = new String();
+        reqs[0] [2] = game.getRequirements().getPCRecReqsText();
+        //Linux Requirements
+        reqs[1] [0] = new String();
+        reqs[1] [0] = Integer.toString(game.getRequirements().getHaveRecLinuxReqs());
+        reqs[1] [1] = new String();
+        reqs[1] [1] = game.getRequirements().getLinuxMinReqsText();
+        reqs[1] [2] = new String();
+        reqs[1] [2] = game.getRequirements().getLinuxRecReqsText();
+        //Mac Requirements
+        reqs[2] [0] = new String();
+        reqs[2] [0] = Integer.toString(game.getRequirements().getHaveRecMacReqs());
+        reqs[2] [1] = new String();
+        reqs[2] [1] = game.getRequirements().getMacMinReqsText();
+        reqs[2] [2] = new String();
+        reqs[2] [2] = game.getRequirements().getMacRecReqsText();
+        
+        //Mit Schleife durch alle Requirements gehen und Recommended und Minimum kuerzen
+        for (int r = 0; r < 3; r++) {
+            int index = isSubstring(rec, reqs[r][1]);
+            if (index == -1) {
+                //Bei isSubstring = -1 Substring nicht vorhanden
+            } else {
+                changeReq = reqs[r][1].substring(index);
+                reqs[r][2] = changeReq;
+                changeReq = reqs[0][1].substring(0, index);
+                reqs[r][1] = changeReq;
+                reqs[r][0] = "1";
+            }
+            index = isSubstring(min, reqs[r][1]);
+            if (index != -1) {
+                changeReq = reqs[r][1].substring(8); //Index 9 ohne Wort Minimum:
+                reqs[r][1] = changeReq;
+            }
+            index = isSubstring(rec, reqs[r][2]);
+            if (index != -1) {
+                changeReq = reqs[r][2].substring(12); //Index 12 ohne Wort Recommended:
+                reqs[r][2] = changeReq;
+            }
+        }
+        //Pc Requirements
+        game.getRequirements().setHaveRecPcReqs(Integer.parseInt(reqs[0][0]));
+        game.getRequirements().setPCMinReqsText(reqs[0][1]);
+        game.getRequirements().setPCRecReqsText(reqs[0][2]);
+        //Linux Requirements
+        game.getRequirements().setHaveRecLinuxReqs(Integer.parseInt(reqs[1][0]));
+        game.getRequirements().setLinuxMinReqsText(reqs[1][1]);
+        game.getRequirements().setLinuxRecReqsText(reqs[1][2]);
+        //Mac Requirements
+        game.getRequirements().setHaveRecMacReqs(Integer.parseInt(reqs[2][0]));
+        game.getRequirements().setMacMinReqsText(reqs[2][1]);
+        game.getRequirements().setMacRecReqsText(reqs[2][2]);
+        
+        return em.merge(game);
     public List<Games> searchGames(String suchbegriff) {
         return em.createQuery("SELECT g FROM Games g WHERE lower(g.name) like '%" + suchbegriff + "%'").getResultList();
     }
