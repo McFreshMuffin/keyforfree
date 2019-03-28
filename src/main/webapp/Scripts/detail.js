@@ -7,5 +7,4 @@ function changePrice(selectedValue, price) {
         totalPrice = totalPrice + " €";
         var output = document.getElementById('PriceTotal');
         output.innerHTML = totalPrice;
-    
 }

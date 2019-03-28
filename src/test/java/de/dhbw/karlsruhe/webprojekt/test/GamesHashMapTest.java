@@ -36,9 +36,9 @@ public class GamesHashMapTest {
     @Test
     public void testAddGame(){
         Assert.assertTrue("Game1 hinzufügen (1)", test == null);
+        Assert.assertTrue("Game2 hinzufügen (1)", test3 == null);
         Assert.assertTrue("Game1 hinzufügen (2)", !test1.isEmpty());
         Assert.assertTrue("Game1 hinzufügen (3)", !test2.isEmpty());
-        Assert.assertTrue("Game2 hinzufügen (1)", test3 == null);
         Assert.assertTrue("Game2 hinzufügen (2)", !test4.isEmpty());
        
         Assert.assertTrue("Game1 vorhanden", ghm.get(123).size() == 3);

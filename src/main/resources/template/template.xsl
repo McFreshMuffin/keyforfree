@@ -39,21 +39,67 @@
                             </fo:table-row>
                         </fo:table-body>
                     </fo:table>
-                </fo:static-content>
+				<fo:table table-layout="fixed" width="100%" font-size="10pt" border-color="black" border-width="0.35mm" border-style="solid" text-align="center" display-align="center" space-after="5mm">
+						<fo:table-column column-width="proportional-column-width(25)"/>
+                        <fo:table-column column-width="proportional-column-width(25)"/>
+                        <fo:table-column column-width="proportional-column-width(25)"/>
+                        <fo:table-column column-width="proportional-column-width(25)"/>
+                        <fo:table-body>
+                            <fo:table-row height="8mm">
+                                <fo:table-cell>
+                                    <fo:block>Vorname:</fo:block>
+                                </fo:table-cell>
+								<fo:table-cell>
+                                    <fo:block>Nachname:</fo:block>
+                                </fo:table-cell>
+                                <fo:table-cell>
+                                    <fo:block>Addresse:</fo:block>
+                                </fo:table-cell>
+                                <fo:table-cell>
+                                    <fo:block>Email:</fo:block>
+                                </fo:table-cell>
+                            </fo:table-row>
+							 <xsl:for-each select="benutzer">
+                                <fo:table-row>
+								<fo:table-cell>
+                                        <fo:block>
+											<xsl:value-of select="vorname"/>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell>
+                                        <fo:block>
+                                            <xsl:value-of select="nachname"/>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell>
+                                        <fo:block>
+                                            <xsl:value-of select="addresse"/>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell>
+                                        <fo:block>
+                                            <xsl:value-of select="email"/>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                </fo:table-row>
+                            </xsl:for-each>
+                        </fo:table-body>
+                    </fo:table>
+					</fo:static-content>
                 <fo:flow flow-name="xsl-region-body" border-collapse="collapse" reference-orientation="0">
-                    <fo:block>Meine Bestellungen</fo:block>
+                    <fo:block>Ihre Bestellungen</fo:block>
                     <fo:table table-layout="fixed" width="100%" font-size="10pt" border-color="black" border-width="0.35mm" border-style="solid" text-align="center" display-align="center" space-after="5mm">
-                        <fo:table-column column-width="proportional-column-width(20)"/>
+                        <fo:table-column column-width="proportional-column-width(40)"/>
                         <fo:table-column column-width="proportional-column-width(30)"/>
                         <fo:table-column column-width="proportional-column-width(25)"/>
-                        <fo:table-column column-width="proportional-column-width(50)"/>
+                        <fo:table-column column-width="proportional-column-width(30)"/>
                         <fo:table-body font-size="95%">
                             <fo:table-row height="8mm">
                                 <fo:table-cell>
-                                    <fo:block>Spielename</fo:block>
+                                    <fo:block>Bild</fo:block>
                                 </fo:table-cell>
 								<fo:table-cell>
-                                    <fo:block>Bild</fo:block>
+                                    <fo:block>Spielname</fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell>
                                     <fo:block>Preis</fo:block>
@@ -64,15 +110,15 @@
                             </fo:table-row>
                             <xsl:for-each select="gameListe">
                                 <fo:table-row>
+								<fo:table-cell>
+                                        <fo:block>
+										<xsl:variable name="bild" select="image"/>
+											<fo:external-graphic src="{$bild}" content-height="scale-to-fit" height="1.00in"  content-width="1.50in" scaling="non-uniform"/>
+                                        </fo:block>
+                                    </fo:table-cell>
                                     <fo:table-cell>
                                         <fo:block>
                                             <xsl:value-of select="name"/>
-                                        </fo:block>
-                                    </fo:table-cell>
-									<fo:table-cell>
-                                        <fo:block>
-										<xsl:variable name="bild" select="image"/>
-											<fo:external-graphic src="{$bild}" content-height="scale-to-fit" height="4.00in"  content-width="4.00in" scaling="non-uniform"/>
                                         </fo:block>
                                     </fo:table-cell>
                                     <fo:table-cell>
@@ -90,7 +136,7 @@
                         </fo:table-body>
                     </fo:table>
                     <fo:block id="end-of-document">
-                        
+                        Gesamtpreis : <xsl:value-of select="gesamtPreis"/>
                     </fo:block>
                 </fo:flow>
             </fo:page-sequence>

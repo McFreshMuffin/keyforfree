@@ -8,18 +8,22 @@ public class GamesHashMap extends HashMap<Integer, ArrayList<Games>> {
 
     public ArrayList<Games> addGame(Games game) {
         ArrayList<Games> list;
+        boolean isVorhanden = false;
         if (!this.keySet().isEmpty()) {
             for (int i : this.keySet()) {
                 if (i == game.getGameId()) {
-                    list = this.get(i);
-                    list.add(game);
-                    return this.putIfAbsent(i, list);
-                } else {
-                    list = new ArrayList<>();
-                    list.add(game);
-                    int id = (int) game.getGameId();
-                    return this.putIfAbsent(id, list);
+                    isVorhanden = true;
                 }
+            }
+            if (isVorhanden) {
+                list = this.get((int) game.getGameId());
+                list.add(game);
+                return this.putIfAbsent((int) game.getGameId(), list);
+            } else {
+                list = new ArrayList<>();
+                list.add(game);
+                int id = (int) game.getGameId();
+                return this.putIfAbsent(id, list);
             }
         } else {
             list = new ArrayList<>();
@@ -27,7 +31,6 @@ public class GamesHashMap extends HashMap<Integer, ArrayList<Games>> {
             int id = (int) game.getGameId();
             return this.putIfAbsent(id, list);
         }
-        return null;
     }
 
     public void removeGame(Games game) {
@@ -52,12 +55,12 @@ public class GamesHashMap extends HashMap<Integer, ArrayList<Games>> {
         }
         return game;
     }
-    
-    public ArrayList<Games> convertToArrayList(){
+
+    public ArrayList<Games> convertToArrayList() {
         ArrayList<Games> gameListe = new ArrayList<>();
-        for(int i : this.keySet()){
+        for (int i : this.keySet()) {
             ArrayList<Games> curList = this.get(i);
-            for(Games game : curList){
+            for (Games game : curList) {
                 gameListe.add(game);
             }
         }

@@ -91,10 +91,10 @@
                                 </c:when>
                             </c:choose>
                         </td>
-                        <td colspan="2" class="hidden-xs"></td>
+                        <td colspan="3" class="hidden-xs"></td>
                         <c:choose>
                             <c:when test="${!empty sessionScope.shoppingCart}">
-                                <td class=" text-center"><strong>Gesamtpreis ${endpreis} €</strong></td>
+                                <td class="text-center">Gesamtpreis <strong class="roundPriceId">${endpreis}</strong></td>
                                 <td>
                                     <form action="/WebProjekt/cart" method="post">
                                         <input type="hidden" name="totalPrice" value="${endpreis}"/>
