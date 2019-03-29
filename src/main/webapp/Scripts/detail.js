@@ -1,9 +1,11 @@
-function changePrice(selectedValue, price) {
+function changeSelector(selectedValue, price) {
     selectedValue = Number(selectedValue);
     price = Number(price);
     var totalPrice = price * selectedValue;
     totalPrice = totalPrice.toFixed(2);
     totalPrice = totalPrice + " €";
+    var menge = document.getElementById('inputMengeId');
+    menge.value = selectedValue;
     var output = document.getElementById('PriceTotal');
     output.innerHTML = totalPrice;
 }
@@ -22,7 +24,8 @@ function roundPrice() {
 }
 
 function btnKaufen(sessionScope) {
-    if (sessionScope !== '') {
+    var b1 = Boolean(sessionScope);
+    if (!b1) {
         var element = document.getElementsByClassName('btnKaufenId');
         var laenge = element.length;
         var i;

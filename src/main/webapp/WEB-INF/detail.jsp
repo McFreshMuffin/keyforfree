@@ -47,7 +47,6 @@
 
 
     <jsp:attribute name="main">
-        <c:set var="test1" value="WAHR"></c:set>
 
             <div class="detailFirst">
                 <h1 class="title">${game.getName()}</h1>
@@ -75,13 +74,14 @@
                                 <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="${game.getGameId()}">
+                                <input type="hidden" name="quantity" id="inputMengeId" value="1">
                                 <button type="submit" class="btn btn-primary btn-sm btnKaufenId"><i class="fas fa-cart-plus"> In den Warenkorb legen</i></button>
                             </form>
                         </td>
                     </tr>
                     <tr>
                         <td class="pricingRow">
-                            <select class="custom-select custom-select-sm" id="selection" onchange="changePrice(this.value, ${game.getPrice()})">
+                            <select class="custom-select custom-select-sm" id="selection" onchange="changeSelector(this.value, ${game.getPrice()})">
                                 <option label="1" value="1" selected>1</option>
                                 <c:forEach begin="2" end="10" var="option">
                                     <option label="${option}" value="${option}">${option}</option>

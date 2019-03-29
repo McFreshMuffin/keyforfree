@@ -147,7 +147,7 @@
         </div>
         
         <c:set var="paginationUrl" value="shop?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}"></c:set>
-        <c:set var=""></c:set>
+        
         
         <div class="d-flex justify-content-center">
             <nav aria-label="Navigation for Games">
