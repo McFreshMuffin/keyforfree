@@ -69,7 +69,7 @@
                         <input type="password" name="password" class="form-control" placeholder="Passwort" required>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6 text-right">
+                        <div class="form-group col-md-6">
                             <a href="#" class="pull-right">Passwort vergessen?</a>
                         </div>
                     </div> 
@@ -84,7 +84,7 @@
                             <c:choose>
                                 <c:when test="${result}">
                                     <div class="alert alert-success" role="alert">
-                                        This is a success alert—check it out!
+                                        Der Login war Erfolgreich.
                                     </div>
                                 </c:when>
                                 <c:otherwise>

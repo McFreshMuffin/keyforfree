@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        Benutzer user = this.userBean.loginUser(email, password);
+        Benutzer user = this.userBean.findUserByEmailPassword(email, password);
 
         if (user != null) {
             GamesHashMap shoppingCart = new GamesHashMap();

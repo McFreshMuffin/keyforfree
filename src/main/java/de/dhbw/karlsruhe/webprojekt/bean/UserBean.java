@@ -12,9 +12,9 @@ public class UserBean {
 
     @PersistenceContext
     private EntityManager em;
-
-    public Benutzer getUserDetails(int userId){
-          try {
+    
+    public Benutzer findUserByUserId(int userId){
+        try {
             TypedQuery<Benutzer> query = em.createQuery("SELECT b FROM Benutzer b WHERE b.userId = :userId", Benutzer.class);
             query.setParameter("userId", userId);
             return query.getSingleResult();
@@ -24,32 +24,41 @@ public class UserBean {
         }
     }
     
-    public Benutzer loginUser(String email, String password) {
-        Benutzer user = null;
+    public Benutzer findUserByEmail(String email){
+        try {
+            TypedQuery<Benutzer> query = em.createQuery("SELECT b FROM Benutzer b WHERE b.email = :email", Benutzer.class);
+            query.setParameter("email", email);
+            return query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
+    
+    public Benutzer findUserByEmailPassword(String email, String password){
         try {
             TypedQuery<Benutzer> query = em.createQuery("SELECT b FROM Benutzer b WHERE b.email = :email AND b.password = :password", Benutzer.class);
             query.setParameter("email", email);
             query.setParameter("password", password);
-            user = query.getSingleResult();
+            return query.getSingleResult();
+            
         } catch (NoResultException nre) {
-            nre.printStackTrace();
+            return null;
         }
-        return user;
     }
-
-    public boolean registerUser(String email, String password, String vorname, String nachname, String addresse) {
-        try {
+    
+    public Benutzer addUser(String email, String password, String vorname, String nachname, String addresse){
+         try {
             TypedQuery<Benutzer> query = em.createQuery("SELECT b FROM Benutzer b WHERE b.email = :email", Benutzer.class);
             query.setParameter("email", email).getSingleResult();
-            return false;
+            return null;
         } catch (NoResultException nre) {
             Benutzer user = new Benutzer(email, password, vorname, nachname, addresse);
             em.persist(user);
-            return true;
+            return user;
         }
     }
 
-    public boolean login(String username, String password) {
+    /*public boolean login(String username, String password) {
 
         Object object = em.createQuery("SELECT b FROM Benutzer b WHERE username='"
                 + username
@@ -61,5 +70,5 @@ public class UserBean {
             return true;
         }
         return false;
-    }
+    }*/
 }

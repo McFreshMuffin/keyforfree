@@ -31,10 +31,11 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean result = false;
-
+        
         if (password.equals(confPasswort)) {
-            this.userBean.registerUser(email, password, vorname, nachname, addresse);
-            result = true;
+            if(this.userBean.addUser(email, password, vorname, nachname, addresse) != null){
+                result = true;
+            }
         }
         request.setAttribute("result", result);
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
