@@ -109,21 +109,21 @@
                             <c:choose>
                                 <c:when test="${game.getRequirements().getPlatformWindows() eq 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#collapseWindowsReqs" role="button" aria-expanded="false" aria-controls="headingWindowsReqs">Systemvorraussetzungen-Windows</a>
+                                        <a class="nav-link" data-toggle="tab" href="#collapseWindowsReqs" role="button" aria-expanded="false" aria-controls="headingWindowsReqs">Systemvoraussetzungen-Windows</a>
                                     </li>
                                 </c:when>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${game.getRequirements().getPlatformLinux() eq 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#collapseLinuxReqs" role="button" aria-expanded="false" aria-controls="headingLinuxReqs">Systemvorraussetzungen-Linux</a>
+                                        <a class="nav-link" data-toggle="tab" href="#collapseLinuxReqs" role="button" aria-expanded="false" aria-controls="headingLinuxReqs">Systemvoraussetzungen-Linux</a>
                                     </li>
                                 </c:when>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${game.getRequirements().getPlatformMac() eq 1}">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#collapseMacReqs" role="button" aria-expanded="false" aria-controls="headingMacReqs">Systemvorraussetzungen-Mac</a>
+                                        <a class="nav-link" data-toggle="tab" href="#collapseMacReqs" role="button" aria-expanded="false" aria-controls="headingMacReqs">Systemvoraussetzungen-Mac</a>
                                     </li>
                                 </c:when>
                             </c:choose>
