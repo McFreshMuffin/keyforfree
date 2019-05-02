@@ -88,9 +88,12 @@
                             <c:choose>
                                 <c:when test="${!empty sessionScope.shoppingCart}">
                                     <c:choose>
-                                        <c:when test="${!empty currentPage}">
+                                        <c:when test="${source == 'shop'}">
                                             <a href="shop?recordsPerPage=${requestScope.recordsPerPage}&currentPage=${requestScope.currentPage}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Weiter Einkaufen</a>
                                         </c:when>
+                                        <c:when test="${source == 'detail'}">
+                                            <a href="detail?gameid=${requestScope.gameid}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Weiter Einkaufen</a>
+                                        </c:when>    
                                     </c:choose>
                                 </c:when>
                             </c:choose>

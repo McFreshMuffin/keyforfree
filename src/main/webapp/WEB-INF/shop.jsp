@@ -128,6 +128,7 @@
                                     <form action="/WebProjekt/cart" method="post">
                                         <input type="hidden" name="currentUrl" value="${requestScope
                                                                                         ['javax.servlet.forward.query_string']}">
+                                        <input type="hidden" name="source" value="shop">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="quantity" value="1">
                                         <input type="hidden" name="id" value="${game.getGameId()}">

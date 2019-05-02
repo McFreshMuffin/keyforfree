@@ -72,6 +72,7 @@
                         <td class="pricingRow" rowspan="2">
                             <form action="/WebProjekt/cart" method="post">
                                 <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
+                                <input type="hidden" name="source" value="detail">
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="${game.getGameId()}">
                                 <input type="hidden" name="quantity" id="inputMengeId" value="1">

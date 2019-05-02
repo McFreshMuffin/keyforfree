@@ -31,6 +31,7 @@ public class CartServlet extends HttpServlet {
     private HttpSession session = null;
     private GamesHashMap shoppingCart = null;
     private String currentPage = null;
+    private String source = null;
     private int gameId;
 
     @Override
@@ -39,9 +40,15 @@ public class CartServlet extends HttpServlet {
         initSession(request);
         String reqRecordsPerPage = request.getParameter("recordsPerPage");
         String reqCurrentPage = request.getParameter("currentPage");
+        String reqGameId = request.getParameter("gameid");
+        
         request.setAttribute("shoppingCart", shoppingCart);
+        
         request.setAttribute("recordsPerPage", reqRecordsPerPage);
         request.setAttribute("currentPage", reqCurrentPage);
+        request.setAttribute("source", source);
+        request.setAttribute("gameid", reqGameId);
+        
         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 
@@ -49,6 +56,7 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        source = request.getParameter("source");
         currentPage = request.getParameter("currentUrl");
         initSession(request);
 
@@ -90,8 +98,7 @@ public class CartServlet extends HttpServlet {
         session.setAttribute("shoppingCart", shoppingCart);
         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
-
-    
+ 
     private void buyCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long userId = (long) session.getAttribute("userId");
         Benutzer benutzer = (Benutzer) session.getAttribute("user");
