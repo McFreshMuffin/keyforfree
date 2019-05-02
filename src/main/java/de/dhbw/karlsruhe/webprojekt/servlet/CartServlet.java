@@ -112,7 +112,7 @@ public class CartServlet extends HttpServlet {
         converter.convertXmlToPdf(b.getBestellId());
         EmailSendingService ess = new EmailSendingService();
         Games freeGame = this.gameBean.findFreeGame();
-        ess.createEmail("service.key4free@gmail.com", benutzer.getNachname(), b.getBestellId(), convertedShoppingCart, freeGame);
+        ess.createEmail(benutzer.getEmail(), benutzer.getNachname(), b.getBestellId(), convertedShoppingCart, freeGame);
         ess.sendEmail();
         session.setAttribute("shoppingCart", new ArrayList<Games>());
         request.getRequestDispatcher("/WEB-INF/success.jsp").forward(request, response);
