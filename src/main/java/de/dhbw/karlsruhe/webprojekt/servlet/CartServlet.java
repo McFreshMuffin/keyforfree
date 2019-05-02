@@ -54,9 +54,9 @@ public class CartServlet extends HttpServlet {
 
         switch (action) {
             case "add":
-                //int amount = Integer.parseInt(request.getParameter("amount"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
                 gameId = Integer.parseInt(request.getParameter("id"));
-                addGame(request, response);
+                addGame(request, response, quantity);
                 break;
             case "buy":
                 buyCart(request, response);
@@ -74,9 +74,11 @@ public class CartServlet extends HttpServlet {
 
     }
 
-    private void addGame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void addGame(HttpServletRequest request, HttpServletResponse response, int quantity) throws ServletException, IOException {
         Games game = this.gameBean.findGameById(gameId);
-        shoppingCart.addGame(game);
+        for(int i = 0; i < quantity; i++){
+            shoppingCart.addGame(game);
+        }
         request.setAttribute("currentPage", currentPage);
         session.setAttribute("shoppingCart", shoppingCart);
         response.sendRedirect("cart?" + currentPage);
