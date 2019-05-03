@@ -51,12 +51,12 @@
                     </div>
                     <table class="table table-striped table-bordered table-sm" style="table-layout:fixed; margin-top: 5px;">
                         <tr>
-                            <th style="width:309px;">Bild</th>
-                            <th style="width:400px;">Name</th>
+                            <th style="width:309px;">Cover</th>
+                            <th style="width:400px;">Titel</th>
                             <th style="width:70px;">Preis</th>
                             <th style="width:120px;">Veröffentlicht</th>
-                            <th style="width:50px;">Alter</th>
-                            <th style="width:100px;"></th>
+                            
+                            <th style="width:150px;"></th>
                         </tr>
 
                         <c:forEach items="${sucheTreffer}" var="item">
@@ -68,13 +68,14 @@
                                 <td>${item.getName()}</td>
                                 <td>${item.getPrice()} €</td>
                                 <td>${item.getReleaseYear()}</td>
-                                <td>${item.getFsk()}</td>
+                                
                                 <td align="center">
                                     <form action="/WebProjekt/cart" method="post">
-                                        <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.query_string']}">
+                                        <input type="hidden" name="currentUrl" value="${requestScope
+                                                                                        ['javax.servlet.forward.query_string']}">
                                         <input type="hidden" name="action" value="add">
-                                        <input type="hidden" name="id" value="${item.getGameId()}">
-                                        <button type="submit" class="btn btn-success btn-lg btn-block">Kaufen</button>
+                                        <input type="hidden" name="id" value="${game.getGameId()}">
+                                        <button type="submit" class="btn btn-success btn-lg btn-block btnKaufenId">Kaufen</button>
                                     </form>
                                 </td>
                             </tr>

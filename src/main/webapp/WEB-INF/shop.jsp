@@ -77,14 +77,12 @@
                     <form action="#" style="margin: 10px;">
                         <label>Preis:
                             <select name="price" onchange="generateLinkPrice(this.value);">
-                                <option value="#">Auswählen..</option>
-                                <option value="0">0 €</option>
+                                <option value="#">Auswählen..</option>                              
                                 <option value="5">bis 5€</option>
                                 <option value="10">bis 10€</option>
                                 <option value="20">bis 20€</option>
                                 <option value="30">bis 30€</option>
-                                <option value="40">bis 40€</option>
-                                <option value="50">bis 50€</option>
+                                <option value="40">bis 40€</option>                            
                             </select>
                         </label>
                     </form>
@@ -96,7 +94,7 @@
                             <th style="width:400px;">Titel</th>
                             <th style="width:70px;">Preis</th>
                             <th style="width:120px;">Veröffentlicht</th>
-                            <th style="width:100px;"></th>
+                            
                             <th style="width:150px;">
                                 <div class="btn-group">
                                     <button class="btn btn-secondary btn-sm dropdown-toggle" method="POST" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -123,7 +121,7 @@
                                 <td>${game.getName()}</td>
                                 <td class="roundPriceId">${game.getPrice()}</td>
                                 <td>${game.getReleaseYear()}</td>
-                                <td>${game.getFsk()}</td>
+                                
                                 <td align="center">
                                     <form action="/WebProjekt/cart" method="post">
                                         <input type="hidden" name="currentUrl" value="${requestScope
