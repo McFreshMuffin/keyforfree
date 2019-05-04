@@ -42,8 +42,7 @@ public class GameBean {
         boolean c = false;
         boolean p = false;
         boolean sign = false;
-        String tables = "";
-        String conditions = "";
+        String tables = "";       
         String compares = "";
 
         if (!genre.equals("null")) {
@@ -58,7 +57,7 @@ public class GameBean {
 
         if (g) {
             tables = tables + ", Genre r";
-            conditions = conditions + " g.genre.genreId = r.genreId";
+            
             sign = true;
             compares = compares + " g.genre." + genre + "= 1";
         }
@@ -66,17 +65,17 @@ public class GameBean {
 
             tables = tables + ", Category c";
             if (sign) {
-                conditions = conditions + " AND";
+                compares = compares + " AND";
             }
-            conditions = conditions + " g.category.categoryId  = c.categoryId";
+            
             sign = true;
-            compares = compares + " AND g.category." + cat + "= 1";
+            compares = compares + " g.category." + cat + "= 1";
         }
         if (p) {
             if (sign) {
-                conditions = conditions + " AND";
+                compares = compares + " AND";
             }
-            conditions = conditions + " g.price < " + price;
+            compares = compares + " g.price < " + price;
         }
         return em.createQuery("SELECT g FROM Games g WHERE"
                 + compares + " ORDER BY g.releaseDate").setFirstResult(start).setMaxResults(recordsPerPage).getResultList();

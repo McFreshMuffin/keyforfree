@@ -34,13 +34,21 @@ public class GamesHashMap extends HashMap<Integer, ArrayList<Games>> {
     }
 
     public void removeGame(Games game) {
+        int test = 0;
         for (int i : this.keySet()) {
             if (i == game.getGameId()) {
                 ArrayList<Games> list = this.get(i);
                 int size = list.size();
-                list.remove(size - 1);
-                this.put(i, list);
-            }
+                if(size > 1){
+                    list.remove(size - 1);
+                    this.put(i, list);
+                }else{
+                    test = i;
+                }
+            }  
+        }
+        if(test != 0){
+            this.remove(test);
         }
     }
 

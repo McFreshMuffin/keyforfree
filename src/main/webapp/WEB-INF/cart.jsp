@@ -60,7 +60,11 @@
                     <c:set var="total" value="0"></c:set>
                     <c:forEach var="list" items="${sessionScope.shoppingCart}">
                         <c:set var="length" value="${fn:length(list.value)}"></c:set>
-                        <c:set var="gesamtpreis" value="${length * list.value.get(0).getPrice()}"></c:set>
+                        <c:choose>
+                            <c:when test="${length != 0}">
+                                <c:set var="gesamtpreis" value="${length * list.value.get(0).getPrice()}"></c:set>
+                            </c:when>
+                        </c:choose>
                         <c:set var="endpreis" value="${endpreis + gesamtpreis}"></c:set>    
                             <tr>
                                 <td><img src="${list.value.get(0).getImage()}" width="120" class="img-responsive"/></td>
@@ -84,9 +88,12 @@
                             <c:choose>
                                 <c:when test="${!empty sessionScope.shoppingCart}">
                                     <c:choose>
-                                        <c:when test="${!empty currentPage}">
+                                        <c:when test="${source == 'shop'}">
                                             <a href="shop?recordsPerPage=${requestScope.recordsPerPage}&currentPage=${requestScope.currentPage}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Weiter Einkaufen</a>
                                         </c:when>
+                                        <c:when test="${source == 'detail'}">
+                                            <a href="detail?gameid=${requestScope.gameid}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Weiter Einkaufen</a>
+                                        </c:when>    
                                     </c:choose>
                                 </c:when>
                             </c:choose>
@@ -94,7 +101,7 @@
                         <td colspan="3" class="hidden-xs"></td>
                         <c:choose>
                             <c:when test="${!empty sessionScope.shoppingCart}">
-                                <td class="text-center">Gesamtpreis <strong class="roundPriceId">${endpreis}</strong></td>
+                                <td class="text-center">Endpreis <strong class="roundPriceId">${endpreis}</strong></td>
                                 <td>
                                     <form action="/WebProjekt/cart" method="post">
                                         <input type="hidden" name="totalPrice" value="${endpreis}"/>
